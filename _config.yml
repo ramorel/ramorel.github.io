@@ -80,7 +80,7 @@ analytics:
 # Site Author
 author:
   name             : "Richard Paquin Morel"
-  avatar           : "images/avatar.jpg"
+  avatar           : "avatar.jpg"
   bio              : "I am a PhD candidate at Northwestern Univeristy. I study how social processes shape the development and implementation of educational policies"
   location         : "Chicago"
   employer         :
