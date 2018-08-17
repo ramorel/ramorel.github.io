@@ -2,7 +2,7 @@
 title: "Access, Activation, and Influence: How Brokers Mediate Social Capital Among Professional Development Providers"
 collection: publications
 permalink: /publication/access_activation_and_influence
-excerpt: 'This paper is about the number 1. The number 2 is left for future work.'
+excerpt: ''
 date: 2018-08-16
 venue: 'American Educational Research Journal'
 paperurl: 'http://ramorel.github.io/files/access.pdf'
