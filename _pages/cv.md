@@ -127,7 +127,7 @@ Education/Spencer Foundation 2018
 *Clark Scholar*, David L. Clark National Graduate Student Research
 Seminar 2018
 
-*Dissertation Year Funding*, Northwestern University 2017-2018
+*Dissertation Year Fellowship*, Northwestern University 2017-2018
 
 *Multidisciplinary Program in Education Science*, Institute for
 Education Science 2014-2017
