@@ -11,4 +11,4 @@ citation: 'Morel, R & Coburn, C. Access, Activation, and Influence: How Brokers 
 Abstract:  
 Professional development providers can shape how teachers understand and implement new policies. Yet, we have a limited understanding of how providers develop the ideas they promote. We explore this by examining social capital among mathematics PD providers. Using social network and interview data, we identified providers in brokerage positions and analyze their interactions. We found that broker behavior varied by organizational setting. Brokers in school districts typically discussed logistical issues related to PD delivery, while brokers outside of districts often discussed substantive mathematical topics. When district brokers did access substantive information, they rarely shared it. We conclude: (1) the disconnect between accessing and sharing diminished district brokers’ ability to support PD in their districts and (2) the lack of substance diminished their ability to influence ideas about mathematics. 
 
-[Download paper here]()
+[Link](http://journals.sagepub.com/doi/full/10.3102/0002831218788528)
