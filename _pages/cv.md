@@ -11,18 +11,23 @@ redirect_from:
 
 [Download my CV](http://ramorel.github.io/files/paquinmorel_cv_CURRENT.pdf)
 
+# Richard Paquin Morel
+School of Education and Social Policy • Northwestern University
+2120 Campus Drive • Evanston, IL • 60660
+richard[dot]morel[at]u[dot]northwestern[dot]edu
+
 ## Education
 
 Ph.D., Human Development and Social Policy, *Northwestern
-University* Expected 2019  
+University*,  Expected 2019  
 Committee: Cynthia Coburn (chair), Simone Ispa-Landa, Brayden King,
 James Spillane
 
-M.S., Childhood Education, *Brooklyn College* 2008
+M.S., Childhood Education, *Brooklyn College*, 2008
 
-M.A., Philosophy, *The New School for Social Research* 2007
+M.A., Philosophy, *The New School for Social Research*, 2007
 
-B.A., Philosophy, *Webster University* 2004
+B.A., Philosophy, *Webster University*, 2004
 
 ## Research interests
 
