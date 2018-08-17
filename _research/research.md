@@ -1,6 +1,6 @@
 ---
 title: "Research Interests"
-excerpt: """
+excerpt: ""
 collection: research
 ---
 
