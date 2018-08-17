@@ -9,6 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
+[Download my CV](http://ramorel.github.io/files/paquinmorel_cv_CURRENT.pdf)
 
 ## Education
 
