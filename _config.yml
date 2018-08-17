@@ -222,21 +222,21 @@ defaults:
       author_profile: true
       share: true
       comments: true
-  # _portfolio
+  # _research
   - scope:
       path: ""
-      type: portfolio
+      type: research
     values:
       layout: single
       author_profile: true
       share: true
       comment: true
-  # _talks
+  # _presentations
   - scope:
       path: ""
-      type: talks
+      type: presentations
     values:
-      layout: talk
+      layout: presentations
       author_profile: true
       share: true
 
