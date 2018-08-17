@@ -12,9 +12,9 @@ redirect_from:
 [Download my CV](http://ramorel.github.io/files/paquinmorel_cv_CURRENT.pdf)
 
 # Richard Paquin Morel
-School of Education and Social Policy • Northwestern University
-2120 Campus Drive • Evanston, IL • 60660
-richard[dot]morel[at]u[dot]northwestern[dot]edu
+School of Education and Social Policy • Northwestern University  
+2120 Campus Drive • Evanston, IL • 60660  
+richard[dot]morel[at]u[dot]northwestern[dot]edu  
 
 ## Education
 
