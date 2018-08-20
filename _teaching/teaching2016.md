@@ -2,9 +2,9 @@
 title: "Teaching experience"
 collection: teaching
 type: "Undergraduate course, Teaching Assistant"
-permalink: /teaching/2015-winter-teaching
+permalink: /teaching/2016-spring-teaching
 venue: "Northwestern University"
-date: 2015-01-01
+date: 2016-04-01
 ---
 
-Social Policymaking and Policy Implementation, Prof. Cynthia Coburn
+Social Policymaking and Implementation, Prof. Cynthia Coburn
