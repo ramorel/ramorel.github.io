@@ -7,4 +7,4 @@ venue: "Northwestern University"
 date: 2015-01-01
 ---
 
-Social Policymaking and Policy Implementation
+Social Policymaking and Policy Implementation, Prof. Cynthia Coburn
