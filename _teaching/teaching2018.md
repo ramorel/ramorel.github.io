@@ -2,7 +2,7 @@
 title: "Teaching experience"
 collection: teaching
 type: "Undergraduate course, Instructor of record"
-permalink: /teaching/2019-winter-teaching
+permalink: /teaching/teaching
 venue: "Northwestern University"
 date: 2019-01-01
 ---
