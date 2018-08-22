@@ -1,3 +1,9 @@
+---
+title: "Dissertation Study 3"
+excerpt: ""
+collection: research
+---
+
 Using a differences-in-differences framework to analyze to role of group
 threat in social movement mobilization
 ================
