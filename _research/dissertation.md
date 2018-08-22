@@ -1,7 +1,17 @@
 ---
-title: "Research Interests"
+title: "Dissertation"
 excerpt: ""
 collection: research
 ---
 
-- I study how social factors within (social networks, social capital) and outside of (social movements) influence the development and implementation of educational policies.
+#### Test Questions: The mobilization of the anti-standardized testing movement
+
+My dissertation consists of three studies of the "opt-out" movement--a coalition of parents and educators who oppose the use of standardized tests for "high-stakes" accountability purposes.
+
+I will fill these in soon :)
+
+- Study 1:
+
+- Study 2:
+
+- Study 3:
