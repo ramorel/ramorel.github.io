@@ -1,6 +1,5 @@
 ---
 title: 'Dissertation Study 3'
-date: 2012-08-14
 permalink: posts/dissertation_3/
 collection: posts
 ---
