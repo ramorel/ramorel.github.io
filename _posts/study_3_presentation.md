@@ -1,8 +1,11 @@
 ---
+layout: archive
 title: 'Dissertation Study 3'
-permalink: posts/dissertation_3/
-collection: posts
+permalink: /dissertation_3/
+author_profile: true
 ---
+
+{% include base_path %}
 
 ## Using a differences-in-differences framework to analyze to role of group
 threat in social movement mobilization
