@@ -1,6 +1,11 @@
-Using a differences-in-differences framework to analyze to role of group
+---
+title: 'Dissertation Study 3'
+date: 2018-08-22
+permalink: /posts/dissertation_3/
+---
+
+## Using a differences-in-differences framework to analyze to role of group
 threat in social movement mobilization
-================
 
 One study of my dissertation analyzes the causal impact of changing
 demographics within a school on student participatoin in boycotts of
