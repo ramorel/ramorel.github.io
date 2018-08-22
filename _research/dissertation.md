@@ -14,4 +14,4 @@ I will fill these in soon :)
 
 - Study 2:
 
-- Study 3: [Here's a short summary/overview of this study](https://ramorel.github.io/files/study_3_presentation.html)--BEWARE: it is still a work in progress!
+- Study 3: [Here's a short summary/overview of this study](https://ramorel.github.io/dissertation_3)--BEWARE: it is still a work in progress!
