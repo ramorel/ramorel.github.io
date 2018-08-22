@@ -243,12 +243,9 @@ before 2013.
 Here’s the basic regression
 model:
 
-\[Y_{it} = \alpha_0 + \beta_1 R_i * D + \beta_2 R_i + \beta_3 D + \beta_4 X_{it} + \epsilon_{it}\]
-where \(Y_{it}\) is the proportion of students boycotting the test in
-school \(i\) in year \(t\), \(D\) is the indicator for year after 2013,
-and \(R_i\) is the indicator for the increases in racial diversity for
-school \(i\). \(X_{it}\) is a vector of relevant time-varying covariates
-and \(\epsilon_{it}\) is a school-year stochastic error term.
+$$Y_{it} = \alpha_0 + \beta_1 R_i * D + \beta_2 R_i + \beta_3 D + \beta_4 X_{it} + \epsilon_{it}$$
+
+where $Y_{it}$ is the proportion of students boycotting the test in school $i$ in year $t$, $D$ is the indicator for year after 2013, and $R_i$ is the indicator for the increases in racial diversity for school $i$. $X_{it}$ is a vector of relevant time-varying covariates and $\epsilon_{it}$ is a school-year stochastic error term.
 
 Since we have panel data, we can exploit within-school changes in order
 to control for any fixed unobserved differences between schools. This
@@ -265,12 +262,9 @@ will use both school and year fixed effects.
 Now the model
 is:
 
-\[Y_{it} = \beta_1 R_i * D + \beta_2 X_{it} + \alpha_i + \gamma_t + \epsilon_{it}\]
+$$Y_{it} = \beta_1 R_i * D + \beta_2 X_{it} + \alpha_i + \gamma_t + \epsilon_{it}$$
 
-where \(\alpha_i\) are school fixed effects and \(\gamma_t\) are year
-fixed effects. The intercept \(\alpha_0\) and individual coefficients
-for \(D\) and \(R_i\) drop out. In both cases, \(\beta_1\) is the
-differences-in-differences estimator.
+where $\alpha_i$ are school fixed effects and $\gamma_t$ are year fixed effects. The intercept $\alpha_0$ and individual coefficients for $D$ and $R_i$ drop out. In both cases, $\beta_1$ is the differences-in-differences estimator.
 
 The relevant covariates in the vector \(X_{it}\) are: lagged proficiency
 rates in mathematics, the percent of teachers with fewer than three
