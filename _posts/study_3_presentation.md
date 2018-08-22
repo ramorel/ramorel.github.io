@@ -2,10 +2,7 @@
 title: 'Dissertation Study 3'
 date: 2012-08-14
 permalink: posts/dissertation_3/
-tags:
-  - cool posts
-  - category1
-  - category2
+collection: posts
 ---
 
 ## Using a differences-in-differences framework to analyze to role of group
