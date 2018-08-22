@@ -1,11 +1,8 @@
 ---
-permalink: /
+permalink: /about/
 title: "About me"
 excerpt: "Hi"
 author_profile: true
-redirect_from: 
-  - /about/
-  - /about.html
 ---
 
 Hi, I'm Richard. Here's bit about me:
