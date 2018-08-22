@@ -4,4 +4,4 @@ excerpt: ""
 collection: research
 ---
 
-- Educational policy, social networks, social movements
+- I study how social factors within (social networks, social capital) and outside of (social movements) influence the development and implementation of educational policies.
