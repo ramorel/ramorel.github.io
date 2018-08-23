@@ -5,8 +5,7 @@ permalink: /dissertation_3/
 author_profile: true
 ---
 
-## Using a differences-in-differences framework to analyze to role of group
-threat in social movement mobilization
+## Using a differences-in-differences framework to analyze to role of group threat in social movement mobilization
 
 One study of my dissertation analyzes the causal impact of changing
 demographics within a school on student participatoin in boycotts of
