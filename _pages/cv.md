@@ -39,7 +39,7 @@ sociology, mixed methods, computational methods
 ### Peer-reviwed articles
 
 **Morel R.** & Coburn, C. E. Access, activation, and influence:
-How brokers shape social capital among professional development
+How brokers mediate social capital among professional development
 providers. Forthcoming at *American Educational Research Journal*.
 
 ### Manuscripts under review
