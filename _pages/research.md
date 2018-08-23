@@ -15,3 +15,9 @@ I study how social factors within and outside of educational institutions influe
 {% for post in site.research %}
   {% include archive-single.html %}
 {% endfor %}
+
+My dissertation analyzes the development and mobilization on an anti-standardized testing social movement. 
+
+Here's an abstract:
+
+Standards-based accountability policies—with high-stakes standardized tests as one of its central instruments—are one of the most consequential reforms in the U.S. educational system. The recent emergence of anti-testing social movements among parents challenges this status quo. Seeking to redefine the role of testing the K-12 system, a coalition of parents and educators have organized and promoted collective action by boycotting annual accountability testing. In three studies, my dissertation explores the development and organization of a movement infrastructure, how activists use discursive tactics to mobilize supporters and shape public opinions, and the role of [pgroup threat](http://ramorel.github.io/dissertation_3) in test boycotts.
