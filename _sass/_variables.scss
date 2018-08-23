@@ -96,22 +96,23 @@ $link-color-visited         : mix(#fff, $link-color, 25%);
 $masthead-link-color        : $primary-color;
 $masthead-link-color-hover  : mix(#000, $primary-color, 25%);
 
-$base00: #000000;
-$base01: #242422;
-$base02: #484844;
-$base03: #6c6c66;
-$base04: #918f88;
-$base05: #b5b3aa;
-$base06: #d9d7cc;
-$base07: #fdfbee;
-$base08: #ff6c60;
-$base09: #e9c062;
-$base0a: #ffffb6;
-$base0b: #a8ff60;
-$base0c: #c6c5fe;
-$base0d: #96cbfe;
-$base0e: #ff73fd;
-$base0f: #b18a3d;
+/* solarized light syntax highlighting (base16) */
+$base00: #fafafa !default;
+$base01: #073642 !default;
+$base02: #586e75 !default;
+$base03: #657b83 !default;
+$base04: #839496 !default;
+$base05: #586e75 !default;
+$base06: #eee8d5 !default;
+$base07: #fdf6e3 !default;
+$base08: #dc322f !default;
+$base09: #cb4b16 !default;
+$base0a: #b58900 !default;
+$base0b: #859900 !default;
+$base0c: #2aa198 !default;
+$base0d: #268bd2 !default;
+$base0e: #6c71c4 !default;
+$base0f: #d33682 !default;
 
 /*
    Breakpoints
