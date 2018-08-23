@@ -9,7 +9,7 @@ Home.
 
 [Me](http://ramorel.github.io/about)? I’m a doctoral candidate in the Human Development and Social Policy program at Northwestern University.
 
-I’m on the job market for 2018-2019. Here’s my [CV](http://ramorel.github.io/CV).
+I’m currently on the job market. Here’s my [CV](http://ramorel.github.io/CV).
 
 I study how social relationships shape the development implementation of education policy. My theoretical and methodological toolkit includes organizational sociology, social movement theory, social network analysis, and qualitative analysis. I also have a lot of training in econometrics and methods for causal inference.
 
