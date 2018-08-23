@@ -153,19 +153,19 @@ University 2013-2014
 ## Teaching Experience
 
 Teaching Assistant Spring 2016  
-Social Policymaking and Policy Implementation (SOC POL 312)  
+Social Policymaking and Implementation
 School of Education and Social Policy, Northwestern University  
 Average review score: 5.61 (out of 6)
 
 Teaching Assistant Winter 2015  
-Social Policymaking and Policy Implementation (SOC POL 312)  
-School of Education and Social Policy, Northwestern University  
-Average review score: 5.37 (out of 6)
+  Social Policymaking and Implementation 
+  School of Education and Social Policy, Northwestern University  
+  Average review score: 5.37 (out of 6)
 
 Teacher, Common Branches (Elementary General Education) 2006-2012  
-New York City Public School, P.S. 139 (2006-2009)  
-New York City Public School, P.S. 345 (2009-2012) New York City Teaching
-Fellow 12th cohort (2006-2008)
+  New York City Public School, P.S. 139 (2006-2009)  
+  New York City Public School, P.S. 345 (2009-2012) 
+  New York City Teaching Fellow 12th cohort (2006-2008)
 
 ## Professional Service
 
