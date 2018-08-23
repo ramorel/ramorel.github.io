@@ -120,7 +120,7 @@ Starting in 2013, the proportion of students not participating in annual
 math testing increased, maxing out at about
 20%.
 
-![](files/overall%20opt%20out%20trend-1.png)<!-- -->
+![](http://ramorel.github.io/files/overall%20opt%20out%20trend-1.png)<!-- -->
 
 The students participating in the boycott are primarily, but not
 exclusively,
@@ -133,12 +133,12 @@ more students participating in the boycott than schools that did not–a
 bit of evidence for the group threat
 hypothesis.
 
-![](files/differences%20by%20increases%20in%20diversity-1.png)<!-- -->
+![](http://ramorel.github.io/files/differences%20by%20increases%20in%20diversity-1.png)<!-- -->
 
 Again, we see this trend is true if we focus only on white
 students.
 
-![](files/differences%20for%20white%20opting%20out-1.png)<!-- -->
+![](http://ramorel.github.io/files/differences%20for%20white%20opting%20out-1.png)<!-- -->
 
 ### Differences-in-differences analysis
 
