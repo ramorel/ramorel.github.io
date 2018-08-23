@@ -126,7 +126,7 @@ The students participating in the boycott are primarily, but not
 exclusively,
 white.
 
-![](files/trends%20by%20race-1.png)<!-- -->
+![](http://ramorel.github.io/files/trends%20by%20race-1.png)<!-- -->
 
 Schools that had increases in racial diversity between 2013 and 2016 had
 more students participating in the boycott than schools that did not–a
