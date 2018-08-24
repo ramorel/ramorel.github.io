@@ -5,8 +5,6 @@ excerpt: "Hi"
 author_profile: true
 ---
 
-Home.
-
 [Me](http://ramorel.github.io/about)? I’m a doctoral candidate in the Human Development and Social Policy program at Northwestern University.
 
 I’m currently on the job market. Here’s my [CV](http://ramorel.github.io/CV).
