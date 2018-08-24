@@ -32,7 +32,7 @@ B.A., Philosophy, *Webster University*, 2004
 
 - Social influences on educational policy development and implementation
 - Social networks, social movements, organizational 
-sociology, mixed methods, computational methods
+sociology, mixed methods
 
 ## Publications
 
@@ -68,7 +68,7 @@ manuscript. Under contract with Harvard Educational Press.
 ### Technical reports
 
 Anderson, E., **Morel, R.**, & Stein, A. (2016). What variables
-predict science achievement? A report to Evanston Township High School.
+predict science achievement? A report to North Shore High School.
 Evanston, IL: Northwestern University.
 
 Coburn, C.E. Catterson, A. K., Higgs, J. & **Morel, R.** (2013).
