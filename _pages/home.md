@@ -18,3 +18,5 @@ I was an [IES pre-doctoral fellow](http://www.mpes.sesp.northwestern.edu/people/
 My department profile is [here](http://www.sesp.northwestern.edu/profile/?p=22703&/RichardPaquin%20Morel/).
 
 I have some code for network analysis on my [github page](http://www.github.com/ramorel).
+
+Before beginning my doctoral studies, I was an elementary school teacher in Brooklyn, NY. I was a New York City Teaching Fellow, cohort 12, from 2006-2008. Before that, I was in a PhD program in philosophy where I studied American pragmatism (especially the work of John Dewey), phenomenology, and philosophy of language. I left with my MA to become a teacher.
