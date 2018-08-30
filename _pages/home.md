@@ -19,4 +19,4 @@ I have some code for network analysis on my [github page](http://www.github.com/
 
 Before beginning my doctoral studies, I was an elementary school teacher in Brooklyn, NY. I was a New York City Teaching Fellow, cohort 12, from 2006-2008. Before that, I was in a PhD program in philosophy where I studied American pragmatism (especially the work of John Dewey), phenomenology, and philosophy of language. I left with my MA to become a teacher.
 
-Check out my recently published work at [AERJ](http://journals.sagepub.com/doi/full/10.3102/0002831218788528). The pdf is [here](http://ramorel.github.io/access.pdf)
+Check out my recently published work at [AERJ](http://journals.sagepub.com/doi/full/10.3102/0002831218788528). The pdf is [here](https://ramorel.github.io/files/access.pdf)
