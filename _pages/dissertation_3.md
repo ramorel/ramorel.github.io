@@ -15,8 +15,7 @@ annual standardized tests. Based on research in social movements theory
 and educational policy, I hypothesize that when schools see increases in
 the share of students of color, students are more likely to
 participating in testing boycotts. This is called *group threat*.
-Basically, it predicts that members of majority groups will mobilize to
-take collective action when they are exposed to more members of minority
+Basically, it predicts that members of majority groups will mobilize for collective action when they are exposed to more members of minority
 groups.
 
 My case is the opt-out movement–a coalition of parents and educators who
@@ -353,7 +352,7 @@ huxreg(list(`DID estimator only` = m1,
 | N                                    |              16849 | 16442        |              11734 |   11433    |
 | R2                                   |              0.377 | 0.401        |              0.438 |   0.454    |
 | Adj. R2                              |              0.377 | 0.400        |              0.438 |   0.454    |
-| \*\*\* p \< 0.001;                               |  \*\* p | \< 0.01; \*  |         p \< 0.05. |            |
+| \*\*\* p \< 0.001; \*\* p \< 0.01; \* p \< 0.05. |   |   |          |            |
 
 As we can see, the interaction between `increase_diverse` and `post2013`
 is significant and positive. Schools with increases in diversity has
@@ -422,7 +421,7 @@ huxreg(list(`DID estimator only` = m1,
 | N                                    |              16849 | 16442        |              11734 |    11433     |
 | R2                                   |              0.711 | 0.729        |              0.764 |    0.773     |
 | Adj. R2                              |              0.668 | 0.688        |              0.731 |    0.740     |
-| \*\*\* p \< 0.001;                              |  \*\* p | \< 0.01; \*  |         p \< 0.05. |              |
+| \*\*\* p \< 0.001; \*\* p \< 0.01; \* p \< 0.05. |   |   |         |              |
 
 Case closed, right? Not quite. This evidence is compelling, but there is
 still potential bias in our results. Namely, if there are any changes
@@ -512,7 +511,7 @@ huxreg(
 | N                                    | 4538          | 2958                   |
 | R2                                   | 0.633         | 0.714                  |
 | Adj. R2                              | 0.556         | 0.656                  |
-| \*\*\* p \< 0.001; \*\* p \< 0.01;              |  \* p \< 0.05.|              |
+| \*\*\* p \< 0.001; \*\* p \< 0.01; \* p \< 0.05.  |  |                        |
 
 Violà. The interaction is no longer significant, the point estimate
 basically zero, but not precisely estimated.
