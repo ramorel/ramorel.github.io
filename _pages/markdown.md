@@ -1,10 +1,8 @@
 ---
-permalink: /markdown/
-title: "Markdown"
+layout: archive
+title: 'Dissertation Study 3'
+permalink: /dissertation_3/
 author_profile: true
-redirect_from: 
-  - /md/
-  - /markdown.html
 ---
 
 ## Locations of key files/directories
