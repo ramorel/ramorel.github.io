@@ -1,11 +1,6 @@
----
-layout: archive
-title: 'Dissertation Study 3'
-permalink: /dissertation_3/
-author_profile: true
----
-
-## Using a differences-in-differences framework to analyze to role of group threat in social movement mobilization
+Using a difference-in-differences framework to analyze to role of group
+threat in social movement mobilization
+================
 
 One study of my dissertation analyzes the causal impact of changing
 demographics within a school on student participatoin in boycotts of
@@ -35,7 +30,7 @@ supplemented these data with data from the Common Core of Data, which
 contains administrative and demographic data for every school in
 America.
 
-I have already created my dataset. I use data from the 2007-2008 until
+I have already created my dataset. I use data from the 2008-2009 until
 the 2016-2017 school year. The dataset contains demographic data,
 testing data, and–most important of all–participation data. So for each
 school in New York, I have data on the number of student who
@@ -43,7 +38,7 @@ participated, the average tests scores by grade, and the proficiency
 rates by grade. I will describe variables I use in a moment.
 
 To identify the causal relationship between demographic changes and
-testing boycotts, I use a **differences-in-differences** framework, a
+testing boycotts, I use a **difference-in-differences** framework, a
 common econometric technique for making causal inferences from
 observational data. There are several problems with observational data,
 in contrast with experimental data, when it comes to causal inference.
@@ -56,7 +51,7 @@ are more likely to have the time and resources to join social movements.
 So any relationship between demographic changes and testing boycotts
 would be spurious–the true cause would be parental education.
 
-The differences-in-differences framework gets around this problem by
+The difference-in-differences framework gets around this problem by
 netting out any pre-existing differences between the two groups of
 schools. How?
 
@@ -120,27 +115,27 @@ Starting in 2013, the proportion of students not participating in annual
 math testing increased, maxing out at about
 20%.
 
-![](http://ramorel.github.io/files/overall%20opt%20out%20trend-1.png)<!-- -->
+![](study_3_presentation_files/figure-gfm/overall%20opt%20out%20trend-1.png)<!-- -->
 
 The students participating in the boycott are primarily, but not
 exclusively,
 white.
 
-![](http://ramorel.github.io/files/trends%20by%20race-1.png)<!-- -->
+![](study_3_presentation_files/figure-gfm/trends%20by%20race-1.png)<!-- -->
 
-Schools that had increases in racial diversity between 2013 and 2016 had
+Schools that had increases in racial diversity between 2013 and 2013 had
 more students participating in the boycott than schools that did not–a
 bit of evidence for the group threat
 hypothesis.
 
-![](http://ramorel.github.io/files/differences%20by%20increases%20in%20diversity-1.png)<!-- -->
+![](study_3_presentation_files/figure-gfm/differences%20by%20increases%20in%20diversity-1.png)<!-- -->
 
 Again, we see this trend is true if we focus only on white
 students.
 
-![](http://ramorel.github.io/files/differences%20for%20white%20opting%20out-1.png)<!-- -->
+![](study_3_presentation_files/figure-gfm/differences%20for%20white%20opting%20out-1.png)<!-- -->
 
-### Differences-in-differences analysis
+### Difference-in-differences analysis
 
 My main dependent variable is the proportion of students boycotting the
 annual math standardized test.
@@ -160,54 +155,37 @@ cutoff here–what increase is meaningful, according to this measure?
 library(tidyverse)
 ny_panel <-
   ny_panel %>% 
-  mutate(
-    school_racial_diversity = 
-      ny_panel %>% 
-      select(per_hisp, 
-             per_white,
-             per_black,
-             per_asian)  %>% 
-      vegan::diversity(index = "simpson")) %>% 
-  group_by(entity_cd) %>% 
-  mutate(
-    change_diversity = 
-      round(school_racial_diversity, 2) - round(dplyr::lag(school_racial_diversity), 2)
-  )
+  group_by(entity_cd) %>%  
+  mutate(change_per_black_hisp = 
+           round(per_black_hisp, 2) - round(dplyr::lag(per_black_hisp), 2),
+         )
 
-summary(ny_panel$school_racial_diversity)
-```
-
-    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##  0.0000  0.1717  0.3792  0.3659  0.5446  1.0000
-
-``` r
-summary(ny_panel$change_diverse)
+summary(ny_panel$change_per_black_hisp)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ## -1.0000 -0.0111  0.0010  0.0041  0.0190  1.0000    2313
+    ##  -0.300  -0.010   0.000   0.001   0.010   0.250    7121
 
-A 0.02 point increase in the index is the 75th percentile, so that seems
-like a reasonable cutoff. For schools that have an increase between 2013
-and 2016, `increase_diverse == 1` and `increase_diverse == 0` otherwise.
+Now I will create an indicator for schools that had a net increase in
+the share of black and Latinx students between 2013 and 2015.
 
 ``` r
 ny_panel <-
   ny_panel %>%
   mutate(
-    increase_diverse = 
-      as.numeric(sum(change_diverse[year >= 2013 & year <= 2016], 
-                     na.rm = T) > 0.02)
-  )
+    increase_blhp_2013_2015 = 
+      ifelse(sum(change_per_black_hisp[year >= 2013 & year <= 2015], na.rm = T) > 0, 
+                  1, 0)
+    )
 
-table(ny_panel$increase_diverse)
+table(ny_panel$increase_blhp_2013_2015)
 ```
 
     ## 
     ##     0     1 
-    ## 12950 10180
+    ## 17226 11916
 
-To set up the differences-in-differences analysis, I need to create an
+To set up the difference-in-differences analysis, I need to create an
 indicator for the treatment period. This is the period after 2013. So
 for each school in the dataset, `post2013 == 1` when the year is after
 2013 and `post2013 == 0` otherwise.
@@ -222,18 +200,17 @@ table(ny_panel$year, ny_panel$post2013)
 
     ##       
     ##           0    1
-    ##   2008 2313    0
-    ##   2009 2313    0
-    ##   2010 2313    0
-    ##   2011 2313    0
-    ##   2012 2313    0
-    ##   2013 2313    0
-    ##   2014    0 2313
-    ##   2015    0 2313
-    ##   2016    0 2313
-    ##   2017    0 2313
+    ##   2009 3238    0
+    ##   2010 3238    0
+    ##   2011 3238    0
+    ##   2012 3238    0
+    ##   2013 3238    0
+    ##   2014    0 3238
+    ##   2015    0 3238
+    ##   2016    0 3238
+    ##   2017    0 3238
 
-The differences-in-differences estimator is the interaction between
+The difference-in-differences estimator is the interaction between
 `post2013` and `increase_diverse`. This compares the proportion of
 students boycotting the test in schools that had an increase in
 diversity between 2013 and 2016 to those that did not *and* all schools
@@ -242,9 +219,13 @@ before 2013.
 Here’s the basic regression
 model:
 
-$$Y_{it} = \alpha_0 + \beta_1 R_i * D + \beta_2 R_i + \beta_3 D + \beta_4 X_{it} + \epsilon_{it}$$
+\[Y_{it} = \alpha_0 + \beta_1 R_i * D_t + \beta_2 R_i + \beta_3 D + \beta_4 X_{it} + \epsilon_{it}\]
 
-where $Y_{it}$ is the proportion of students boycotting the test in school $i$ in year $t$, $D$ is the indicator for year after 2013, and $R_i$ is the indicator for the increases in racial diversity for school $i$. $X_{it}$ is a vector of relevant time-varying covariates and $\epsilon_{it}$ is a school-year stochastic error term.
+where \(Y_{it}\) is the proportion of students boycotting the test in
+school \(i\) in year \(t\), \(D_t\) is the indicator for years after
+2013, and \(R_i\) is the indicator for the increases in racial diversity
+for school \(i\). \(X_{it}\) is a vector of relevant time-varying
+covariates and \(\epsilon_{it}\) is a school-year stochastic error term.
 
 Since we have panel data, we can exploit within-school changes in order
 to control for any fixed unobserved differences between schools. This
@@ -261,54 +242,193 @@ will use both school and year fixed effects.
 Now the model
 is:
 
-$$Y_{it} = \beta_1 R_i * D + \beta_2 X_{it} + \alpha_i + \gamma_t + \epsilon_{it}$$
+\[Y_{it} = \beta_1 R_i * D + \beta_2 X_{it} + \alpha_i + \gamma_t + \epsilon_{it}\]
 
-where $\alpha_i$ are school fixed effects and $\gamma_t$ are year fixed effects. The intercept $\alpha_0$ and individual coefficients for $D$ and $R_i$ drop out. In both cases, $\beta_1$ is the differences-in-differences estimator.
+where \(\alpha_i\) are school fixed effects and \(\gamma_t\) are year
+fixed effects. The intercept \(\alpha_0\) and individual coefficients
+for \(D_t\) and \(R_i\) drop out. In both cases, \(\beta_1\) is the
+difference-in-differences estimator.
 
-The relevant covariates in the vector $X_{it}$ are: lagged proficiency rates in mathematics, the percent of teachers with fewer than three years experience, the percent of teachers with masters degrees or higher, the percent of low income students, and the percent of students who are English Language Learners.
+The relevant covariates in the vector \(X_{it}\) are: lagged proficiency
+rates in mathematics, the percent of novice teachers in the school
+(fewer than three years of experience), the percent of teachers with
+masters degrees or higher, the percent of low income students, and the
+percent of students who are English Language Learners.
 
-### Differences-in-differences models
+### Difference-in-differences models
 
-I will first do the vanilla regression (model 1) and then the fixed
-effects regression (model 2). Since it is quite likely that there is
-correlations within schools, it is wise to use clustered standard
-errors.
+Before running the regression models, there is a key assumption that I
+must satisfy for the difference-in-differences approach to be unbiased:
+parallel trends in the outcome between the two groups in absence of
+treatment. In this case, assessing parallel trends is a bit tricky,
+since test boycotts were very limited prior to 2013. So the trends are
+indeed parallel, but that doesn’t give much information about the two
+groups. So I will assess trends for other key
+variables.
+
+![](study_3_presentation_files/figure-gfm/parallel%20trends-1.png)<!-- -->
+
+By and large, these trends between the two groups appear parallel,
+expect in the case of the share of novice teachers. There may be some
+unobserved differences between the two groups related to school or
+teacher quality.
+
+If I restrict the sample to majority white schools, the trends are
+parallel for all
+variables.
+
+![](study_3_presentation_files/figure-gfm/parallel%20trends%20white%20maj-1.png)<!-- -->
+
+Now, turning to the difference-in-differences analysis. I will first do
+the vanilla regression (model 1) and then the fixed effects regression
+(model 2). Since it is quite likely that there is correlations within
+schools, it is wise to use clustered standard errors.
 
 ``` r
-did_reg <-
-  as.formula(
-    math_all_non_partic ~
-      increase_diverse*post2013 +
-      lag(math_non_prof_rate) +
-      per_fewer_3yrs_exp +
-      per_mas_plus +
-      per_frpl +
-      per_lep
-  )
+m1 <- 
+  felm(math_white_non_partic ~
+         increase_blhp_2013_2015*post2013 | 0 | 0 | district_cd, 
+       data = ny_panel)
 
-did_reg_fit <- 
-  lm(did_reg, data = ny_panel)
+m2 <- 
+  felm(math_white_non_partic ~
+         lag(math_non_prof_rate) +
+         per_fewer_3yrs_exp +
+         per_mas_plus +
+         per_frpl +
+         per_lep +
+         log(total_enroll) | 0 | 0 | district_cd, 
+       data = ny_panel)
 
-lmtest::coeftest(did_reg_fit, 
-                 vcov = vcovHC(did_reg_fit,
-                               type = "HC1"))
+m3 <- 
+  felm(math_white_non_partic ~
+         increase_blhp_2013_2015*post2013 +
+         lag(math_non_prof_rate) +
+         per_fewer_3yrs_exp +
+         per_mas_plus +
+         per_frpl +
+         per_lep +
+         log(total_enroll) | 0 | 0 | district_cd, 
+       data = ny_panel)
+
+m4 <- 
+  felm(math_white_non_partic ~
+         increase_blhp_2013_2015*post2013 | 0 | 0 | district_cd, 
+       data = ny_panel %>% 
+         filter(mean_per_white > 0.6))
+
+m5 <- 
+  felm(math_white_non_partic ~
+         lag(math_non_prof_rate) +
+         per_fewer_3yrs_exp +
+         per_mas_plus +
+         per_frpl +
+         per_lep +
+         log(total_enroll) | 0 | 0 | district_cd, 
+       data = ny_panel %>% 
+         filter(mean_per_white > 0.6))
+
+m6 <- 
+  felm(math_white_non_partic ~
+         increase_blhp_2013_2015*post2013 +
+         lag(math_non_prof_rate) +
+         per_fewer_3yrs_exp +
+         per_mas_plus +
+         per_frpl +
+         per_lep +
+         log(total_enroll) | 0 | 0 | district_cd, 
+       data = ny_panel %>% 
+         filter(mean_per_white > 0.6))
+
+
+huxreg(list(`DID estimator only` = m1,
+            `Controls only` = m2,
+            `Full model` = m3,
+            `DID estimator only` = m4,
+            `Controls only` = m5,
+            `Full model` = m6),
+       statistics = c("N" = "nobs", "R2" = "r.squared", "Adj. R2" = "adj.r.squared")) %>% 
+  insert_row(c("", "All Schools", "", "", "Majority White Schools", "", ""), after = 0) %>% 
+  set_colspan(1, c(2, 5), 3) %>% 
+  set_top_border(1, 1:7, 0) %>% 
+  set_top_border(2, 1, 0) %>% 
+  set_top_border(3, 1:7, 1)
 ```
 
-    ## 
-    ## t test of coefficients:
-    ## 
-    ##                             Estimate Std. Error  t value  Pr(>|t|)    
-    ## (Intercept)                0.0346845  0.0017117  20.2632 < 2.2e-16 ***
-    ## increase_diverse          -0.0125567  0.0005999 -20.9312 < 2.2e-16 ***
-    ## post2013                   0.0960140  0.0022862  41.9974 < 2.2e-16 ***
-    ## lag(math_non_prof_rate)    0.0145007  0.0025735   5.6347 1.777e-08 ***
-    ## per_fewer_3yrs_exp        -0.0994172  0.0085490 -11.6291 < 2.2e-16 ***
-    ## per_mas_plus               0.0115681  0.0034285   3.3741  0.000742 ***
-    ## per_frpl                  -0.0485697  0.0024504 -19.8213 < 2.2e-16 ***
-    ## per_lep                   -0.0764149  0.0062439 -12.2384 < 2.2e-16 ***
-    ## increase_diverse:post2013  0.0631506  0.0039846  15.8487 < 2.2e-16 ***
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## Warning in knit_print.huxtable(x, ...): Unrecognized output format "gfm-ascii". Using `to_screen` to print huxtables.
+    ## Set options("huxtable.knitr_output_format") manually to "latex", "html", "md" or "screen.
+
+``` 
+             All Schools                 Majority White            
+                                             Schools               
+      ─────────────────────────────────────────────────────────────
+          DID     Control    Full       DID     Control    Full    
+        estimat      s       model    estimat      s       model   
+          or       only                 or       only              
+         only                          only                        
+```
+
+───────────────────────────────────────────────────────────────────────
+(Interc 0.004 0.043   0.093 0.004 -0.074  -0.029   
+ept) \*\*\*    **  **\*          
+(0.000) (0.034) (0.034) (0.000) (0.056) (0.057)  
+                         
+increas 0.000           -0.009 -0.000          -0.010  
+e\_blhp\_      \*\*\*       \*\*\*  
+2013\_20  
+15  
+(0.000)         (0.002) (0.000)         (0.003)  
+                     
+post201 0.167         0.163 0.203         0.206  
+3 \*\*\*   \*\*\* \*\*\*   \*\*\*  
+(0.010)         (0.012) (0.008)         (0.011)  
+                     
+increas 0.069         0.067 0.061         0.059  
+e\_blhp\_ \*\*\*   \*\*\* \*\*\*   \*\*\*  
+2013\_20  
+15:post  
+2013  
+(0.012)         (0.012) (0.013)         (0.013)  
+                     
+lag(mat         0.314 0.032         0.367 -0.012   
+h\_non\_p   \*\*\* *     *\*\*      
+rof\_rat  
+e)  
+        (0.015) (0.016)         (0.013) (0.019)  
+                     
+per\_few         -0.102 -0.185         -0.142 -0.117  
+er\_3yrs   **  **\*   \*\*  \*    
+\_exp  
+        (0.036) (0.038)         (0.047) (0.049)  
+                     
+per\_mas         0.112 0.063         0.136 0.093  
+\_plus   \*\*\* **    **\* \*\*\*  
+        (0.021) (0.019)         (0.022) (0.022)  
+                     
+per\_frp         -0.134 -0.038         -0.083 0.030    
+l   \*\*\* *     **      
+        (0.016) (0.016)         (0.026) (0.028)  
+                     
+per\_lep         -0.166 -0.189         0.204 -0.125   
+  **  *\*\*   *        
+        (0.052) (0.053)         (0.096) (0.100)  
+                     
+log(tot         -0.009  -0.014         0.004   0.002    
+al\_enro       **           
+ll)  
+        (0.005) (0.005)         (0.008) (0.008)  
+                     
+───────────────────────────────────────────────────────────── N 16849  
+16442   16442   11734   11433   11433    
+                                           
+R2 0.377   0.175   0.401   0.438   0.196   0.454    
+                   
+Adj. R2 0.377   0.174   0.400   0.438   0.196   0.454    
+                   
+───────────────────────────────────────────────────────────────────────
+*** p \< 0.001; \*\* p \< 0.01; \* p \< 0.05.
+
+Column names: V1, V2, V3, V4, V5, V6, V7
 
 As we can see, the interaction between `increase_diverse` and `post2013`
 is significant and positive. Schools with increases in diversity has
@@ -318,77 +438,188 @@ without increase.
 Let’s see if adding the fixed effects makes this association go away.
 
 ``` r
-library(plm)
-
-did_fe_fit <-
-  plm(did_reg,
-      data = ny_panel,
-      index = c("entity_cd", "year"),
-      model = "within",
-      effect = "twoway")
-
-lmtest::coeftest(did_fe_fit, 
-                 vcov = vcovHC(did_fe_fit,
-                               type = "HC1"))
+m1 <- 
+  felm(math_white_non_partic ~
+         increase_blhp_2013_2015*post2013 | entity_cd + year | 0 | district_cd, 
+       data = ny_panel)
 ```
 
-    ## 
-    ## t test of coefficients:
-    ## 
-    ##                             Estimate Std. Error t value  Pr(>|t|)    
-    ## lag(math_non_prof_rate)    0.0441438  0.0147313  2.9966 0.0027346 ** 
-    ## per_fewer_3yrs_exp        -0.1200539  0.0174817 -6.8674 6.791e-12 ***
-    ## per_mas_plus               0.0467349  0.0177512  2.6328 0.0084777 ** 
-    ## per_frpl                   0.1946266  0.0124051 15.6892 < 2.2e-16 ***
-    ## per_lep                    0.1933615  0.0497529  3.8864 0.0001022 ***
-    ## increase_diverse:post2013  0.0555687  0.0051146 10.8646 < 2.2e-16 ***
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-The coefficient on the interaction dropped by a percentage point, but
-remains significant. But this is for all students; we can look
-specifically at boycotting among white students.
+    ## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+    ## rank-deficient or indefinite
 
 ``` r
-did_reg <-
-  as.formula(
-    math_white_non_partic ~
-      increase_diverse*post2013 +
-      lag(math_non_prof_rate) +
-      per_fewer_3yrs_exp +
-      per_mas_plus +
-      per_frpl +
-      per_lep
-  )
+m2 <- 
+  felm(math_white_non_partic ~
+         lag(math_non_prof_rate) +
+         per_fewer_3yrs_exp +
+         per_mas_plus +
+         per_frpl +
+         per_lep +
+         log(total_enroll) | entity_cd + year | 0 | district_cd, 
+       data = ny_panel)
 
-did_fe_fit <-
-  plm(did_reg,
-      data = ny_panel,
-      index = c("entity_cd", "year"),
-      model = "within",
-      effect = "twoway")
-
-lmtest::coeftest(did_fe_fit, 
-                 vcov = vcovHC(did_fe_fit,
-                               type = "HC1"))
+m3 <- 
+  felm(math_white_non_partic ~
+         increase_blhp_2013_2015*post2013 +
+         lag(math_non_prof_rate) +
+         per_fewer_3yrs_exp +
+         per_mas_plus +
+         per_frpl +
+         per_lep +
+         log(total_enroll) | entity_cd + year | 0 | district_cd, 
+       data = ny_panel)
 ```
 
-    ## 
-    ## t test of coefficients:
-    ## 
-    ##                             Estimate Std. Error t value  Pr(>|t|)    
-    ## lag(math_non_prof_rate)    0.1630559  0.0185558  8.7873 < 2.2e-16 ***
-    ## per_fewer_3yrs_exp        -0.1058064  0.0257502 -4.1089 4.003e-05 ***
-    ## per_mas_plus               0.1000960  0.0227550  4.3989 1.098e-05 ***
-    ## per_frpl                   0.1935351  0.0168013 11.5191 < 2.2e-16 ***
-    ## per_lep                    0.0765386  0.0932864  0.8205     0.412    
-    ## increase_diverse:post2013  0.0633321  0.0061544 10.2905 < 2.2e-16 ***
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+    ## rank-deficient or indefinite
 
-Again, the interaction is positive and significant, with about a 4
-percentage point increases in testing boycotts among white students in
-schools with increases in diversity.
+``` r
+m4 <- 
+  felm(math_white_non_partic ~
+         increase_blhp_2013_2015*post2013 | entity_cd + year | 0 | district_cd, 
+       data = ny_panel %>% 
+         filter(mean_per_white > 0.6))
+```
+
+    ## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+    ## rank-deficient or indefinite
+
+``` r
+m5 <- 
+  felm(math_white_non_partic ~
+         lag(math_non_prof_rate) +
+         per_fewer_3yrs_exp +
+         per_mas_plus +
+         per_frpl +
+         per_lep +
+         log(total_enroll) | entity_cd + year | 0 | district_cd, 
+       data = ny_panel %>% 
+         filter(mean_per_white > 0.6))
+
+m6 <- 
+  felm(math_white_non_partic ~
+         increase_blhp_2013_2015*post2013 +
+         lag(math_non_prof_rate) +
+         per_fewer_3yrs_exp +
+         per_mas_plus +
+         per_frpl +
+         per_lep +
+         log(total_enroll) | entity_cd + year | 0 | district_cd, 
+       data = ny_panel %>% 
+         filter(mean_per_white > 0.6))
+```
+
+    ## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+    ## rank-deficient or indefinite
+
+``` r
+huxreg(list(`DID estimator only` = m1,
+            `Controls only` = m2,
+            `Full model` = m3,
+            `DID estimator only` = m4,
+            `Controls only` = m5,
+            `Full model` = m6),
+       statistics = c("N" = "nobs", "R2" = "r.squared", "Adj. R2" = "adj.r.squared")) %>% 
+  insert_row(c("", "All Schools", "", "", "Majority White Schools", "", ""), after = 0) %>% 
+  set_colspan(1, c(2, 5), 3) %>% 
+  set_bottom_border(20, 1:7, 0) %>% 
+  insert_row(c("School FE", rep("Y", 6)), after = 20) %>% 
+  insert_row(c("Year FE", rep("Y", 6)), after = 21) %>% 
+  set_top_border(c(1, 21, 22), 1:7, 0) %>% 
+  set_top_border(2, 1, 0) %>% 
+  set_top_border(3, 1:7, 1) %>% 
+  set_bottom_border(20, 2:7, 1) %>% 
+  `[`(-c(3:6))
+```
+
+    ## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+    ## rank-deficient or indefinite
+    
+    ## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+    ## rank-deficient or indefinite
+    
+    ## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+    ## rank-deficient or indefinite
+    
+    ## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+    ## rank-deficient or indefinite
+    
+    ## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+    ## rank-deficient or indefinite
+    
+    ## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+    ## rank-deficient or indefinite
+    
+    ## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+    ## rank-deficient or indefinite
+    
+    ## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+    ## rank-deficient or indefinite
+
+    ## Warning in knit_print.huxtable(x, ...): Unrecognized output format "gfm-ascii". Using `to_screen` to print huxtables.
+    ## Set options("huxtable.knitr_output_format") manually to "latex", "html", "md" or "screen.
+
+``` 
+             All Schools                 Majority White            
+                                             Schools               
+      ─────────────────────────────────────────────────────────────
+          DID     Control    Full       DID     Control    Full    
+        estimat      s       model    estimat      s       model   
+          or       only                 or       only              
+         only                          only                        
+      ─────────────────────────────────────────────────────────────
+```
+
+increas 0.067         0.056 0.061         0.057  
+e\_blhp\_ \*\*\*   \*\*\* \*\*\*   \*\*\*  
+2013\_20  
+15:post  
+2013  
+(0.013)         (0.012) (0.014)         (0.013)  
+                     
+lag(mat         0.107 0.103         0.132 0.135  
+h\_non\_p   \*\*\* \*\*\*   \*\*\* \*\*\*  
+rof\_rat  
+e)  
+        (0.026) (0.025)         (0.031) (0.030)  
+                     
+per\_few         -0.101 -0.088         -0.110 -0.094  
+er\_3yrs   \*\*  *     *   \*    
+\_exp  
+        (0.039) (0.038)         (0.046) (0.046)  
+                     
+per\_mas         0.014   0.014           0.058   0.055    
+\_plus                  
+        (0.038) (0.037)         (0.043) (0.042)  
+                     
+per\_frp         0.210 0.193         0.101 0.087    
+l   \*\*\* \*\*\*   *       
+        (0.045) (0.044)         (0.046) (0.046)  
+                     
+per\_lep         0.205   0.159           0.290   0.207    
+                 
+        (0.158) (0.151)         (0.183) (0.172)  
+                     
+log(tot         -0.168 -0.159         -0.119 -0.109  
+al\_enro   *\*\* \*\*\*   \*\*\* \*\*\*  
+ll)  
+        (0.028) (0.027)         (0.032) (0.031)  
+                     
+───────────────────────────────────────────────────────────── School
+Y       Y       Y       Y       Y       Y        
+FE                    
+Year FE Y       Y       Y       Y       Y       Y        
+                   
+N 16849   16442   16442   11734   11433   11433    
+                                           
+R2 0.711   0.723   0.729   0.764   0.767   0.773    
+                   
+Adj. R2 0.668   0.681   0.688   0.731   0.733   0.740    
+                   
+───────────────────────────────────────────────────────────────────────
+\*\*\* p \< 0.001; \*\* p \< 0.01; \* p \< 0.05.
+
+Column names: V1, V2, V3, V4, V5, V6, V7
 
 Case closed, right? Not quite. This evidence is compelling, but there is
 still potential bias in our results. Namely, if there are any changes
@@ -414,57 +645,102 @@ So, I will conduct a placebo test.
 
 ### A placebo test
 
-I need to create a new “treatment” indicator for schools that had
-increases in diversity after 2015, but not between 2013 and 2015.
-
-``` r
-ny_panel <-
-  ny_panel %>% 
-  mutate(
-    placebo = 
-      as.numeric(sum(change_diverse[year >= 2016], na.rm = T) > 0.02 &
-                   sum(change_diverse[year >= 2013 & year <= 2015], na.rm = T) <= 0.02)
-  )
-```
+I created a new “treatment” indicator for schools that had increases in
+diversity from 2016 to 2017, but not between 2013 and 2015. In this
+case, the treatment group saw an increase after 2015, but not before.
+The control group saw no increase in the share of students of color
+after 2013. If there are any leading indicators for changes in the share
+of students of color in a school that are related to test boycotts, this
+indicator should pick them up and show a positive coefficient.
 
 Now, I will run the same models, using the placebo indicator.
 
 ``` r
-placebo_reg <-
-  as.formula(
-    math_white_non_partic ~
-      placebo*post2013 +
-      lag(math_non_prof_rate) +
-      per_fewer_3yrs_exp +
-      per_mas_plus +
-      per_frpl +
-      per_lep
-  )
-
-placebo_fe_fit <-
-  plm(placebo_reg,
-      data = ny_panel,
-      index = c("entity_cd", "year"),
-      model = "within",
-      effect = "twoway")
-
-lmtest::coeftest(placebo_fe_fit, 
-                 vcov = vcovHC(placebo_fe_fit,
-                               type = "HC1"))
+placebo1_year <-
+  felm(math_white_non_partic ~
+         placebo*post2013 +
+         lag(math_non_prof_rate) +
+         per_fewer_3yrs_exp +
+         per_mas_plus +
+         per_frpl + 
+         per_lep + 
+         log(total_enroll) | entity_cd + year | 0 | district_cd,
+       data = ny_panel %>%
+         filter(year < 2016))
 ```
 
-    ## 
-    ## t test of coefficients:
-    ## 
-    ##                           Estimate Std. Error t value  Pr(>|t|)    
-    ## lag(math_non_prof_rate)  0.1592429  0.0186390  8.5435 < 2.2e-16 ***
-    ## per_fewer_3yrs_exp      -0.1289651  0.0264837 -4.8696 1.134e-06 ***
-    ## per_mas_plus             0.1123692  0.0232965  4.8234 1.430e-06 ***
-    ## per_frpl                 0.2096039  0.0172547 12.1476 < 2.2e-16 ***
-    ## per_lep                  0.1450787  0.0955327  1.5186    0.1289    
-    ## placebo:post2013         0.0058959  0.0076758  0.7681    0.4424    
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+    ## rank-deficient or indefinite
+
+``` r
+placebo2_year <-
+  felm(math_white_non_partic ~
+         placebo*post2013 +
+         lag(math_non_prof_rate) +
+         per_fewer_3yrs_exp +
+         per_mas_plus +
+         per_frpl + 
+         per_lep + 
+         log(total_enroll) | entity_cd + year | 0 | district_cd,
+       data = ny_panel %>%
+         filter(year < 2016,
+                mean_per_white > 0.6))
+```
+
+    ## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+    ## rank-deficient or indefinite
+
+``` r
+placebo_models <- list(`All Schools` = placebo1_year,
+                       `Majority White Schools` = placebo2_year)
+
+coef_names <- unique(c(names(coef(placebo1_year))))
+
+names(coef_names) <- unique(c(names(coef(placebo1_year))))
+
+names(coef_names)[c(9)] <- c("Increase in %Black/Latinx, 2016-2017")
+
+huxreg(
+  placebo_models,
+  coefs = coef_names[c(9)],
+  statistics = c(
+    "N" = "nobs",
+    "R2" = "r.squared",
+    "Adj. R2" = "adj.r.squared")) %>%
+  set_col_width(1,3) %>%
+  set_bottom_padding(c(1:7), c(1:3), 0) %>%
+  set_top_padding(c(1:7), c(1:3), 0)
+```
+
+    ## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+    ## rank-deficient or indefinite
+    
+    ## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+    ## rank-deficient or indefinite
+    
+    ## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+    ## rank-deficient or indefinite
+    
+    ## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+    ## rank-deficient or indefinite
+
+    ## Warning in knit_print.huxtable(x, ...): Unrecognized output format "gfm-ascii". Using `to_screen` to print huxtables.
+    ## Set options("huxtable.knitr_output_format") manually to "latex", "html", "md" or "screen.
+
+─────────────────────────────────────────────────────────────── All
+Schools Majority White  
+Schools  
+─────────────────────────────────────── Increase in 0.017  0.013   
+%Black/Latinx,  
+2016-2017  
+(0.009) (0.011)  
+─────────────────────────────────────── N 4538      2958       
+R2 0.633  0.714   
+Adj. R2 0.556  0.656   
+─────────────────────────────────────────────────────────────── \*\*\* p
+\< 0.001; \*\* p \< 0.01; \* p \< 0.05.
+
+Column names: names, All Schools, Majority White Schools
 
 Violà. The interaction is no longer significant, the point estimate
 basically zero, but not precisely estimated.
