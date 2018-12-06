@@ -9,9 +9,9 @@ author_profile: true
 
 I’m currently on the job market. Here’s my [CV](http://ramorel.github.io/CV).
 
-I study how social relationships shape the development implementation of education policy. My theoretical and methodological toolkit includes organizational sociology, social movement theory, social network analysis, and qualitative analysis. I also have a lot of training in econometrics and methods for causal inference.
+I study the relationship between social forces, likes social movements and social networks, and education policy. I am especially interested in how social movements develop and mobilize in reponse to education policies and the implications of such mobilization for educational equity and opportunity. My dissertation examines the development and mobilization of a social movement that opposes the use of high-stakes standardized testing in public schools. My theoretical and methodological toolkit includes organizational sociology, social movement theory, network analysis, and qualitative analysis.
 
-I was an [IES pre-doctoral fellow](http://www.mpes.sesp.northwestern.edu/people/current-students/) from Fall 2014 to Summer 2017.
+I was an [IES pre-doctoral fellow](http://www.mpes.sesp.northwestern.edu/people/current-students/). 
 
 My department profile is [here](http://www.sesp.northwestern.edu/profile/?p=22703&/RichardPaquin%20Morel/).
 
