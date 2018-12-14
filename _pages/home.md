@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "i live here."
+title: "Greetings."
 excerpt: "Hi"
 author_profile: true
 ---
