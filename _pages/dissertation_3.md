@@ -121,25 +121,25 @@ Starting in 2013, the proportion of students not participating in annual
 math testing increased, maxing out at about
 20%.
 
-![](study_3_presentation_files/figure-gfm/overall%20opt%20out%20trend-1.png)<!-- -->
+![](http://ramorel.github.io/files/overall%20opt%20out%20trend-1.png)<!-- -->
 
 The students participating in the boycott are primarily, but not
 exclusively,
 white.
 
-![](study_3_presentation_files/figure-gfm/trends%20by%20race-1.png)<!-- -->
+![](http://ramorel.github.io/files/trends%20by%20race-1.png)<!-- -->
 
 Schools that had increases in racial diversity between 2013 and 2013 had
 more students participating in the boycott than schools that did not–a
 bit of evidence for the group threat
 hypothesis.
 
-![](study_3_presentation_files/figure-gfm/differences%20by%20increases%20in%20diversity-1.png)<!-- -->
+![](http://ramorel.github.io/files/differences%20by%20increases%20in%20diversity-1.png)<!-- -->
 
 Again, we see this trend is true if we focus only on white
 students.
 
-![](study_3_presentation_files/figure-gfm/differences%20for%20white%20opting%20out-1.png)<!-- -->
+![](http://ramorel.github.io/files/differences%20for%20white%20opting%20out-1.png)<!-- -->
 
 ### Difference-in-differences analysis
 
@@ -272,7 +272,7 @@ indeed parallel, but that doesn’t give much information about the two
 groups. So I will assess trends for other key
 variables.
 
-![](study_3_presentation_files/figure-gfm/parallel%20trends-1.png)<!-- -->
+![](http://ramorel.github.io/files/parallel%20trends-1.png)<!-- -->
 
 By and large, these trends between the two groups appear parallel,
 except in the case of the share of novice teachers. There may be some
@@ -283,7 +283,7 @@ If I restrict the sample to majority white schools, the trends are
 parallel for all
 variables.
 
-![](study_3_presentation_files/figure-gfm/parallel%20trends%20white%20maj-1.png)<!-- -->
+![](http://ramorel.github.io/files/parallel%20trends%20white%20maj-1.png)<!-- -->
 
 Now, turning to the difference-in-differences analysis. I will first do
 the vanilla regression (model 1) and then the fixed effects regression
