@@ -1,9 +1,15 @@
-Using a difference-in-differences framework to analyze to role of group
-threat in social movement mobilization
+---
+layout: archive
+title: 'Dissertation Study 3'
+permalink: /dissertation_3/
+author_profile: true
+---
+
+Estimating the effect of demographic changes on participation in test boycotts
 ================
 
 One study of my dissertation analyzes the causal impact of changing
-demographics within a school on student participatoin in boycotts of
+demographics within a school on student participation in boycotts of
 annual standardized tests. Based on research in social movements theory
 and educational policy, I hypothesize that when schools see increases in
 the share of students of color, students are more likely to
@@ -269,7 +275,7 @@ variables.
 ![](study_3_presentation_files/figure-gfm/parallel%20trends-1.png)<!-- -->
 
 By and large, these trends between the two groups appear parallel,
-expect in the case of the share of novice teachers. There may be some
+except in the case of the share of novice teachers. There may be some
 unobserved differences between the two groups related to school or
 teacher quality.
 
