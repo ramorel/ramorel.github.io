@@ -346,7 +346,7 @@ huxreg(list(`DID estimator only` = m1,
   print_md()
 ```
 
-|                                      |          All Schoo | ls           |     Majority White |   Schools    |
+|                                      |        All Schools |              |     Majority White |   Schools    |
 | ------------------------------------ | -----------------: | :----------- | -----------------: | :----------: |
 |                                      | DID estimator only | Full model   | DID estimator only |  Full model  |
 | Increase in %Black/Latinx, 2013-2015 |       0.065 \*\*\* | 0.065 \*\*\* |       0.056 \*\*\* | 0.056 \*\*\* |
@@ -354,7 +354,7 @@ huxreg(list(`DID estimator only` = m1,
 | N                                    |              18637 | 17193        |              13638 |    12366     |
 | R2                                   |              0.377 | 0.407        |              0.428 |    0.453     |
 | Adj. R2                              |              0.377 | 0.406        |              0.428 |    0.452     |
-| \*\*\* p \< 0.001; \*\* p \< 0.01; \* p \< 0.05. |   |   |          |            |
+| \*\*\* p \< 0.001; \*\* p \< 0.01; \* p \< 0.05. |        |              |                    |            |
 
 As we can see, the interaction between `increase_diverse` and `post2013`
 is significant and positive. Schools with increases in diversity has
@@ -417,7 +417,7 @@ huxreg(list(`DID estimator only` = m1,
   print_md()
 ```
 
-|                                      |          All Schoo | ls           |     Majority White |   Schools    |
+|                                      |        All Schools |              |     Majority White |   Schools    |
 | ------------------------------------ | -----------------: | :----------- | -----------------: | :----------: |
 |                                      | DID estimator only | Full model   | DID estimator only |  Full model  |
 | Increase in %Black/Latinx, 2013-2015 |       0.063 \*\*\* | 0.053 \*\*\* |       0.057 \*\*\* | 0.054 \*\*\* |
