@@ -1,21 +1,15 @@
----
-layout: archive
-title: 'Dissertation Study 3'
-permalink: /dissertation_3/
-author_profile: true
----
-
 Using a difference-in-differences framework to analyze to role of group
 threat in social movement mobilization
 ================
 
 One study of my dissertation analyzes the causal impact of changing
-demographics within a school on student participation in boycotts of
+demographics within a school on student participatoin in boycotts of
 annual standardized tests. Based on research in social movements theory
 and educational policy, I hypothesize that when schools see increases in
 the share of students of color, students are more likely to
 participating in testing boycotts. This is called *group threat*.
-Basically, it predicts that members of majority groups will mobilize for collective action when they are exposed to more members of minority
+Basically, it predicts that members of majority groups will mobilize to
+take collective action when they are exposed to more members of minority
 groups.
 
 My case is the opt-out movement–a coalition of parents and educators who
@@ -75,7 +69,7 @@ Well with observational data, we don’t have the luxury. We have to
 accept that schools in the “treatment” group and the “control” group are
 different in many ways, some of which we can statistically control for,
 some of which (the more pernicious of which) we cannot because they are
-unobserved. But we can make a reasonable assumption–that, regardless of
+unobservd. But we can make a reasonable assumption–that, regardless of
 their differences, the schools in the two groups have *parallel trends*
 in the outcome measure in absence of the treatment. That is to say,
 while the schools have different *levels* of an outcome, the *trends
@@ -98,7 +92,7 @@ Enough background, here’s the data.
 Prior to the 2012-2013 (from now on, I will refer to the school year by
 the year-end) school year, basically all students in New York took the
 annual standardized tests. These tests are mandatory and there are
-potential penalties for schools if students do not take them. For the
+potential penalities for schools if students do not take them. For the
 most part, students did well on the test–about 70% proficiency rates
 overall. But beginning in 2013, the state adopted a new, more
 “rigorous”, assessment aligned with the recently developed Common
@@ -121,25 +115,25 @@ Starting in 2013, the proportion of students not participating in annual
 math testing increased, maxing out at about
 20%.
 
-![](http://ramorel.github.io/files/overall%20opt%20out%20trend-1.png)<!-- -->
+![](study_3_presentation_files/figure-gfm/overall%20opt%20out%20trend-1.png)<!-- -->
 
 The students participating in the boycott are primarily, but not
 exclusively,
 white.
 
-![](http://ramorel.github.io/files/trends%20by%20race-1.png)<!-- -->
+![](study_3_presentation_files/figure-gfm/trends%20by%20race-1.png)<!-- -->
 
 Schools that had increases in racial diversity between 2013 and 2013 had
 more students participating in the boycott than schools that did not–a
 bit of evidence for the group threat
 hypothesis.
 
-![](http://ramorel.github.io/files/differences%20by%20increases%20in%20diversity-1.png)<!-- -->
+![](study_3_presentation_files/figure-gfm/differences%20by%20increases%20in%20diversity-1.png)<!-- -->
 
 Again, we see this trend is true if we focus only on white
 students.
 
-![](http://ramorel.github.io/files/differences%20for%20white%20opting%20out-1.png)<!-- -->
+![](study_3_presentation_files/figure-gfm/differences%20for%20white%20opting%20out-1.png)<!-- -->
 
 ### Difference-in-differences analysis
 
@@ -170,7 +164,7 @@ summary(ny_panel$change_per_black_hisp)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##  -0.300  -0.010   0.000   0.001   0.010   0.250    7121
+    ## -0.7200 -0.0100  0.0000  0.0039  0.0100  0.7100    2325
 
 Now I will create an indicator for schools that had a net increase in
 the share of black and Latinx students between 2013 and 2015.
@@ -189,7 +183,7 @@ table(ny_panel$increase_blhp_2013_2015)
 
     ## 
     ##     0     1 
-    ## 17226 11916
+    ##  8219 10418
 
 To set up the difference-in-differences analysis, I need to create an
 indicator for the treatment period. This is the period after 2013. So
@@ -206,15 +200,15 @@ table(ny_panel$year, ny_panel$post2013)
 
     ##       
     ##           0    1
-    ##   2009 3238    0
-    ##   2010 3238    0
-    ##   2011 3238    0
-    ##   2012 3238    0
-    ##   2013 3238    0
-    ##   2014    0 3238
-    ##   2015    0 3238
-    ##   2016    0 3238
-    ##   2017    0 3238
+    ##   2009 2146    0
+    ##   2010 2158    0
+    ##   2011 2096    0
+    ##   2012 2098    0
+    ##   2013 2039    0
+    ##   2014    0 2033
+    ##   2015    0 2028
+    ##   2016    0 2026
+    ##   2017    0 2013
 
 The difference-in-differences estimator is the interaction between
 `post2013` and `increase_diverse`. This compares the proportion of
@@ -272,7 +266,7 @@ indeed parallel, but that doesn’t give much information about the two
 groups. So I will assess trends for other key
 variables.
 
-![](http://ramorel.github.io/files/parallel%20trends-1.png)<!-- -->
+![](study_3_presentation_files/figure-gfm/parallel%20trends-1.png)<!-- -->
 
 By and large, these trends between the two groups appear parallel,
 expect in the case of the share of novice teachers. There may be some
@@ -283,7 +277,7 @@ If I restrict the sample to majority white schools, the trends are
 parallel for all
 variables.
 
-![](http://ramorel.github.io/files/parallel%20trends%20white%20maj-1.png)<!-- -->
+![](study_3_presentation_files/figure-gfm/parallel%20trends%20white%20maj-1.png)<!-- -->
 
 Now, turning to the difference-in-differences analysis. I will first do
 the vanilla regression (model 1) and then the fixed effects regression
@@ -296,10 +290,11 @@ m1 <-
          increase_blhp_2013_2015*post2013 | 0 | 0 | district_cd, 
        data = ny_panel)
 
-m3 <- 
+m2 <- 
   felm(math_white_non_partic ~
          increase_blhp_2013_2015*post2013 +
-         lag(math_non_prof_rate) +
+         lag(math_all_students_non_prof_rate) +
+         lag(math_white_non_prof_rate) +
          per_fewer_3yrs_exp +
          per_mas_plus +
          per_frpl +
@@ -307,15 +302,16 @@ m3 <-
          log(total_enroll) | 0 | 0 | district_cd, 
        data = ny_panel)
 
-m4 <- 
+m3 <- 
   felm(math_white_non_partic ~
          increase_blhp_2013_2015*post2013 | 0 | 0 | district_cd, 
        data = ny_panel %>% 
          filter(mean_per_white > 0.6))
-m6 <- 
+m4 <- 
   felm(math_white_non_partic ~
          increase_blhp_2013_2015*post2013 +
-         lag(math_non_prof_rate) +
+         lag(math_all_students_non_prof_rate) +
+         lag(math_white_non_prof_rate) +
          per_fewer_3yrs_exp +
          per_mas_plus +
          per_frpl +
@@ -324,18 +320,18 @@ m6 <-
        data = ny_panel %>% 
          filter(mean_per_white > 0.6))
 
-coef_names <- unique(c(names(coef(m3))))
+coef_names <- unique(c(names(coef(m2))))
 
-names(coef_names) <- unique(c(names(coef(m3))))
+names(coef_names) <- unique(c(names(coef(m2))))
 
-names(coef_names)[c(9)] <- c("Increase in %Black/Latinx, 2013-2015")
+names(coef_names)[11] <- c("Increase in %Black/Latinx, 2013-2015")
 
 huxreg(list(`DID estimator only` = m1,
-            `Full model` = m3,
-            `DID estimator only` = m4,
-            `Full model` = m6),
+            `Full model` = m2,
+            `DID estimator only` = m3,
+            `Full model` = m4),
        statistics = c("N" = "nobs", "R2" = "r.squared", "Adj. R2" = "adj.r.squared"),
-       coefs = coef_names[9]) %>% 
+       coefs = coef_names[11]) %>% 
   insert_row(c("", "All Schools", "", "Majority White Schools", ""), after = 0) %>% 
   set_colspan(1, c(2, 4), 2) %>% 
   set_top_border(1, 1:5, 0) %>% 
@@ -344,19 +340,19 @@ huxreg(list(`DID estimator only` = m1,
   print_md()
 ```
 
-|                                      |          All Schools |            |     Majority White Schools |     |
-| ------------------------------------ | -----------------: | :----------- | -----------------: | :--------: |
-|                                      | DID estimator only | Full model   | DID estimator only | Full model |
-| Increase in %Black/Latinx, 2013-2015 |                    | \-0.014 \*\* |                    |   0.002    |
-|                                      |                    | (0.005)      |                    |  (0.008)   |
-| N                                    |              16849 | 16442        |              11734 |   11433    |
-| R2                                   |              0.377 | 0.401        |              0.438 |   0.454    |
-| Adj. R2                              |              0.377 | 0.400        |              0.438 |   0.454    |
-| \*\*\* p \< 0.001; \*\* p \< 0.01; \* p \< 0.05. |   |   |          |            |
+|                                      |          All Schoo | ls           |     Majority White |   Schools    |
+| ------------------------------------ | -----------------: | :----------- | -----------------: | :----------: |
+|                                      | DID estimator only | Full model   | DID estimator only |  Full model  |
+| Increase in %Black/Latinx, 2013-2015 |       0.065 \*\*\* | 0.065 \*\*\* |       0.056 \*\*\* | 0.056 \*\*\* |
+|                                      |            (0.012) | (0.011)      |            (0.012) |   (0.011)    |
+| N                                    |              18637 | 17193        |              13638 |    12366     |
+| R2                                   |              0.377 | 0.407        |              0.428 |    0.453     |
+| Adj. R2                              |              0.377 | 0.406        |              0.428 |    0.452     |
+| \*\*\*                               | p \< 0.001; \*\* p | \< 0.01; \*  |         p \< 0.05. |              |
 
 As we can see, the interaction between `increase_diverse` and `post2013`
 is significant and positive. Schools with increases in diversity has
-about 5 percentage points more students boycotting the test than schools
+about 6 percentage points more students boycotting the test than schools
 without increase.
 
 Let’s see if adding the fixed effects makes this association go away.
@@ -367,10 +363,11 @@ m1 <-
          increase_blhp_2013_2015*post2013 | entity_cd + year | 0 | district_cd, 
        data = ny_panel)
 
-m3 <- 
+m2 <- 
   felm(math_white_non_partic ~
          increase_blhp_2013_2015*post2013 +
-         lag(math_non_prof_rate) +
+         lag(math_all_students_non_prof_rate) +
+         lag(math_white_non_prof_rate) +
          per_fewer_3yrs_exp +
          per_mas_plus +
          per_frpl +
@@ -378,16 +375,17 @@ m3 <-
          log(total_enroll) | entity_cd + year | 0 | district_cd, 
        data = ny_panel)
 
-m4 <- 
+m3 <- 
   felm(math_white_non_partic ~
          increase_blhp_2013_2015*post2013 | entity_cd + year | 0 | district_cd, 
        data = ny_panel %>% 
          filter(mean_per_white > 0.6))
 
-m6 <- 
+m4 <- 
   felm(math_white_non_partic ~
          increase_blhp_2013_2015*post2013 +
-         lag(math_non_prof_rate) +
+         lag(math_all_students_non_prof_rate) +
+         lag(math_white_non_prof_rate) +
          per_fewer_3yrs_exp +
          per_mas_plus +
          per_frpl +
@@ -396,42 +394,43 @@ m6 <-
        data = ny_panel %>% 
          filter(mean_per_white > 0.6))
 
-coef_names <- unique(c(names(coef(m3))))
+coef_names <- unique(c(names(coef(m2))))
 
-names(coef_names) <- unique(c(names(coef(m3))))
+names(coef_names) <- unique(c(names(coef(m2))))
 
-names(coef_names)[c(9)] <- c("Increase in %Black/Latinx, 2013-2015")
+names(coef_names)[10] <- c("Increase in %Black/Latinx, 2013-2015")
 
 huxreg(list(`DID estimator only` = m1,
-            `Full model` = m3,
-            `DID estimator only` = m4,
-            `Full model` = m6),
+            `Full model` = m2,
+            `DID estimator only` = m3,
+            `Full model` = m4),
        statistics = c("N" = "nobs", "R2" = "r.squared", "Adj. R2" = "adj.r.squared"),
-       coefs = coef_names[9]) %>% 
+       coefs = coef_names[10]) %>% 
   insert_row(c("", "All Schools", "", "Majority White Schools", ""), after = 0) %>% 
   set_colspan(1, c(2, 4), 2) %>%
   print_md()
 ```
 
-|                                      |          All Schools |            |     Majority White Schools |      |
+|                                      |          All Schoo | ls           |     Majority White |   Schools    |
 | ------------------------------------ | -----------------: | :----------- | -----------------: | :----------: |
 |                                      | DID estimator only | Full model   | DID estimator only |  Full model  |
-| Increase in %Black/Latinx, 2013-2015 |       0.067 \*\*\* | 0.056 \*\*\* |       0.061 \*\*\* | 0.057 \*\*\* |
-|                                      |            (0.013) | (0.012)      |            (0.014) |   (0.013)    |
-| N                                    |              16849 | 16442        |              11734 |    11433     |
-| R2                                   |              0.711 | 0.729        |              0.764 |    0.773     |
-| Adj. R2                              |              0.668 | 0.688        |              0.731 |    0.740     |
-| \*\*\* p \< 0.001; \*\* p \< 0.01; \* p \< 0.05. |   |   |         |              |
+| Increase in %Black/Latinx, 2013-2015 |       0.063 \*\*\* | 0.053 \*\*\* |       0.057 \*\*\* | 0.054 \*\*\* |
+|                                      |            (0.012) | (0.011)      |            (0.012) |   (0.012)    |
+| N                                    |              18637 | 17193        |              13638 |    12366     |
+| R2                                   |              0.709 | 0.728        |              0.752 |    0.766     |
+| Adj. R2                              |              0.668 | 0.685        |              0.719 |    0.731     |
+| \*\*\*                               | p \< 0.001; \*\* p | \< 0.01; \*  |         p \< 0.05. |              |
 
 Case closed, right? Not quite. This evidence is compelling, but there is
 still potential bias in our results. Namely, if there are any changes
 *within a school* that are correlated with both increases in racial
 diversity and with testing boycotts, then the results are biased. There
 is something else contributing to the boycotts that is not picked up by
-my model. To give an example, let’s say that schools make changes to
-curriculum and instruction that attract families of color to them but are
+my model. To give an exmaple, let’s say that schools make changes to
+curriculum and instruction that attact families of color to them but are
 not appealing to white families. In which case, these changes could
-drive both increases in diversity *and* increases in boycotting. This is a plausible scenario, but one that I do not think is likely
+drive both increases in diversity *and* increases in boycotting. Ruh
+roh. This is a plausible scenario, but one that I do not think is likely
 based on my knowledge of the research literature. Regardless, it is
 still plausible and I need to rule out this possibility. But how? These
 within-school changes are unobserved\!
@@ -460,7 +459,8 @@ Now, I will run the same models, using the placebo indicator.
 placebo1_year <-
   felm(math_white_non_partic ~
          placebo*post2013 +
-         lag(math_non_prof_rate) +
+         lag(math_all_students_non_prof_rate) +
+         lag(math_white_non_prof_rate) +
          per_fewer_3yrs_exp +
          per_mas_plus +
          per_frpl + 
@@ -472,7 +472,8 @@ placebo1_year <-
 placebo2_year <-
   felm(math_white_non_partic ~
          placebo*post2013 +
-         lag(math_non_prof_rate) +
+         lag(math_all_students_non_prof_rate) +
+         lag(math_white_non_prof_rate) +
          per_fewer_3yrs_exp +
          per_mas_plus +
          per_frpl + 
@@ -489,11 +490,11 @@ coef_names <- unique(c(names(coef(placebo1_year))))
 
 names(coef_names) <- unique(c(names(coef(placebo1_year))))
 
-names(coef_names)[c(9)] <- c("Increase in %Black/Latinx, 2016-2017")
+names(coef_names)[10] <- c("Increase in %Black/Latinx, 2016-2017")
 
 huxreg(
   placebo_models,
-  coefs = coef_names[c(9)],
+  coefs = coef_names[10],
   statistics = c(
     "N" = "nobs",
     "R2" = "r.squared",
@@ -506,12 +507,12 @@ huxreg(
 
 |                                      | All Schools   | Majority White Schools |
 | ------------------------------------ | ------------- | :--------------------- |
-| Increase in %Black/Latinx, 2016-2017 | 0.017         | 0.013                  |
-|                                      | (0.009)       | (0.011)                |
-| N                                    | 4538          | 2958                   |
-| R2                                   | 0.633         | 0.714                  |
+| Increase in %Black/Latinx, 2016-2017 | \-0.006       | \-0.012                |
+|                                      | (0.009)       | (0.010)                |
+| N                                    | 4030          | 2553                   |
+| R2                                   | 0.640         | 0.721                  |
 | Adj. R2                              | 0.556         | 0.656                  |
-| \*\*\* p \< 0.001; \*\* p \< 0.01; \* p \< 0.05.  |  |                        |
+| \*\*\* p \< 0.001; \*\*              | p \< 0.01; \* | p \< 0.05.             |
 
 Violà. The interaction is no longer significant, the point estimate
 basically zero, but not precisely estimated.
