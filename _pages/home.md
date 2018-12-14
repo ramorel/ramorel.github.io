@@ -9,7 +9,7 @@ author_profile: true
 
 I’m currently on the job market. Here’s my [CV](http://ramorel.github.io/CV).
 
-I study the relationship between social forces, likes social movements and social networks, and education policy. I am especially interested in how social movements develop and mobilize in reponse to education policies and the implications of such mobilization for educational equity and opportunity. My dissertation examines the development and mobilization of a social movement that opposes the use of high-stakes standardized testing in public schools. My methodological toolkit includes network analysis and mixed method approach to studying policy.
+I study the relationship between social forces, likes social movements and social networks, and education policy. I am especially interested in how social movements develop and mobilize in reponse to education policies and the implications of such mobilization for educational equity and opportunity. My dissertation examines the development and mobilization of a social movement that opposes the use of high-stakes standardized testing in public schools. My methodological toolkit includes network analysis, designs for causal inferences, and mixed methods approach to analyzing policy.
 
 I was an [IES pre-doctoral fellow](http://www.mpes.sesp.northwestern.edu/people/current-students/). 
 
