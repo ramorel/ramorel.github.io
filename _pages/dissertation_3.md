@@ -354,7 +354,7 @@ huxreg(list(`DID estimator only` = m1,
 | N                                    |              18637 | 17193        |              13638 |    12366     |
 | R2                                   |              0.377 | 0.407        |              0.428 |    0.453     |
 | Adj. R2                              |              0.377 | 0.406        |              0.428 |    0.452     |
-| \*\*\*                               | p \< 0.001; \*\* p | \< 0.01; \*  |         p \< 0.05. |              |
+| \*\*\* p \< 0.001; \*\* p \< 0.01; \* p \< 0.05. |   |   |          |            |
 
 As we can see, the interaction between `increase_diverse` and `post2013`
 is significant and positive. Schools with increases in diversity has
@@ -425,7 +425,7 @@ huxreg(list(`DID estimator only` = m1,
 | N                                    |              18637 | 17193        |              13638 |    12366     |
 | R2                                   |              0.709 | 0.728        |              0.752 |    0.766     |
 | Adj. R2                              |              0.668 | 0.685        |              0.719 |    0.731     |
-| \*\*\*                               | p \< 0.001; \*\* p | \< 0.01; \*  |         p \< 0.05. |              |
+| \*\*\* p \< 0.001; \*\* p \< 0.01; \* p \< 0.05. |        |              |                    |              |
 
 Case closed, right? Not quite. This evidence is compelling, but there is
 still potential bias in our results. Namely, if there are any changes
@@ -518,7 +518,7 @@ huxreg(
 | N                                    | 4030          | 2553                   |
 | R2                                   | 0.640         | 0.721                  |
 | Adj. R2                              | 0.556         | 0.656                  |
-| \*\*\* p \< 0.001; \*\*              | p \< 0.01; \* | p \< 0.05.             |
+| \*\*\* p \< 0.001; \*\* p \< 0.01; \* p \< 0.05. |   |                        |          
 
 Violà. The interaction is no longer significant, the point estimate
 basically zero, but not precisely estimated.
