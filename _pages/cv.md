@@ -30,9 +30,10 @@ B.A., Philosophy, *Webster University*, 2004
 
 ## Research interests
 
-- Social influences on educational policy development and implementation
-- Social networks, social movements, organizational 
-sociology, mixed methods
+• Education policy and politics
+• Social movements in education
+• Race and racialization of education policies
+• Social capital and social networks
 
 ## Publications
 
@@ -56,8 +57,12 @@ professional development in the wake of Common Core.
 
 ### Working papers
 
-**Morel, R.** (2018). Strange Frame Fellows: Discursive Tactics
-of the Opt-Out Movement.
+
+Coburn, C. E., **Morel, R.** & Buchanan, R. (In preparation). The social structure of policy implementa- tion: Mathematics and science professional development in the wake of Common Core.
+
+**Morel, R.** (In preparation). Racialized accountability threat: Demographic changes and participation in test boycotts.
+
+**Morel, R.** (In preparation). Strange frame fellows: Discursive tactics of the anti-accountability move ment.
 
 ### Books
 
@@ -76,6 +81,11 @@ Spread and Scale in the Digital Age: A Report to the MacArthur
 Foundation. Evanston, IL: Northwestern University.
 
 ## Presentations
+
+
+(_Proposal accepted_) **Morel, R.** Racial threat and participation in test boycotts: Evidence from New York. Paper presentation at the annual meeting of the Americna Educational Research Associ- ation, Toronto, ON, April 2019.
+
+(_Proposal accepted_) **Morel, R.** Racialized accountability threat: Demographic changes and participa- tion in boycotts of standardized tests. Paper presentation at the annual meeting of the Sociology of Education Association, Monterey, CA, February 2019.
 
 **Morel, R.** Strange Frame Fellows: The Discursive Tactics of
 Anti-Standardized Testing Movement. Referred roundtable at the Annual
@@ -125,7 +135,7 @@ Conference, Boston, MA, March 2014.
 
 ## Fellowships and Awards
 
-*Dissertation Fellowship Finalist*, National Academcy of
+*Dissertation Fellowship Semifinalist*, National Academcy of
 Education/Spencer Foundation 2018
 
 *Clark Scholar*, David L. Clark National Graduate Student Research
@@ -141,16 +151,26 @@ University 2013-2014
 
 ## Research experience
 
-  - Research Practicum at Evanston Township High School 2015-2016
-      - Part of the Mulitdisciplinary Program in Education Sciences,
-        Institue of Education Sciences, US Department of Education
-  - Research Assistant, The Ecology of Teachers’ Learning Opportunities
-    2014-present
-      - PI: Professor Cynthia Coburn, Northwestern University
-  - Research Assistant, Spread and Scale in the Digital Age 2013-present
-      - PI: Professor Cynthia Coburn, Northwestern University
+- Research Assistant, Educational Leadership in School Systems, Northwestern University
+  - PI: James P. Spillane
+
+- Research Apprenticeship, Multidisciplinary Program in Education Sciences Research Assistant
+  - The Ecology of Teachers’ Learning Opportunities
+    - PI: Professor Cynthia Coburn, Northwestern University 
+  - Research Practicum, Research-practice partnership
+    - PI: Professor David Rapp, Northwestern University
+    - Supervisor: Professor Elizabeth Ananat, Duke University
+  
+- Research Assistant, Spread and Scale in the Digital Age
+  - PI: Professor Cynthia Coburn, Northwestern University
 
 ## Teaching Experience
+
+Instructor, Social Policymaking and Implementation, Winter 2019
+School of Education and Social Policy, Northwestern University
+
+Instructor, R Boot Camp, Fall 2019
+Masters of Analytics Program, Northwestern University
 
 Teaching Assistant Spring 2016  
 Social Policymaking and Implementation
@@ -181,4 +201,4 @@ Member:
 
 ## Skills
 
-  - R, Stata, Python (developing)
+  - R, Stata, Python, Git, SQL
