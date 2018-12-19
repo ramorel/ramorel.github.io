@@ -8,7 +8,7 @@ redirect_from:
 
 {% include base_path %}
 
-[Download my CV](http://ramorel.github.io/files/paquinmorel_cv_CURRENT.pdf)
+[Download my CV](http://ramorel.github.io/files/paquin_morel_cv.pdf)
 
 # Richard Paquin Morel
 School of Education and Social Policy • Northwestern University  
