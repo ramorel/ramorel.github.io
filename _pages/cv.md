@@ -30,10 +30,11 @@ B.A., Philosophy, *Webster University*, 2004
 
 ## Research interests
 
-• Education policy and politics
-• Social movements in education
-• Race and racialization of education policies
-• Social capital and social networks
+Substantive areas:  
+Education policy and politics, social movements in education, social organizational theory
+
+Methodological areas:  
+Mixed method approaches, network analysis, applied econometrics, computational methods
 
 ## Publications
 
@@ -49,20 +50,13 @@ providers. Forthcoming at *American Educational Research Journal*.
 Multiple Meanings of Scale: Implications for Researchers and
 Practitioners. Revise and resubmit at *Educational Researcher*.
 
-### Manuscripts in preparation
-
-Coburn, C. E., **Morel, R.** & Buchanan, R. (In preparation).
-The social structure of policy implementation: Mathematics and science
-professional development in the wake of Common Core.
-
 ### Working papers
-
 
 Coburn, C. E., **Morel, R.** & Buchanan, R. (In preparation). The social structure of policy implementa- tion: Mathematics and science professional development in the wake of Common Core.
 
 **Morel, R.** (In preparation). Racialized accountability threat: Demographic changes and participation in test boycotts.
 
-**Morel, R.** (In preparation). Strange frame fellows: Discursive tactics of the anti-accountability move ment.
+**Morel, R.** (In preparation). Strange frame fellows: The evolution of discursive framing in the opt-out movement.
 
 ### Books
 
@@ -82,8 +76,9 @@ Foundation. Evanston, IL: Northwestern University.
 
 ## Presentations
 
+(_Proposal accepted_) **Morel, R.** Racial threat and participation in test boycotts: Evidence from New York. Paper presentation at the annual meeting of the American Educational Research Association, Toronto, ON, April 2019.
 
-(_Proposal accepted_) **Morel, R.** Racial threat and participation in test boycotts: Evidence from New York. Paper presentation at the annual meeting of the Americna Educational Research Associ- ation, Toronto, ON, April 2019.
+(_Proposal accepted_) **Morel, R.** Racial Group Threat and Opposition to High-Stakes Testing. Paper presentation at the annual meeting of the Association for Education Finance and Policy, Kansas City, MO, March 2019.
 
 (_Proposal accepted_) **Morel, R.** Racialized accountability threat: Demographic changes and participa- tion in boycotts of standardized tests. Paper presentation at the annual meeting of the Sociology of Education Association, Monterey, CA, February 2019.
 
@@ -149,43 +144,56 @@ Education Science 2014-2017
 *University Graduate Fellowship*, The Graduate School, Northwestern
 University 2013-2014
 
-## Research experience
+# Research Experience  
 
-- Research Assistant, Educational Leadership in School Systems, Northwestern University
-  - PI: James P. Spillane
+**Northwestern University, School of Education and Social Policy** 2013-present
 
-- Research Apprenticeship, Multidisciplinary Program in Education Sciences Research Assistant
-  - The Ecology of Teachers’ Learning Opportunities
-    - PI: Professor Cynthia Coburn, Northwestern University 
-  - Research Practicum, Research-practice partnership
-    - PI: Professor David Rapp, Northwestern University
-    - Supervisor: Professor Elizabeth Ananat, Duke University
+Research Assistant, Educational Leadership in School Systems  2018-present
+
+- PI: James P. Spillane
+
+Research Apprenticeship, Multidisciplinary Program in Education Sciences  2014-2017
+
+- Institute of Education Sciences Pre-dissertation Fellowship
+- The Ecology of Teachers’ Learning Opportunities
+  - PI: Professor Cynthia Coburn
+- Research-practice partnership, Evanston Township High School
+  - PI: Professor David Rapp, Supervisor: Professor Elizabeth Ananat
+
+Research Assistant, Spread and Scale in the Digital Age  2012-present
+
+- PI: Professor Cynthia Coburn
+
+# Teaching Experience
+
+**Northwestern University, School of Education and Social Policy**  Evanston, IL
+
+Social Policymaking and Implementation  Winter 2019
   
-- Research Assistant, Spread and Scale in the Digital Age
-  - PI: Professor Cynthia Coburn, Northwestern University
+  - Instructor of Record
+  - Required undergraduate course for Social Policy majors
 
-## Teaching Experience
+R Boot camp September 2018
+  
+  - R instructor for incoming Masters in Analytics students
 
-Instructor, Social Policymaking and Implementation, Winter 2019
-School of Education and Social Policy, Northwestern University
+Social Policymaking and Policy Implementation Spring 2016  
+  
+  - Teaching Assistant for Cynthia Coburn
+  - Average evaluation score: 5.61 out of 6
 
-Instructor, R Boot Camp, Fall 2019
-Masters of Analytics Program, Northwestern University
+Social Policymaking and Policy Implementation Winter 2015  
+  
+  - Teaching Assistant for Cynthia Coburn
+  - Average evaluation score: 5.37 out of 6
 
-Teaching Assistant Spring 2016  
-Social Policymaking and Implementation
-School of Education and Social Policy, Northwestern University  
-Average review score: 5.61 (out of 6)
+**University of San Francisco, School of Education** San Francisco, CA
 
-Teaching Assistant Winter 2015  
-  Social Policymaking and Implementation 
-  School of Education and Social Policy, Northwestern University  
-  Average review score: 5.37 (out of 6)
+- Student-Teacher Supervisor \hfill 2012-2013  
 
-Teacher, Common Branches (Elementary General Education) 2006-2012  
-  New York City Public School, P.S. 139 (2006-2009)  
-  New York City Public School, P.S. 345 (2009-2012) 
-  New York City Teaching Fellow 12th cohort (2006-2008)
+**New York City Department of Education**  New York, NY
+
+ - Teacher, Elementary General Education  2006-2012  
 
 ## Professional Service
 
