@@ -8,9 +8,7 @@ collection: research
 
 My dissertation consists of three studies of the "opt-out" movement--a coalition of parents and educators who oppose the use of standardized tests for "high-stakes" accountability purposes.
 
-I will fill these in soon :)
-
-- Study 1: How have activists used social media to develop a movement infrastructure supporting collective action?
+- Study 1: How have activists used social media platforms to develop a movement infrastructure supporting collective action?
 
 - Study 2: How do participants in the anti-testing movement frame the issue of standardized testing in schools?
     - [Working paper](http://ramorel.github.io/files/study2_working_paper.pdf)
