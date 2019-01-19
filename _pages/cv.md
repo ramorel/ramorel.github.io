@@ -81,24 +81,16 @@ Foundation. Evanston, IL: Northwestern University.
 (_Proposal accepted_) **Morel, R.** Racialized accountability threat: Demographic changes and participa- tion in boycotts of standardized tests. Paper presentation at the annual meeting of the Sociology of Education Association, Monterey, CA, February 2019.
 
 **Morel, R.** Strange Frame Fellows: The Discursive Tactics of
-Anti-Standardized Testing Movement. Referred roundtable at the Annual
-Meeting of the American Sociological Association, Philadelphia, PA,
-August, 2018.
+Anti-Standardized Testing Movement. Referred roundtable at the Annual Meeting of the American Sociological Association, Philadelphia, PA, August, 2018.
 
-**Morel, R.** & Coburn, C. E. Access, activation, and influence:
-How brokers influence social capital among professional development
-providers. Paper presented at the annual conference of the American
-Educational Research Association, San Antonio, TX, April 2017.
+**Morel, R.** & Coburn, C. E. Access, activation, and influence: How brokers influence social capital among professional development providers. Paper presented at the annual conference of the American Educational Research Association, San Antonio, TX, April 2017.
 
 Coburn, C. E., Catterson, A., Higgs, J., & **Morel, R.** Spread
-and Scale in the Digital Age: A Conceptual Framework. Paper presented at
-the annual conference of the American Educational Research Association,
-Washington, DC, April 2016.
+and Scale in the Digital Age: A Conceptual Framework. Paper presented at the annual conference of the American Educational Research Association, Washington, DC, April 2016.
 
 Coburn, C. E., **Morel, R.** & Buchanan, R. The social structure
 of policy implementation: Mathematics and science professional
-development in the wake of Common Core. Center for Educational Policy
-Analysis, Stanford University, February 2016.
+development in the wake of Common Core. Center for Educational Policy Analysis, Stanford University, February 2016.
 
 Coburn, C. E., Buchanan, R., & **Morel, R.** The role of
 non-system actors in implementing the Common Core State Standards:

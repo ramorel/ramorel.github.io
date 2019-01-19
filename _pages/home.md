@@ -13,6 +13,8 @@ I study the relationship between social forces, likes social movements and socia
 
 I was an [IES pre-dissertation fellow](http://www.mpes.sesp.northwestern.edu/people/current-students/). 
 
+In 2018, I particiated in the [Clark Seminar](http://www.ucea.org/grad-student-focus/clark-seminar-participants/)
+
 My department profile is [here](http://www.sesp.northwestern.edu/profile/?p=22703&/RichardPaquin%20Morel/).
 
 I have some code for network analysis on my [github page](http://www.github.com/ramorel).
