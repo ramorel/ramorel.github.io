@@ -7,7 +7,7 @@ author_profile: true
 
 ## Instructor of record
 - Social Policymaking and Policy Implementation, Northwestern University, Winter 2019
-  - Instructor of record for 
+  - Required undergraduate course for Social Policy majors
 
 ## Teaching assistant
 - Social Policymaking and Implementation, Spring 2016, Prof. Cynthia Coburn
