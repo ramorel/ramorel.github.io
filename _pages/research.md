@@ -12,6 +12,7 @@ I study how social factors within and outside of educational institutions influe
   - [_The mobilization of educational social movements_](https://ramorel.github.io/research/dissertation/)
   - [_How do social movements shape ideas about educational policies?_](https://ramorel.github.io/research/dissertation/)
 
+
 {% for post in site.research %}
   {% include archive-single.html %}
 {% endfor %}
