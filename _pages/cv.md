@@ -61,14 +61,12 @@ Coburn, C. E., **Morel, R.** & Buchanan, R. (In preparation). The social structu
 ### Books
 
 Coburn, C. E., Catterson, A. K., Higgs, J., & **Morel, R.** (in
-preparation). Spread and scale in the digital age. Full-length book
-manuscript. Under contract with Harvard Educational Press.
+preparation). Spread and scale in the digital age. Full-length book manuscript. Under contract with Harvard Educational Press.
 
 ### Technical reports
 
 Anderson, E., **Morel, R.**, & Stein, A. (2016). What variables
-predict science achievement? A report to North Shore High School.
-Evanston, IL: Northwestern University.
+predict science achievement? A report to "North Shore High School." Evanston, IL: Northwestern University.
 
 Coburn, C.E. Catterson, A. K., Higgs, J. & **Morel, R.** (2013).
 Spread and Scale in the Digital Age: A Report to the MacArthur
