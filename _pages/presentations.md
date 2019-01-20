@@ -16,7 +16,7 @@ author_profile: true
 Anti-Standardized Testing Movement. Referred roundtable at the Annual Meeting of the American Sociological Association, Philadelphia, PA, August, 2018.
 
 ### 2017 
-Morel, R., & Coburn, C. E. Access, activation, and influence: How brokers shape social capital among professional development providers. Paper presented at the annual conference of the American Educational Research Association, San Antonio, TX, April 2017. [[Slides.]](http://ramorel.github.io/files/AERA_2017.pdf)
+**Morel, R.**, & Coburn, C. E. Access, activation, and influence: How brokers shape social capital among professional development providers. Paper presented at the annual conference of the American Educational Research Association, San Antonio, TX, April 2017. [[Slides.]](http://ramorel.github.io/files/AERA_2017.pdf)
 
 ### 2016
 Coburn, C. E., Catterson, A., Higgs, J., & **Morel, R.** Spread
