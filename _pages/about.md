@@ -11,6 +11,6 @@ Hi, I'm Richard. Here's bit about me:
   2. I study how social forces, such as social movements, influence the development and implementation of education policy, and the implications of that process for educational equity and opportunity.   
   3. I am ABD. Phew!  
   4. I'm on the job market!  
-  5. I’m a big fan of R.  
-  6. I have two wonderful children.  
+  5. I in R and occasionally Python  
+  6. I have two wonderful children, who, in the interest of privacy, shall remain unnamed.  
   
