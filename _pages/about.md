@@ -7,10 +7,9 @@ author_profile: true
 
 Hi, I'm Richard. Here's bit about me:
 
-  1. I am a PhD candidate in Human Development and Social Policy at Northwestern University. See my profiles [here](http://www.sesp.northwestern.edu/profile/?p=22703&/RichardPaquin%20Morel/) and [here](https://www.ipr.northwestern.edu/about/student-research/graduate-research-assistants-1718.html).  
-  2. I study how social forces, such as social movements, influence the development and implementation of education policy, and the implications of that process for educational equity and opportunity.   
-  3. I am ABD. Phew!  
-  4. I'm on the job market!  
-  5. I in R and occasionally Python  
-  6. I have two wonderful children, who, in the interest of privacy, shall remain unnamed.  
+  1. I finished my PhD in Human Development and Social Policy at Northwestern University in Summer 2019. See my profiles [here](http://www.sesp.northwestern.edu/profile/?p=22703&/RichardPaquin%20Morel/) and [here](https://www.ipr.northwestern.edu/about/student-research/graduate-research-assistants-1718.html).  
+  2. I study how collective action shape the development and implementation of educational policies and the consequences of that for educational equity and opportunity. I am especially interested in understanding how dominant groups, through intentional and unintentional means, maintain inequality. 
+  3. I'm on the job market!  
+  4. I in R and occasionally Python  
+  5. I have two wonderful children, who, in the interest of privacy, shall remain unnamed.  
   
