@@ -6,7 +6,11 @@ author_profile: true
 
 {% include base_path %}
 
-I study how social factors within and outside of educational institutions influence the development and implementation of educational policies, with particular attention to education-related social movements. I aim to understand how such factors shape the landscape of educational opportunity in the U.S.
+1. I study how social factors within and outside of educational institutions influence the development and implementation of educational policies, in order to understand how such factors shape the landscape of educational opportunity in the U.S. I am particularly interested in how dominant groups seek to maintain inequalities--intentionally or not--through extra-institutional channels.  
+
+2. I also study the mediation of information about educational policies through social networks, with an emphasis on extra-institutional network--meaning those that span school and district boundaries.
+
+Here are some examples:
 
   - [_Shaping policy ideas in social networks_](https://ramorel.github.io/publication/access_activation_and_influence): How do influential people in social networks access and share information in the wake of major policy changes? 
   - [_The mobilization of educational social movements_](https://ramorel.github.io/research/dissertation/)
