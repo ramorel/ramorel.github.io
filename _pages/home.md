@@ -5,20 +5,17 @@ excerpt: "Hi"
 author_profile: true
 ---
 
-[Me](http://ramorel.github.io/about)? I’m a doctoral candidate in the Human Development and Social Policy program at Northwestern University.
+[Me](http://ramorel.github.io/about)? I'm a postdoctoral research at the [Learning Research and Development Center](http://www.lrdc.pitt.edu/) at the University of Pittsburgh. I recently complete my Ph.D. in Human Development and Social Policy at Northwestern University.
 
-I’m currently on the job market. Here’s my [CV](https://ramorel.github.io/cv/).
+Check out my [CV](https://ramorel.github.io/cv/).
 
-I study the relationship between social forces, likes social movements and social networks, and education policy. I am especially interested in how social movements develop and mobilize in reponse to education policies and the implications of such mobilization for educational equity and opportunity. My dissertation examines the development and mobilization of a social movement that opposes the use of high-stakes standardized testing in public schools. My methodological toolkit includes network analysis, designs for causal inference, and mixed methods approaches to analyzing policy.
+I study education policy and politics. I have two related research interests:
+ 1. I am interested in how dominant groups maintain inequalities in access to educational opportunities and resources and the implications of this for education policy. [My dissertation studies this](https://ramorel.github.io/research/dissertation/).
+ 2. I also study how [power and influence in social networks shape ideas about and responses to education policies](http://journals.sagepub.com/doi/full/10.3102/0002831218788528). The pdf is [here](https://ramorel.github.io/files/access.pdf). My methodological toolkit includes network analysis, designs for causal inference, and mixed methods approaches to analyzing policy.
 
-I was an [IES pre-dissertation fellow](http://www.mpes.sesp.northwestern.edu/people/current-students/). 
-
-In 2018, I particiated in the [Clark Seminar](http://www.ucea.org/grad-student-focus/clark-seminar-participants/).
-
-My department profile is [here](http://www.sesp.northwestern.edu/profile/?p=22703&/RichardPaquin%20Morel/).
-
-I have some code for network analysis on my [github page](http://www.github.com/ramorel).
-
-Before beginning my doctoral studies, I was an elementary school teacher in Brooklyn, NY. I served as a New York City Teaching Fellow, cohort 12, from 2006-2008. Before that, I was in a PhD program in philosophy where I studied American pragmatism (especially the work of John Dewey), phenomenology, and philosophy of language. I left with my MA to become a teacher.
-
-Check out my recently published work at [AERJ](http://journals.sagepub.com/doi/full/10.3102/0002831218788528). The pdf is [here](https://ramorel.github.io/files/access.pdf)
+Miscellany:
+- I was an [IES pre-dissertation fellow](http://www.mpes.sesp.northwestern.edu/people/current-students/). -
+- In 2018, I particiated in the [Clark Seminar](http://www.ucea.org/grad-student-focus/clark-seminar-participants/).
+- My department profile is [here](http://www.sesp.northwestern.edu/profile/?p=22703&/RichardPaquin%20Morel/).
+- I have some code for network analysis on my [github page](http://www.github.com/ramorel).
+- Before beginning my doctoral studies, I was an elementary school teacher in Brooklyn, NY. I served as a New York City Teaching Fellow, cohort 12, from 2006-2008.
