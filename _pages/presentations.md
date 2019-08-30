@@ -4,12 +4,15 @@ permalink: /presentations/
 author_profile: true
 ---
 
-### Upcoming in 2019 
-(_Proposal accepted_) **Morel, R.** Racial threat and participation in test boycotts: Evidence from New York. Paper presentation at the annual meeting of the American Educational Research Association, Toronto, ON, April 2019.
+### 2019 
 
-(_Proposal accepted_) **Morel, R.** Racial Group Threat and Opposition to High-Stakes Testing. Paper presentation at the annual meeting of the Association for Education Finance and Policy, Kansas City, MO, March 2019.
+**Morel, R.** Localism, racial threat, and the boycotting of standardized tests in New York. Refereed roundtable in the Section on Collective Behavior and Social Movements at the Annual Meeting of the American Sociological Association, New York, NY, August, 2019.
 
-(_Proposal accepted_) **Morel, R.** Racialized accountability threat: Demographic changes and participa- tion in boycotts of standardized tests. Paper presentation at the annual meeting of the Sociology of Education Association, Monterey, CA, February 2019.
+**Morel, R.** Racial threat and participation in test boycotts: Evidence from New York. Paper presentation at the annual meeting of the American Educational Research Association, Toronto, ON, April 2019.
+
+**Morel, R.** Racial Group Threat and Opposition to High-Stakes Testing. Paper presentation at the annual meeting of the Association for Education Finance and Policy, Kansas City, MO, March 2019.
+
+**Morel, R.** Racialized accountability threat: Demographic changes and participa- tion in boycotts of standardized tests. Paper presentation at the annual meeting of the Sociology of Education Association, Monterey, CA, February 2019.
 
 ### 2018
 **Morel, R.** Strange Frame Fellows: The Discursive Tactics of
