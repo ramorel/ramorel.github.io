@@ -14,8 +14,8 @@ I study education policy and politics. I have two related research interests:
  2. I also study how [power and influence in social networks shape ideas about and responses to education policies](http://journals.sagepub.com/doi/full/10.3102/0002831218788528). The pdf is [here](https://ramorel.github.io/files/access.pdf). My methodological toolkit includes network analysis, designs for causal inference, and mixed methods approaches to analyzing policy.
 
 Miscellany:
-- I was an [IES pre-dissertation fellow](http://www.mpes.sesp.northwestern.edu/people/current-students/). -
-- In 2018, I particiated in the [Clark Seminar](http://www.ucea.org/grad-student-focus/clark-seminar-participants/).
-- My department profile is [here](http://www.sesp.northwestern.edu/profile/?p=22703&/RichardPaquin%20Morel/).
-- I have some code for network analysis on my [github page](http://www.github.com/ramorel).
-- Before beginning my doctoral studies, I was an elementary school teacher in Brooklyn, NY. I served as a New York City Teaching Fellow, cohort 12, from 2006-2008.
+- I was an [IES pre-dissertation fellow](http://www.mpes.sesp.northwestern.edu/people/current-students/)
+- In 2018, I particiated in the [Clark Seminar](http://www.ucea.org/grad-student-focus/clark-seminar-participants/)
+- My department profile is [here](http://www.sesp.northwestern.edu/profile/?p=22703&/RichardPaquin%20Morel/)
+- I have some code for network analysis on my [github page](http://www.github.com/ramorel)
+- Before beginning my doctoral studies, I was an elementary school teacher in Brooklyn, NY. I served as a New York City Teaching Fellow, cohort 12, from 2006-2008
