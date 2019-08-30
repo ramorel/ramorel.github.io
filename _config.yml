@@ -10,7 +10,7 @@ locale                   : "en-US"
 title                    : "Richard Paquin Morel"
 title_separator          : "-"
 name                     : &name ""
-description              : &description "PhD candidate in Human Development and Social Policy @ Northwestern University"
+description              : &description "PhD, Human Development and Social Policy,  Northwestern University"
 url                      : https://ramorel.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "ramorel/ramorel.github.io"
@@ -81,7 +81,7 @@ analytics:
 author:
   name             : 
   avatar           : "avatar.jpg"
-  bio              : "I am a PhD candidate at Northwestern Univeristy. I study how social processes shape the development and implementation of educational policies"
+  bio              : "Postdoctoral scholar at LRDC at the University of Pittsburg"
   location         : "Chicago"
   employer         :
   googlescholar    : 
