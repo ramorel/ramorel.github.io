@@ -11,7 +11,21 @@ Check out my [CV](https://ramorel.github.io/cv/).
 
 I study education policy and politics. I have two related research interests:
  1. I am interested in how dominant groups maintain inequalities in access to educational opportunities and resources and the implications of this for education policy. [My dissertation studies this](https://ramorel.github.io/research/dissertation/).
- 2. I also study how [power and influence in social networks shape ideas about and responses to education policies](http://journals.sagepub.com/doi/full/10.3102/0002831218788528). The pdf is [here](https://ramorel.github.io/files/access.pdf). My methodological toolkit includes network analysis, designs for causal inference, and mixed methods approaches to analyzing policy.
+ 2. I also study how [power and influence in social networks shape ideas about and responses to education policies](http://journals.sagepub.com/doi/full/10.3102/0002831218788528). 
+ 3. My methodological toolkit includes network analysis, computational methods, and applied econometrics. I am interested in mixed-methods approaches, as well, particularly those combining qualitative analysis with computational methods.
+
+Recent publications:
+
+
+[Morel, R. P., Coburn, C., Catterson, A. K., & Higgs, J. (2019). The Multiple Meanings of Scale: Implications for Researchers and Practitioners. Educational Researcher, 0013189X1986053–9. http://doi.org/10.3102/0013189X19860531](https://journals.sagepub.com/doi/full/10.3102/0013189X19860531)
+
+[Morel, R. P., & Coburn, C. (2019). Access, Activation, and Influence: How Brokers Mediate Social Capital Among Professional Development Providers. American Educational Research Journal, 56(2), 247–288.](http://doi.org/10.3102/0002831218788528)
+
+Working papers:
+
+[Morel, R. P. (Under review). Strange frame fellows: The evolution of discursive framing in the anti-accountability testing movement.](http://ramorel.github.io/files/study2_working_paper.pdf)
+
+[Morel, R. P. Race and Localism in Education: The role of demographics in the mobilization of anti-testing boycotts.](http://ramorel.github.io/files/study3_working_paper.pdf)
 
 Miscellany:
 - I was an [IES pre-dissertation fellow](http://www.mpes.sesp.northwestern.edu/people/current-students/)
