@@ -17,15 +17,15 @@ I study education policy and politics. I have two related research interests:
 Recent publications:
 
 
-Morel, R. P., Coburn, C., Catterson, A. K., & Higgs, J. (2019). The Multiple Meanings of Scale: Implications for Researchers and Practitioners. Educational Researcher, 48(6), 369–377.[link](https://journals.sagepub.com/doi/full/10.3102/0013189X19860531)
+Morel, R. P., Coburn, C., Catterson, A. K., & Higgs, J. (2019). The Multiple Meanings of Scale: Implications for Researchers and Practitioners. Educational Researcher, 48(6), 369–377. [[link]](https://journals.sagepub.com/doi/full/10.3102/0013189X19860531)
 
-Morel, R. P., & Coburn, C. (2019). Access, Activation, and Influence: How Brokers Mediate Social Capital Among Professional Development Providers. American Educational Research Journal, 56(2), 247–288.[link](http://doi.org/10.3102/0002831218788528)
+Morel, R. P., & Coburn, C. (2019). Access, Activation, and Influence: How Brokers Mediate Social Capital Among Professional Development Providers. American Educational Research Journal, 56(2), 247–288. [[link]](http://doi.org/10.3102/0002831218788528)
 
 Working papers:
 
-Morel, R. P. (Under review). Strange frame fellows: The evolution of discursive framing in the anti-accountability testing movement.[link](http://ramorel.github.io/files/study2_working_paper.pdf)
+Morel, R. P. (Under review). Strange frame fellows: The evolution of discursive framing in the anti-accountability testing movement. [[link]](http://ramorel.github.io/files/study2_working_paper.pdf)
 
-Morel, R. P. Racialized Accountability Threat: Racial Diversification and Participation in Accountability Test Boycotts in New York.[link](http://ramorel.github.io/files/study3_working_paper.pdf)
+Morel, R. P. Racialized Accountability Threat: Racial Diversification and Participation in Accountability Test Boycotts in New York. [[link]](http://ramorel.github.io/files/study3_working_paper.pdf)
 
 Miscellany:
 - I was an [IES pre-dissertation fellow](http://www.mpes.sesp.northwestern.edu/people/current-students/)
