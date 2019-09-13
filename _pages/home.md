@@ -25,7 +25,7 @@ Working papers:
 
 [Morel, R. P. (Under review). Strange frame fellows: The evolution of discursive framing in the anti-accountability testing movement.](http://ramorel.github.io/files/study2_working_paper.pdf)
 
-[Morel, R. P. Race and Localism in Education: The role of demographics in the mobilization of anti-testing boycotts.](http://ramorel.github.io/files/study3_working_paper.pdf)
+[Morel, R. P. Racialized Accountability Threat: Racial Diversification and Participation in Accountability Test Boycotts in New York.](http://ramorel.github.io/files/study3_working_paper.pdf)
 
 Miscellany:
 - I was an [IES pre-dissertation fellow](http://www.mpes.sesp.northwestern.edu/people/current-students/)
