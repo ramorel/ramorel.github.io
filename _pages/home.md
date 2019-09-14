@@ -9,9 +9,9 @@ author_profile: true
 
 Check out my [CV](https://ramorel.github.io/cv/).
 
-I study education policy and politics. I have two related research interests:
- 1. I am interested in how dominant groups maintain inequalities in access to educational opportunities and resources and the implications of this for education policy. [My dissertation studies this](https://ramorel.github.io/research/dissertation/).
- 2. I also study how [power and influence in social networks shape ideas about and responses to education policies](http://journals.sagepub.com/doi/full/10.3102/0002831218788528). 
+I study education policy and politics. My research interests:
+ 1. I am interested in how dominant groups maintain inequalities in access to educational opportunities and resources and the implications of this for education policy. [My dissertation studies this](https://ramorel.github.io/research/dissertation/). I am increasingly interested in urban/suburban dynamics in the context of demographic changes and the implications of this for equity-minded education policy.
+ 2. I also study how [power and influence in social networks](http://journals.sagepub.com/doi/full/10.3102/0002831218788528) shape the development, understanding, and implementation of education policies. 
  3. My methodological toolkit includes network analysis, computational methods, and applied econometrics. I am interested in mixed-methods approaches, as well, particularly those combining qualitative analysis with computational methods.
 
 ### Recent publications:
