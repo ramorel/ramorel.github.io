@@ -12,10 +12,10 @@ redirect_from:
 
 # Richard Paquin Morel
 
-Post-Doctoral Research Associate, Learning Research and Development Center
-University of Pittsburgh
-3939 O'Hara Street • Pittsburgh, PA • 15260
-richard[dot]morel[at]pitt[dot]edu
+Post-Doctoral Research Associate, Learning Research and Development Center  
+University of Pittsburgh  
+3939 O'Hara Street • Pittsburgh, PA • 15260  
+richard[dot]morel[at]pitt[dot]edu  
 
 # Education
 
