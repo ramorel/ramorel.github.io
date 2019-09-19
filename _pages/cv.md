@@ -100,22 +100,22 @@ Coburn, C. E., Buchanan, R., and **Morel, R.** The role of non-system actors in 
 
 # Fellowships and Awards
 
-Dissertation Fellowship Semifinalist, National Academy of Education/Spencer Foundation \hfill 2018
+Dissertation Fellowship Semifinalist, National Academy of Education/Spencer Foundation, 2018
 
-Clark Scholar, David L. Clark National Graduate Student Research Seminar, UCEA \hfill 2018
+Clark Scholar, David L. Clark National Graduate Student Research Seminar, UCEA, 2018
 
-Dissertation Year Fellowship, Northwestern University  \hfill 2017-2018
+Dissertation Year Fellowship, Northwestern University, 2017-2018
 
-Multidisciplinary Program in Education Sciences  \hfill 2014-2017  
+Multidisciplinary Program in Education Sciences, 2014-2017  
     Pre-dissertation Fellowship, Institute for Education Sciences 
 
-University Graduate Fellowship, The Graduate School, Northwestern University \hfill 2013-2014
+University Graduate Fellowship, The Graduate School, Northwestern University, 2013-2014
 
-New York City Teaching Fellow, 12th cohort \hfill 2006-2008
+New York City Teaching Fellow, 12th cohort, 2006-2008
 
 # Research Experience  
 
-**Northwestern University, School of Education and Social Policy** \hfill 2013-2019
+**Northwestern University, School of Education and Social Policy**, 2013-2019
 
 - Research Assistant, Educational Leadership in School Systems, Prof. James Spillane
 - Research Apprenticeship, Multidisciplinary Program in Education Sciences
@@ -128,42 +128,38 @@ New York City Teaching Fellow, 12th cohort \hfill 2006-2008
 
 **Northwestern University, McCormick School of Engineering**
 
-R Instructor  \hfill 2018-2019
+R Instructor, 2018-2019
 
 **Northwestern University, School of Education and Social Policy**
 
 _As Instructor_
 
-Social Policymaking and Implementation \hfill Winter 2019
+Social Policymaking and Implementation, Winter 2019
   
   - Instructor of Record
   - Required undergraduate course for Social Policy majors
   - Average evaluation score: 5 out of 6
 
-R Boot camp \hfill September 2018
-  
-  - R instructor for incoming Masters in Analytics students  
-
 _As Teaching Assistant_ 
 
-Social Policymaking and Policy Implementation \hfill Spring 2016  
+Social Policymaking and Policy Implementation, Spring 2016  
   
   - Average evaluation score: 5.61 out of 6
 
-Social Policymaking and Policy Implementation \hfill Winter 2015  
+Social Policymaking and Policy Implementation, Winter 2015  
   
   - Average evaluation score: 5.37 out of 6
 
 
 # Other Professional Experience 
 
-**University of San Francisco, School of Education** \hfill San Francisco, CA
+**University of San Francisco, School of Education**, San Francisco, CA
 
-Student-Teacher Supervisor \hfill 2012-2013  
+Student-Teacher Supervisor, 2012-2013  
 
-**New York City Department of Education** \hfill New York, NY
+**New York City Department of Education**, New York, NY
 
-Teacher, Elementary General Education \hfill 2006-2012  
+Teacher, Elementary General Education, 2006-2012  
 
 # Professional Service
 
