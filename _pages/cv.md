@@ -32,7 +32,7 @@ Network analysis, computational methods, mixed methods approaches
 
 # Professional Experience
 
-_University of Pittsburgh \hfill 2019-_  
+_University of Pittsburgh_  2019-
 Post-Doctoral Associate, Learning Research & Development Center
 
 # Publications
