@@ -4,19 +4,11 @@ permalink: /cv/
 author_profile: true
 redirect_from:
   - /resume
-northwestern_university_2019:
-  name: northwestern_university_2019
-  type: degree
-  title: PhD
-  university: Northwestern University
-  department: Human Development and Social Policy
-  location: Evanston, IL
-  date: '2019-09-01'
 ---
 
 {% include base_path %}
 
-[Download my CV](http://ramorel.github.io/files/paquinmorel_cv_CURRENT.pdf)
+[Download my CV](http://ramorel.github.io/files/cv_paquin_morel.pdf)
 
 # Richard Paquin Morel
 
