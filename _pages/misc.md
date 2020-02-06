@@ -8,3 +8,6 @@ author_profile: true
   - See code [here](https://github.com/ramorel/grad-school/blob/master/R/map_of_test_boycotts.R) and [here](https://github.com/ramorel/grad-school/blob/master/R/map_of_test_boycotts.Rmd)
 
 - [Map of charter school enrollment by county](http://ramorel.github.io/files/charter_growth.html)
+
+- [The Bike Lanes of Brooklyn](http://ramorel.github.io/files/bike_lanes_of_brooklyn.html)
+  - Code here: 
