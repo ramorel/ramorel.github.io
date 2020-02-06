@@ -9,5 +9,5 @@ author_profile: true
 
 - [Map of charter school enrollment by county](http://ramorel.github.io/files/charter_growth.html)
 
-- [The Bike Lanes of Brooklyn](http://ramorel.github.io/files/map_of_test_boycotts.html)
+- [The Bike Lanes of Brooklyn](http://ramorel.github.io/files/bike_lanes_of_brooklyn.html)
   - Code [here](https://github.com/ramorel/good_time_fun_time/blob/master/R/bike_lanes_of_brooklyn.Rmd)
