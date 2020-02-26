@@ -69,6 +69,8 @@ Coburn, C.E. Catterson, A. K., Higgs, J. & **Morel, R.** (2013). Spread and Scal
 
 # Refereed Presentations
 
+**Morel, R.** [Forthcoming.] Status anxiety and charter school expansion in California. Refereed paper presentation at the Annual Meeting of the Midwest Sociological Society, April, 2020
+
 **Morel, R.** Localism, racial threat, and the boycotting of standardized tests in New York. Refereed roundtable in the Section on Collective Behavior and Social Movements at the Annual Meeting of the American Sociological Association, New York, NY, August, 2019.
 
 **Morel, R.** Racial threat, local control, and opposition to accountability testing. Paper presentation at the annual meeting of the American Educational Research Association, Toronto, ON, April 2019.
@@ -99,6 +101,8 @@ Coburn, C. E., Buchanan, R., and **Morel, R.** The role of non-system actors in 
 
 
 # Fellowships and Awards
+
+Outstanding Dissertation Award, AERA Politics of Education Association, 2020
 
 Dissertation Fellowship Semifinalist, National Academy of Education/Spencer Foundation, 2018
 
