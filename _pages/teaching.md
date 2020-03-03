@@ -14,3 +14,6 @@ author_profile: true
   - 5.6/6 rating on student evaluations
 - Social Policymaking and Implementation, Winter 2015, Prof. Cynthia Coburn
   - 5.4/6 rating on student evaluations
+
+## Other
+- R Bootcamp, McCormick School of Engineering, Northwestern University, 2018-2019
