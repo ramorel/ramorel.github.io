@@ -11,3 +11,5 @@ author_profile: true
 
 - [The Bike Lanes of Brooklyn](http://ramorel.github.io/files/bike_lanes_of_brooklyn.html)
   - Code [here](https://github.com/ramorel/good_time_fun_time/blob/master/R/bike_lanes_of_brooklyn.Rmd)
+  
+- [Finding node-level range in networks](https://ramorel.github.io/network-range/)
