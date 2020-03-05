@@ -15,3 +15,5 @@ author_profile: true
 - [Finding node-level range in networks](https://ramorel.github.io/network-range/)
 
 - [A rundown of the analysis I used in one of my PhD qualifying papers](https://github.com/ramorel/grad-school/blob/master/R/trial_research_sample.md), now [published](https://journals.sagepub.com/doi/full/10.3102/0002831218788528) in AERJ
+
+- [My professional résumé](https://ramorel.github.io/files/resume_paquin_morel)
