@@ -46,14 +46,11 @@ Post-Doctoral Associate, Learning Research & Development Center
 
 ## Peer-Reviewed Articles
 
-**Morel, R.**, Coburn, C. E., Catterson, A. K., & Higgs, J. (2019). The Multiple meanings of scale: Implications for researchers and practitioners. _Educational Researcher_, 48(6), 369-377.
+**Morel, R.** (Forthcoming). Strange frame fellows: The evolution of discursive framing in the opt-out movement. Accepted at _Teachers College Record_. [[Link]](http://ramorel.github.io/files/study2_working_paper.pdf)
 
-**Morel R.** & Coburn, C. E. (2019). Access, activation, and influence: How brokers mediate social capital among professional development providers. _American Educational Research Journal_, 56(2), 247-288.
+**Morel, R.**, Coburn, C. E., Catterson, A. K., & Higgs, J. (2019). The Multiple meanings of scale: Implications for researchers and practitioners. _Educational Researcher_, 48(6), 369-377. [[Link]](http://ramorel.github.io/files/paquin_morel_er.pdf)
 
-## Manuscripts Under Review
-
-**Morel, R.** Strange frame fellows: The evolution of discursive framing in the opt-out movement. Under review at _Teachers College Record_.
-
+**Morel R.** & Coburn, C. E. (2019). Access, activation, and influence: How brokers mediate social capital among professional development providers. _American Educational Research Journal_, 56(2), 247-288. [[Link]](http://ramorel.github.io/files/paquin_morel_aerj.pdf)
 
 ## Books
 
