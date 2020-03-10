@@ -4,6 +4,16 @@ permalink: /presentations/
 author_profile: true
 ---
 
+### 2020
+
+[Forthcoming] **Morel, R.** Status anxiety and charter school expansion in California. Paper presentation at the annual meeting for the Midwest Sociological Society, Omaha, NE, April, 2020.
+
+[Forthcoming] **Morel, R.** Status anxiety and charter school expansion in California. Poster presentation at the annual meeting for Association for Education Finance and Policy, March, 2020.
+
+- Poster [here](https://ramorel.github.io/files/aefp_poster.html)
+- Container to reproduce the analysis [coming soon!]
+- Descriptive write up of the analysis [here](https://ramorel.github.io/files/aefp_detailed.html)
+
 ### 2019 
 
 **Morel, R.** Localism, racial threat, and the boycotting of standardized tests in New York. Refereed roundtable in the Section on Collective Behavior and Social Movements at the Annual Meeting of the American Sociological Association, New York, NY, August, 2019.
