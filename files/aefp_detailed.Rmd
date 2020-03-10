@@ -1,0 +1,784 @@
+---
+title: Status Anxiety and Charter School Expansion in California
+author: Richard Paquin Morel
+output: pdf_document
+bibliography: bib/aefp_bib.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(tidycensus)
+library(lfe)
+library(sf)
+library(patchwork)
+library(huxtable)
+library(dotwhisker)
+library(cowplot)
+
+load("ca_threat_analysis.RData")
+
+theme_set(
+  theme_minimal() +
+    theme(
+      axis.title.x = element_text(size = 10, hjust = 1),
+      axis.title.y = element_text(size = 10),
+      axis.text.x = element_text(size = 8),
+      axis.text.y = element_text(size = 8),
+      plot.title = element_text(size = 10, colour = "grey25", face = "bold"),
+      plot.subtitle = element_text(size = 9, colour = "grey45"),
+      legend.position = "bottom")
+  )
+
+vars_to_keep <- 
+  c("leaid", 
+    "year", 
+    "urban_centric_locale",
+    "n_charter",
+    "prop_charter",
+    "white_share_within_charter",
+    "threat_overall",
+    "threat_black",
+    "threat_hispanic",
+    "black_share_btw_traditional",
+    "black_overall_district_share",
+    "hispanic_share_btw_traditional",
+    "hispanic_overall_district_share",
+    "white_overall_district_share",
+    "s_t_ratio",
+    "share_swd",
+    "share_title_i",
+    "share_magnet",
+    "enrollment",
+    "rev_local_total",
+    "per_pupil_spending",
+    "est_population_5_17_poverty_pct",
+    "isolation")
+
+charter_dat <- 
+  charter_dat %>% 
+  select(one_of(vars_to_keep)) %>% 
+  mutate_at(vars(matches("share|threat")), list(scaled = ~ . * 100)) %>% 
+  mutate(prop_charter_scaled = prop_charter * 100,
+         est_population_5_17_poverty_pct_scaled = est_population_5_17_poverty_pct * 100,
+         isolation_scaled = isolation * 100)
+
+charter_dat_non_urban <-
+  charter_dat_non_urban %>% 
+  select(one_of(vars_to_keep)) %>% 
+  mutate_at(vars(matches("share|threat")), list(scaled = ~ . * 100)) %>% 
+  mutate(prop_charter_scaled = prop_charter * 100,
+         est_population_5_17_poverty_pct_scaled = est_population_5_17_poverty_pct * 100,
+         isolation_scaled = isolation * 100)
+
+charter_dat_urban <-
+  charter_dat_urban %>% 
+  select(one_of(vars_to_keep)) %>% 
+  mutate_at(vars(matches("share|threat")), list(scaled = ~ . * 100)) %>% 
+  mutate(prop_charter_scaled = prop_charter * 100,
+         est_population_5_17_poverty_pct_scaled = est_population_5_17_poverty_pct * 100,
+         isolation_scaled = isolation * 100)
+
+charter_dat <- charter_dat[complete.cases(charter_dat), ]
+charter_dat_urban <- charter_dat_urban[complete.cases(charter_dat_urban), ]
+charter_dat_non_urban <- charter_dat_non_urban[complete.cases(charter_dat_non_urban), ]
+```
+
+# Overview
+
+While school choice policies are now ubiqitous and often presented as a strategy for addressing persistent racial disparities education, there is concern that such policies may maintain or increases such disparities due to resource hoarding by advantaged families or through increased racial segregation [@davisSchoolChoiceSegregation2014; @rodaSchoolChoicePolicies2013]. More specifically, white families may use charters to exit from racially diversifying schools to maintain status hierarchies [@renzulliSchoolChoiceCharter2005]. Using a group threat/status anxiety framework [@boboPerceptionsRacialGroup1996], I hypothesize that exposure to increased racial diversification may induce white families to enroll their children in charter schools. I distinguish between proximal exposure, where racial diversification occurs in neighboring school districts, and direct exposure, where racial diversification occurs within local traditional public schools. 
+
+I find evidence that: 
+
+1. both proximal and direct exposure are associated with both **increased foundings of charter schools** and with **increasd white enrollment in charter schools**;  
+2. this is concentrated in **non-urban areas**; and  
+3. threat-induced white enrollment is associated with **increased racial segregation**.  
+
+# Data
+Panel of California school district data from 2000-2015 (n = 12,603 district-by-year observations; 990 unique districts)
+
+Sources: The Common Core of Data; Small Area Income and Poverty Estimates (both accessed via the Urban Institutes API); NCES EDGE database
+
+Charter schools in California:
+
+- Law enacted in 1992
+- Authorization occurs at the district level
+- In 2000, ~ 2% of students were enrolled in charters
+- By 2015, ~ 10% were enrolled in charters
+
+# Methods
+
+**Measures**
+
+1. _Proximal status threat_ [@andrewsGroupThreatPolicy2015]
+$$ProxThreat_{ij} = \theta_{ij} * \gamma_{ij}$$
+where $\theta_{ij} = \frac{White_{ij}}{Total_{ij}}$ and $\gamma_{ij} = \frac{\sum_1^k Blk_{kj}, Hisp_{kj}}{\sum_1^k Total_{kj}}$
+
+2. _Direct status threat_
+$$DirThreat_{ij} = \frac{\{BlkTPS{ij}, HispTPS{ij}\}}{\{TotalBlk_{ij},TotalHisp_{ij}\}}$$
+
+
+3. _Racial segregation (white isolation)_ [@masseyDimensionsResidentialSegregation1988]
+$$WhiteIsolation_{ij} = \sum_{s=1}^n[(\frac{x_{sj}}{X_{ij}})(\frac{x_{sj}}{t_{ij}})]$$
+where $x_{sj}$ is the white enrollment in a school, $X_{ij}$ is the total white enrollment in the district $s$ is in, and $t_{ij}$ is the total enrollment in the district.
+
+- This measure captures the extent to which white students are isolated from students of other ethnicities/races in a district. Other measure of segregation show similar results.
+
+**Analytic models**
+
+1. Does proximal and/or direct exposure increase charter enrollment for white students?  
+$$Y_{ij} = \beta_1ProxThreat_{ij} + \beta_2DirThreat_{ij} + X_{ij}\beta + \alpha_i + \gamma_j + \epsilon_{ij}$$
+
+- $Y_{ij}$ = share of charters/share of white students enrolled in charters; $X_{ij}\beta$ is a vector of time-varying district-level covariates; $\alpha_i$ represents district fixed effects; $\gamma_i$ represents year fixed effects
+- Estimated for $ProxThreat_{ij}$ and $DirThreat_{ij}$ separately and jointly; as measured overall and separately for Hispanic and Black exposure
+
+2. Does white enrollment induced by exposure contribute to racial segregation in schools?  
+
+_First stage_  
+$$\phi_{ij} = \pi_1ProxThreat_{ij} + \pi_1DirThreat_{ij}$$
+
+_Second stage_: 
+$$WhiteIsolation_{ij} = \beta_1\hat{\phi} + X_{ij}\beta + \alpha_i + \gamma_j + \epsilon_{ij}$$
+
+- $\beta_1\hat{\phi}$ = fitted values based on first stage; others as above
+- Similar to above, estimated jointly and separately for exposure indices
+
+# Charter School Expansion and Enrollment
+
+California passed its charter school law in 1992 and has seen steadily increased growth in the past two decades. Charter schools are authorized at the district-level. The median district consists of about 4 schools, with a mean of 9.21. The share of charter schools in the state has grown steadily in the state to about 12% in 2015. However, the distribution of charters across the state is uneven. About 67% of districts did not have a single charter school in 2015. Los Angeles City had 271 charter schools, representing 27% of the schools in the district. Some districts had a share of charter schools well over 50%--some up to 92%.
+```{r}
+p1 <- s_dat %>% count(year, charter) %>% group_by(year) %>% mutate(prop = n/sum(n)) %>% 
+  ggplot(aes(x = factor(year), y = prop, group = factor(charter))) +
+  geom_line(aes(color = factor(charter))) +
+  geom_point(aes(color = factor(charter), shape = factor(charter))) +
+  scale_color_viridis_d(name = "School Type", labels = c("TPS", "Charter"), begin = 0.1, end = 0.7) +
+  scale_shape_discrete(name = "School Type", labels = c("TPS", "Charter")) +
+  labs(x = "Share", y = "Year", title = "Share of tradition and charter schools in Califorina, 2000-2015",
+       caption = "Note. TPS = Traditional public school. Source = Author's calulation from Common Core Data accessed via the Urban Institute's API.")
+
+p1
+```
+
+
+# Descriptive Analysis
+```{r}
+dist_info <- 
+  charter_dat %>% 
+  group_by(leaid) %>% 
+  mutate(change_threat = threat_overall - lag(threat_overall), 
+         change_white = white_share_within_charter - lag(white_share_within_charter),
+         change_charter = n_charter - lag(n_charter)) %>% 
+  summarize(sum_threat = sum(change_threat, na.rm = TRUE), 
+            sum_white = sum(change_white, na.rm = TRUE),
+            n_charter = sum(change_charter, na.rm = TRUE)) %>% 
+  ungroup() %>%
+  summarize(increase_threat = sum(sum_threat > 0), 
+            no_threat = sum(sum_threat < 0), 
+            increase_white = sum(sum_white > 0), 
+            no_white = sum(sum_white < 0),
+            charters = sum(n_charter > 0),
+            no_charters = sum(n_charter == 0)) %>% 
+  pivot_longer(cols = everything()) %>% 
+  mutate(cate = c("threat", "threat", 
+                  "white", "white",
+                  "charter", "charter")) %>% 
+  group_by(cate) %>% 
+  mutate(mean = 100*(value/sum(value))) %>% 
+  ungroup() %>%
+  filter(!str_detect(name, "no")) %>% 
+  select(-value, -cate) %>% 
+  mutate(name = case_when(
+    name == "increase_threat" ~ "% increase in proximal exposure",
+    name == "increase_white" ~ "% increase in share of white students in charters",
+    name == "charters" ~ "% increase in share of charters"
+  ))
+
+dist_demo <-
+  charter_dat %>% 
+  summarize(
+    white_mean = mean(white_overall_district_share_scaled, na.rm = TRUE),
+    white_sd = sd(white_overall_district_share_scaled, na.rm = TRUE),
+    black_mean = mean(black_overall_district_share_scaled, na.rm = TRUE),
+    black_sd = sd(black_overall_district_share_scaled, na.rm = TRUE),
+    hispanic_mean = mean(hispanic_overall_district_share_scaled, na.rm = TRUE),
+    hispanic_sd = sd(hispanic_overall_district_share_scaled, na.rm = TRUE),
+    povertypct_mean = mean(est_population_5_17_poverty_pct_scaled, na.rm = TRUE),
+    povertypct_sd = sd(est_population_5_17_poverty_pct_scaled, na.rm = TRUE)) %>%
+  pivot_longer(cols = everything()) %>% 
+  separate(name, c("name", "stat"), sep = "_") %>% 
+  pivot_wider(id_cols = name, names_from = stat, values_from = value) %>% 
+  mutate(name = case_when(
+    name == "white" ~ "% White",
+    name == "black" ~ "% Black",
+    name == "hispanic" ~ "% Hispanic",
+    name == "povertypct" ~ "% Poverty",
+  ))
+
+bind_rows(dist_info, dist_demo) %>% 
+  hux() %>% 
+  insert_row(c("District characteristics", "Percent", ""), after = 0) %>% 
+  insert_row(c("", "Mean", "SD"), after = 4) %>% 
+  set_bottom_border(c(1, 9), 1:3, 1) %>% 
+  set_bottom_border(5, 1:3, 1)
+```
+
+```{r}
+var_names <-
+  c("%charters",
+    "%White in charters",
+    "Proximal exposure",
+    "Direct exposure - %Black in TPS",
+    "Direct exposure - %Hispanic in TPS",
+    "%White in district",
+    "Student-teacher ratio",
+    "%SWD",
+    "%Title I eligible schools",
+    "%Magnet schools",
+    "Enrollment (log)",
+    "Local revenue (log)",
+    "Per-student spending",
+    "%5-17 year olds in poverty")
+
+vars <-
+  charter_dat %>% 
+  select(prop_charter_scaled,
+         white_share_within_charter_scaled,
+         threat_overall_scaled,
+         black_share_btw_traditional_scaled,
+         hispanic_share_btw_traditional_scaled,
+         white_overall_district_share_scaled,
+         s_t_ratio,
+         share_swd_scaled,
+         share_title_i_scaled,
+         share_magnet_scaled,
+         enrollment,
+         rev_local_total,
+         per_pupil_spending,
+         est_population_5_17_poverty_pct_scaled) %>% 
+  mutate_at(vars(enrollment, rev_local_total, per_pupil_spending), log) %>% 
+  summarize_all(list(~ mean(., na.rm = TRUE), ~ sd(., na.rm = TRUE))) %>% 
+  pivot_longer(cols = everything()) %>% 
+  separate(name, c("var", "stat"), sep = "_scaled_|_ratio_") %>% 
+  mutate(stat = case_when(is.na(stat) & str_detect(var, "mean") ~ "mean", 
+                          is.na(stat) & str_detect(var, "sd") ~ "sd", 
+                          TRUE ~ stat)) %>% 
+  mutate(var = rep(var_names, 2)) %>% 
+  pivot_wider(id_cols = var, names_from = stat, values_from = value)
+
+vars %>% 
+  hux() %>% 
+  insert_row(c("Variable", "Mean", "SD"), after = 0) %>% 
+  set_bottom_border(c(1, 15), 1:3, 1)
+```
+
+```{r out.width='90%', fig.align='center', dpi=340}
+charter_dat %>% 
+  filter(n_charter > 0) %>% 
+  mutate(urbanicity = ifelse(urban_centric_locale %in% c(1, 2, 11, 12), "Urban Districts", "Non-Urban Districts")) %>% 
+  ggplot(aes(x = car::logit(threat_overall), y = car::logit(white_share_within_charter))) + 
+  geom_point(aes(color = urbanicity, size = enrollment), alpha = 0.5) + 
+  geom_smooth(aes(color = urbanicity), method = "lm", size = 0.5, se = FALSE) + 
+  labs(x = "Share of white students enrolled in charters (logit transformed)", 
+       y = "Proximal threat/exposure (logit transformed)",
+       title = "Relationship between white enrollment in charters and proximal threat by year",
+       caption = "Note. Includes districts with at least one charter school. Fitted lines based on linear model.") +
+  scale_color_viridis_d(name = "Urbanicity", begin = 0.25, end = 0.75) + 
+  scale_size_continuous(name = "Overall district enrollment", range = c(1, 4), labels = scales::comma) + 
+  theme(legend.position = "bottom", 
+      legend.box = "vertical",
+      legend.margin=margin()) +
+  facet_wrap(~ year)
+#
+#charter_dat %>% 
+#  filter(n_charter > 0) %>% 
+#  mutate(urbanicity = ifelse(urban_centric_locale %in% c(1, 2, 11, 12), "Urban Districts", "Non-Urban Districts")) %>% 
+#  ggplot(aes(x = car::logit(threat_overall), y = car::logit(isolation))) + 
+#  geom_point(aes(color = urbanicity, size = white_overall_district_share), alpha = 0.5) + 
+#  geom_smooth(aes(color = urbanicity), method = "lm", size = 0.5, se = FALSE) + 
+#  labs(x = "Proximal threat/exposure (logit transformed)",
+#       y = "Share of white students enrolled in charters (logit trasformed)", 
+#       title = "Relationship between proximal threat and white isolation by year",
+#       caption = "Note. Includes districts with at least one charter school. Fitted lines based on linear model.") +
+#  scale_color_viridis_d(name = "Urbanicity", begin = 0.25, end = 0.75) + 
+#  scale_size_continuous(name = "White district enrollment", range = c(1, 4), labels = scales::comma) + 
+#  facet_wrap(~ year)
+
+charter_dat %>% 
+  ggplot(aes(x = threat_overall_scaled)) +
+  geom_histogram(bins = 50, fill = "cornflowerblue", color = "midnightblue", alpha = 0.7) +
+  labs(x = "", y = "", title = "Distribution of proximal threat by year") +
+  facet_wrap(~ year)
+
+charter_dat %>% 
+  select(year, black_share_btw_traditional, hispanic_share_btw_traditional) %>% 
+  pivot_longer(cols = -year) %>% 
+  mutate(name = fct_rev(as_factor(name))) %>% 
+  ggplot(aes(x = value, group = name)) +
+  geom_histogram(aes(x = value, fill = name, alpha = name, stat(ndensity)), bins = 50, color = "midnightblue") +
+  scale_fill_manual(name = "", values = c("cornflowerblue", "magenta"), labels = c("%TPS students - Latinx", "%TPS students - Black")) +
+  scale_alpha_manual(guide = FALSE, values = c(0.4, 0.9)) +
+  labs(x = "", y = "", title = "Distribution of direct exposure by year") +
+  facet_wrap(~ year)
+```
+
+
+# Preliminary Results
+Table 1 shows the results of the fixed effects regressions, identifying the association between within-district changes in various types of exposure and the share of charter schools in a district. I find a positive association between proximal exposure and direct exposure for Hispanic students.
+```{r table 1}
+m1 <- 
+  felm(
+    prop_charter_scaled ~
+      threat_overall_scaled +
+      white_overall_district_share_scaled +
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct_scaled| leaid + year | 0 | leaid,
+    data = charter_dat
+  )
+
+m2 <- 
+  felm(
+    prop_charter_scaled ~
+      threat_black_scaled +
+      threat_hispanic_scaled +
+      white_overall_district_share_scaled +
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct_scaled| leaid + year | 0 | leaid,
+    data = charter_dat
+  )
+
+m3 <- 
+  felm(
+    prop_charter_scaled ~
+      black_share_btw_traditional_scaled +
+      hispanic_share_btw_traditional_scaled +
+      white_overall_district_share_scaled +
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct_scaled| leaid + year | 0 | leaid,
+    data = charter_dat
+  )
+
+m4 <- 
+  felm(
+    prop_charter_scaled ~
+      threat_overall_scaled + 
+      black_share_btw_traditional_scaled +
+      hispanic_share_btw_traditional_scaled +
+      white_overall_district_share_scaled +
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct_scaled| leaid + year | 0 | leaid,
+    data = charter_dat
+  )
+
+m5 <- 
+  felm(
+    prop_charter_scaled ~
+      threat_black_scaled + 
+      threat_hispanic_scaled +
+      black_share_btw_traditional_scaled +
+      hispanic_share_btw_traditional_scaled +
+      white_overall_district_share_scaled +
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct_scaled| leaid + year | 0 | leaid,
+    data = charter_dat
+  )
+
+models1 <- list(m1, m2, m3, m4, m5)
+
+huxreg(models1, 
+       coefs = c("Overall proximal exposure" = "threat_overall_scaled",
+                 "Proximal exposure - Black" = "threat_black_scaled",
+                 "Proximal exposure - Hispanic" = "threat_hispanic_scaled",
+                 "Direct exposure - %Black(TPS)" = "black_share_btw_traditional_scaled",
+                 "Direct exposure - %Hispanic(TPS)" = "hispanic_share_btw_traditional_scaled"),
+       statistics = c('N' = 'nobs', 'R-squared' = 'r.squared'),
+       note = "{stars}. TPS = Traditional public schools. Coefficient estimates based on OLS regression with district and year fixed effects. Standard errors clustered at the district level. Controls include the natural log of enrollment, local revenue, and per-student spending; the share of children in poverty; the share of children in poverty; the share of Title 1 eligible schools, students with disabilities, white students, and magnet schools in the district; and teacher-student ratio.") %>% 
+  insert_row(c("District FEs", rep("X", 5)), after = 11) %>% 
+  insert_row(c("Year FEs", rep("X", 5)), after = 12) %>% 
+  insert_row(c("Controls", rep("X", 5)), after = 13) %>% 
+  set_bottom_border(12, 2:6, 0) %>% 
+  set_bottom_border(13, 2:6, 0) %>% 
+  set_bottom_border(14, 2:6, 0) %>% 
+  set_align(1:17, 2:6, "center") %>% 
+  insert_row(c("Table 1: Fixed effects regression of share of charters on proximal and direct threat", rep("", 5)), colspan = 6, after = 0) %>% 
+  set_align(1, 1, "left") %>%
+  set_font_size(1:18, 1:6, 8) %>% 
+  set_all_padding(1:18, 1:6, 0) %>% 
+  set_width(0.7) %>% 
+  set_position("left")
+```
+
+Likewise, proximal exposure and direct exposure for Hispanic students increase the share of white students enrolled in charter schools in a district (Table 2). For a 10 percentage point increase in the overall proximal exposure a district faces, the share of white students enrolled in the district increases by 4.25 percentage points. 
+```{r table 2}
+m1 <- 
+  felm(
+    white_share_within_charter_scaled ~
+      threat_overall_scaled +
+      white_overall_district_share_scaled +
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct_scaled| leaid + year | 0 | leaid,
+    data = charter_dat
+  )
+
+m2 <- 
+  felm(
+    white_share_within_charter_scaled ~
+      threat_black_scaled +
+      threat_hispanic_scaled +
+      white_overall_district_share_scaled +
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct_scaled| leaid + year | 0 | leaid,
+    data = charter_dat
+  )
+
+m3 <- 
+  felm(
+    white_share_within_charter_scaled ~
+      black_share_btw_traditional_scaled +
+      hispanic_share_btw_traditional_scaled +
+      white_overall_district_share_scaled +
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct_scaled| leaid + year | 0 | leaid,
+    data = charter_dat
+  )
+
+m4 <- 
+  felm(
+    white_share_within_charter_scaled ~
+      threat_overall_scaled + 
+      black_share_btw_traditional_scaled +
+      hispanic_share_btw_traditional_scaled +
+      white_overall_district_share_scaled +
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct_scaled| leaid + year | 0 | leaid,
+    data = charter_dat
+  )
+
+m5 <- 
+  felm(
+    white_share_within_charter_scaled ~
+      threat_black_scaled + 
+      threat_hispanic_scaled +
+      black_share_btw_traditional_scaled +
+      hispanic_share_btw_traditional_scaled +
+      white_overall_district_share_scaled +
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct_scaled| leaid + year | 0 | leaid,
+    data = charter_dat
+  )
+
+models1 <- list(m1, m2, m3, m4, m5)
+
+huxreg(models1, 
+       coefs = c("Overall proximal exposure" = "threat_overall_scaled",
+                 "Proximal exposure - Black" = "threat_black_scaled",
+                 "Proximal exposure - Hispanic" = "threat_hispanic_scaled",
+                 "Direct exposure - %Black(TPS)" = "black_share_btw_traditional_scaled",
+                 "Direct exposure - %Hispanic(TPS)" = "hispanic_share_btw_traditional_scaled"),
+       statistics = c('N' = 'nobs', 'R-squared' = 'r.squared'),
+       note = "{stars}. TPS = Traditional public schools. Coefficient estimates based on OLS regression with district and year fixed effects. Standard errors clustered at the district level. Controls include the natural log of enrollment, local revenue, and per-student spending; the share of children in poverty; the share of children in poverty; the share of Title 1 eligible schools, students with disabilities, white students, and magnet schools in the district; and teacher-student ratio.") %>% 
+  insert_row(c("District FEs", rep("X", 5)), after = 11) %>% 
+  insert_row(c("Year FEs", rep("X", 5)), after = 12) %>% 
+  insert_row(c("Controls", rep("X", 5)), after = 13) %>% 
+  set_bottom_border(12, 2:6, 0) %>% 
+  set_bottom_border(13, 2:6, 0) %>% 
+  set_bottom_border(14, 2:6, 0) %>% 
+  set_align(1:17, 2:5, "center") %>% 
+  insert_row(c("Table 2: Fixed effects regression of share of white students enrolled in charters on proximal and direct threat", rep("", 5)), colspan = 6, after = 0) %>% 
+  set_align(1, 1, "left") %>%
+  set_wrap(1:18, 1:6, TRUE) %>% 
+  set_font_size(1:18, 1:6, 8) %>% 
+  set_all_padding(1:18, 1:6, 0) %>% 
+  set_width(0.7) %>% 
+  set_position("left")
+```
+
+The results are concentrated in non-urban areas. If I run the model separately for districts in non-urban and urban areas, I find that both proximal exposure and direct Hispanic exposure in non-urban schools are associated with both charter foundings and increased white enrollment in charter schools, but this was not the case. The coefficient for proximal threat in urban district was positive for charter foundings and white enrollment and similar in magnitude, but I cannot rule out that the true value is zero. 
+```{r table 3}
+m1_controls <- 
+  felm(
+    white_share_within_charter_scaled ~
+      threat_overall_scaled +
+      black_share_btw_traditional_scaled +
+      hispanic_share_btw_traditional_scaled +
+      white_overall_district_share_scaled +
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet_scaled + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct_scaled | leaid + year | 0 | leaid,
+    data = charter_dat_non_urban
+  )
+
+m2_controls <- 
+  felm(
+    white_share_within_charter_scaled ~
+      threat_overall_scaled +
+      black_share_btw_traditional_scaled +
+      hispanic_share_btw_traditional_scaled +
+      white_overall_district_share_scaled +
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet_scaled + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct_scaled | leaid + year | 0 | leaid,
+    data = charter_dat_urban
+  )
+
+m3_controls <- 
+  felm(
+    prop_charter_scaled ~
+      threat_overall_scaled +
+      black_share_btw_traditional_scaled +
+      hispanic_share_btw_traditional_scaled +
+      white_overall_district_share_scaled +
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet_scaled + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct_scaled | leaid + year | 0 | leaid,
+    data = charter_dat_non_urban
+  )
+
+m4_controls <- 
+  felm(
+    prop_charter_scaled ~
+      threat_overall_scaled +
+      black_share_btw_traditional_scaled +
+      hispanic_share_btw_traditional_scaled +
+      white_overall_district_share_scaled +
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet_scaled + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct_scaled | leaid + year | 0 | leaid,
+    data = charter_dat_urban
+  )
+
+
+models <- list("Non-urban white enrollment" = m1_controls, "Urban white enrollment" = m2_controls, 
+               "Non-urban %Charter" = m3_controls, "Urban %Charter" = m4_controls)
+
+huxreg(models, 
+       coefs = c("Proximal exposure" = "threat_overall_scaled", 
+                 "Direct exposure - %Black(TPS)" = "black_share_btw_traditional_scaled",
+                 "Direct exposure - %Hispanic(TPS)" = "hispanic_share_btw_traditional_scaled"),
+       statistics = c('N' = 'nobs', 'R-squared' = 'r.squared'),
+       note = "{stars}. TPS = Traditional public schools. Standard errors clustered at the district level. Controls include the natural log of enrollment, local revenue, and per-student spending; the share of 5-17 in poverty; the share of children in poverty; the share of Title 1 eligible schools, students with disabilities, and magnet schools in the district; and teacher-student ratio.") %>% 
+  insert_row(c("District FEs", "X", "X", "X", "X"), after = 7) %>% 
+  insert_row(c("Year FEs", "X", "X", "X", "X"), after = 8) %>% 
+  insert_row(c("Controls", "X", "X", "X", "X"), after = 9) %>% 
+  set_bottom_border(8, 2:5, 0) %>% 
+  set_bottom_border(9, 2:5, 0) %>% 
+  set_bottom_border(10, 2:5, 0) %>% 
+  insert_row(c("", "Share of Charters", "", "White Enrollment in Charters", ""), after = 0) %>% 
+  set_colspan(1, c(2, 4), 2) %>% 
+  set_bottom_border(1, 1:5, 1) %>% 
+  set_bottom_border(1, 1:5, 0) %>% 
+  set_top_border(2, 1:5, 0) %>%
+  set_align(1:14, 2:5, "center") %>% 
+  insert_row(c("Table 3: Results for urban and non-urban school districts", 
+               "", "", "", ""), colspan = 5, after = 0) %>% 
+  set_align(1, 1, "left") %>%
+  set_wrap(1:15, 1:5, TRUE) %>% 
+  set_font_size(1:15, 1:5, 8) %>% 
+  set_all_padding(1:15, 1:5, 0) %>% 
+  set_width(0.7) %>% 
+  set_position("left")
+```
+
+Finally, I evaluate the role of threat-induced white enrollment in charter schools on district-level segregation. I assess segregation in terms of _white isolation_, which reflects the probability that a white student shares a school with a student of color [@masseyDimensionsResidentialSegregation1988]. I use two-stage least squares approach to determine (1) the variation in share of white enrollment that is associated with the exposures measures and (2) the association between those fitted values and the level of white isolation in the district. I find that districts with increases in threat-induced enrollment had increased white isolation. A one-percentage-point increase in white enrollment in charter school that is associated with proximal exposure is associated with abou a 2.5 percentage-point increase in white isolation.
+```{r table 4}
+m1 <- 
+  felm(
+    isolation_scaled ~
+      black_overall_district_share_scaled + 
+      hispanic_overall_district_share_scaled + 
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet_scaled + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct | leaid + year |  (white_share_within_charter_scaled ~ threat_overall_scaled) | leaid,
+    data = charter_dat
+  )
+
+m2 <- 
+  felm(
+    isolation_scaled ~
+      black_overall_district_share_scaled + 
+      hispanic_overall_district_share_scaled + 
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet_scaled + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct | leaid + year |  (white_share_within_charter_scaled ~ threat_black_scaled) | leaid,
+    data = charter_dat
+  )
+
+m3 <- 
+  felm(
+    isolation_scaled ~
+      black_overall_district_share_scaled + 
+      hispanic_overall_district_share_scaled + 
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet_scaled + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct | leaid + year |  (white_share_within_charter_scaled ~ threat_hispanic_scaled) | leaid,
+    data = charter_dat
+  )
+
+m4 <- 
+  felm(
+    isolation_scaled ~
+      black_overall_district_share_scaled + 
+      hispanic_overall_district_share_scaled + 
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet_scaled + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct | leaid + year |  (white_share_within_charter_scaled ~ black_share_btw_traditional_scaled) | leaid,
+    data = charter_dat
+  )
+
+m5 <- 
+  felm(
+    isolation_scaled ~
+      black_overall_district_share_scaled + 
+      hispanic_overall_district_share_scaled + 
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet_scaled + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct | leaid + year |  (white_share_within_charter_scaled ~ hispanic_share_btw_traditional_scaled ) | leaid,
+    data = charter_dat
+  )
+
+m6 <- 
+  felm(
+    isolation_scaled ~
+      black_overall_district_share_scaled + 
+      hispanic_overall_district_share_scaled + 
+      s_t_ratio + 
+      share_swd_scaled + 
+      share_title_i_scaled + 
+      share_magnet_scaled + 
+      log(enrollment) +
+      log(rev_local_total) +
+      log(per_pupil_spending) +
+      est_population_5_17_poverty_pct | leaid + year |  (white_share_within_charter_scaled ~ threat_overall_scaled + black_share_btw_traditional_scaled + hispanic_share_btw_traditional_scaled) | leaid,
+    data = charter_dat
+  )
+
+models <- list("Overall Proximal Exposure" = m1, "Proximal Exposure - Black" = m2,
+               "Proximal Exposure - Hispanic" = m3, "Direct Exposure - Black" = m4, 
+               "Direct Exposure - Hispanic" = m5, "Proximal & Direct Exposure" = m6)
+
+huxreg(models, 
+       coefs = c("Threat-induced white enrollment in charters" = "`white_share_within_charter_scaled(fit)`"),
+       statistics = c('N' = 'nobs', 'R-squared' = 'r.squared'),
+       note = "{stars}. Threat-induced white enrollment are fitted values from first stage regression of exposure variables on share of white students enrolled in charter schools. Second stage regression includes controls for overall share of black and hispanic students, student-teacher ratio, the share of students with disabilities, the share of Title I eligible and magnet schools, the natural log of enrollment, local revenue, and per student spending, and the share of 5-17 year olds in poverty in the district. All models include district and year fixed effects in the second stage. Standard errors clustered at the district level.") %>% 
+  insert_row(c("Table 4. Results of 2SLS regression of threat-induced enrollment in charters on white isolation.", rep("", 6)), colspan = 7) %>% 
+  set_align(1, 1, "left") %>%
+  set_wrap(1:7, 1:7, TRUE) %>%
+  set_font_size(1:7, 1:7, 8)  %>% 
+  set_all_padding(1:7, 1:7, 0) %>% 
+  set_width(0.7) %>% 
+  set_position("left")
+```
+
+
+# Summary and implications
+
+- Both direct and proximal exposure to students of color appear to motivate white students to leave traditional public schools for charter schools
+- This process appears to increase district segregation--white students are more isolated from students of color
+- Findings suggest that white families may use charter schools to maintain exclusive access to educational goods--aligning with other research showing that white families have a preference for schools with more white students
+
+
+# References

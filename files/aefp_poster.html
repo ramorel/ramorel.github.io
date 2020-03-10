@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+
+
+
+<title>Status Anxiety and Charter School Expansion in California</title>
+
+<script src="aefp_poster_files/jquery-1.11.3/jquery.min.js"></script>
+<script src="aefp_poster_files/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
+
+
+
+
+<style>
+@page {
+size: 45in 38in;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0;
+font-size: 35px;
+width: 45in;
+height: 38in;
+padding: 0;
+text-align: justify;
+font-family: Palatino;
+}
+.poster_wrap {
+width: 45in;
+height: 38in;
+padding: 0cm;
+}
+.title_container {
+width: 45in;
+height: calc(38in * 0.10);
+overflow: hidden;
+background-color: #a09546;
+border: 0 solid #a09546;
+}
+.logo_left {
+float: left;
+width: 10%;
+height: 100%;
+background-color: #a09546;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.logo_right {
+float: right;
+width: 10%;
+height: 100%;
+background-color: #a09546;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.poster_title {
+text-align: center;
+position: relative;
+float: left;
+width: 80%;
+height: 100%;
+color: #FFFFFF;
+top: 50%;
+transform: translateY(-50%);
+-webkit-transform: translateY(-50%);
+}
+#title {
+font-family: Palatino;
+}
+/* unvisited link */
+a:link {
+color: #cc0000;
+}
+.mybreak {
+  break-before: column;
+}
+/* visited link */
+a:visited {
+color: #cc0000;
+}
+
+/* mouse over link */
+a:hover {
+color: #cc0000;
+}
+
+/* selected link */
+a:active {
+color: #cc0000;
+}
+.poster_body {
+-webkit-column-count: 4; /* Chrome, Safari, Opera */
+-moz-column-count: 4; /* Firefox */
+column-count: 4;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+-webkit-column-rule-width: 1mm;
+-moz-column-rule-width: 1mm;
+column-rule-width: 1mm;
+-webkit-column-rule-style: dashed;
+-moz-column-rule-style: dashed;
+column-rule-style: dashed;
+-webkit-column-rule-color: #0b4545;
+-moz-column-rule-color: #0b4545;
+column-rule-color: #0b4545;
+column-gap: 1em;
+padding-left: 0.5em;
+padding-right: 0.5em;
+height: 100%;
+color: #000000
+background-color: #ffffff;
+}
+.poster_title h1 {
+font-size: 75pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_body_wrap{
+width: calc(45in + 0 + 0);
+height: calc(38in * 0.83);
+padding-top: calc(38in * 0.005);
+padding-bottom: calc(38in * 0.01);
+background-color: #ffffff;
+}
+.poster_title h3 {
+color: #ffffff;
+font-size: 50pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_title h3 > sup {
+  font-size: 35pt;
+  margin-left: 0.02em;
+}
+.poster_title h5 {
+color: #FFFFFF;
+font-size: 35pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+img {
+margin-top: 2cm;
+margin-bottom: 0;
+}
+.section {
+  padding: 0.2em;
+}
+.poster_body h1 {
+text-align: center;
+color: #FFFFFF;
+font-size: 65pt;
+border: 2mm solid #00189b;
+background-color: #00189b;
+border-radius: 4mm 0mm;
+margin-top: 2mm;
+margin-bottom: 2mm;
+font-weight: normal;
+}
+.poster_body h2 {
+color: #000000;
+font-size: 40pt;
+padding-left: 4mm;
+font-weight: normal;
+}
+.span {
+width: 200%;
+}
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+/* align-items: center; */
+margin: auto;
+padding-left: 2cm;
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+.caption {
+font-size: 25pt;
+}
+.table caption {
+font-size: 25pt;
+padding-bottom: 3mm;
+
+}
+code {
+font-size: 1em;
+font-family: monospace;
+background-color: #00808024;
+color: #0b4545;
+padding: 1.2mm;
+border-radius: 2mm;
+}
+.poster_title code {
+font-size: 1em;
+}
+table {
+font-size: 40px;
+margin: auto;
+border-top: 3px solid #666;
+border-bottom: 3px solid #666;
+}
+table thead th {
+border-bottom: 3px solid #ddd;
+}
+td {
+padding: 8px;
+}
+th {
+padding: 15px;
+}
+caption {
+margin-bottom: 10px;
+}
+.poster_body p {
+margin-right: 4mm;
+margin-left: 4mm;
+margin-top: 6mm;
+margin-bottom: 10mm;
+}
+.poster_body ol {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+#ul {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+.references p {
+font-size: 18pt;
+}
+.orcid img {
+  width: 1em;
+}
+</style>
+</head>
+<body>
+
+
+<div class="poster_wrap">
+<div class="title_container">
+<!-- Left Logo  -->
+<div class="logo_left">
+<img src= 'RGB_Shield_Stacked_Education_3color.png' style="width: 80%">
+</div>
+<!-- Poster Title -->
+<div class= "poster_title">
+<h1 id="title">Status Anxiety and Charter School Expansion in California</h1>
+<h3 id="author">Richard Paquin Morel<sup>1</sup></h3><br>
+<h5 id="affiliation"><sup>1</sup> Postdoctoral Research Associate, Learning Research and Development Center, University of Pittsburgh</h5>
+</div>
+<!-- Right Logo  -->
+<div class="logo_right">
+</div>
+</div>
+
+<div class='poster_body_wrap'>
+<div class='poster_body'>
+<div id="overview" class="section level1">
+<h1>Overview</h1>
+<p>While school choice policies are now ubiqitous and often presented as a strategy for addressing persistent racial disparities education, there is concern that such policies may maintain or increases such disparities due to resource hoarding by advantaged families or through increased racial segregation <span class="citation">(Davis 2014; Roda and Wells 2013)</span>. More specifically, white families may use charters to exit from racially diversifying schools to maintain status hierarchies <span class="citation">(Renzulli and Evans 2005)</span>. Using a group threat/status anxiety framework <span class="citation">(Bobo and Hutchings 1996)</span>, I hypothesize that exposure to increased racial diversification may induce white families to enroll their children in charter schools. I distinguish between proximal exposure, where racial diversification occurs in neighboring school districts, and direct exposure, where racial diversification occurs within local traditional public schools.</p>
+<p>I find evidence that:</p>
+<ol style="list-style-type: decimal">
+<li>both proximal and direct exposure are associated with both <strong>increased foundings of charter schools</strong> and with <strong>increasd white enrollment in charter schools</strong>;<br />
+</li>
+<li>this is concentrated in <strong>non-urban areas</strong>; and<br />
+</li>
+<li>threat-induced white enrollment is associated with <strong>increased racial segregation</strong>.</li>
+</ol>
+</div>
+<div id="data" class="section level1">
+<h1>Data</h1>
+<p>Panel of California school district data from 2000-2015 (n = 12,603 district-by-year observations; 990 unique districts)</p>
+<p>Sources: The Common Core of Data; Small Area Income and Poverty Estimates (both accessed via the Urban Institutes API); NCES EDGE database</p>
+<p>Charter schools in California:</p>
+<ul>
+<li>Law enacted in 1992</li>
+<li>Authorization occurs at the district level</li>
+<li>In 2000, ~ 2% of students were enrolled in charters</li>
+<li>By 2015, ~ 10% were enrolled in charters</li>
+</ul>
+</div>
+<div id="methods" class="section level1">
+<h1>Methods</h1>
+<p><strong>Measures</strong></p>
+<ol style="list-style-type: decimal">
+<li><p><em>Proximal status threat</em> <span class="citation">(Andrews and Seguin 2015)</span>
+<span class="math display">\[ProxThreat_{ij} = \theta_{ij} * \gamma_{ij}\]</span>
+where <span class="math inline">\(\theta_{ij} = \frac{White_{ij}}{Total_{ij}}\)</span> and <span class="math inline">\(\gamma_{ij} = \frac{\sum_1^k Blk_{kj}, Hisp_{kj}}{\sum_1^k Total_{kj}}\)</span></p></li>
+<li><p><em>Direct status threat</em>
+<span class="math display">\[DirThreat_{ij} = \frac{\{BlkTPS{ij}, HispTPS{ij}\}}{\{TotalBlk_{ij},TotalHisp_{ij}\}}\]</span></p></li>
+<li><p><em>Racial segregation (white isolation)</em> <span class="citation">(Massey and Denton 1988)</span>
+<span class="math display">\[WhiteIsolation_{ij} = \sum_{s=1}^n[(\frac{x_{sj}}{X_{ij}})(\frac{x_{sj}}{t_{ij}})]\]</span>
+where <span class="math inline">\(x_{sj}\)</span> is the white enrollment in a school, <span class="math inline">\(X_{ij}\)</span> is the total white enrollment in the district <span class="math inline">\(s\)</span> is in, and <span class="math inline">\(t_{ij}\)</span> is the total enrollment in the district.</p></li>
+</ol>
+<p><strong>Analytic models</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Does proximal and/or direct exposure increase charter enrollment for white students?<br />
+<span class="math display">\[Y_{ij} = \beta_1ProxThreat_{ij} + \beta_2DirThreat_{ij} + X_{ij}\beta + \alpha_i + \gamma_j + \epsilon_{ij}\]</span></p></li>
+<li><p>Does white enrollment induced by exposure contribute to racial segregation in schools?</p></li>
+</ol>
+<p><em>First stage</em><br />
+<span class="math display">\[\phi_{ij} = \pi_1ProxThreat_{ij} + \pi_1DirThreat_{ij}\]</span></p>
+<p><em>Second stage</em>:
+<span class="math display">\[WhiteIsolation_{ij} = \beta_1\hat{\phi} + X_{ij}\beta + \alpha_i + \gamma_j + \epsilon_{ij}\]</span></p>
+</div>
+<div id="charter-school-expansion-and-enrollment" class="section level1">
+<h1>Charter School Expansion and Enrollment</h1>
+<p><img src="aefp_poster_files/figure-html/map1-1.png" width="97%" style="display: block; margin: auto;" /><img src="aefp_poster_files/figure-html/map1-2.png" width="97%" style="display: block; margin: auto;" /><img src="aefp_poster_files/figure-html/map1-3.png" width="97%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="descriptive-analysis" class="section level1">
+<h1>Descriptive Analysis</h1>
+<p><img src="aefp_poster_files/figure-html/unnamed-chunk-1-1.png" width="90%" style="display: block; margin: auto;" /><img src="aefp_poster_files/figure-html/unnamed-chunk-1-2.png" width="90%" style="display: block; margin: auto;" /><img src="aefp_poster_files/figure-html/unnamed-chunk-1-3.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="preliminary-results" class="section level1">
+<h1>Preliminary Results</h1>
+<p><img src="aefp_poster_files/figure-html/standard-plot-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="aefp_poster_files/figure-html/morefigs-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="aefp_poster_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="summary-and-implications" class="section level1">
+<h1>Summary and implications</h1>
+<ul>
+<li>Both direct and proximal exposure to students of color appear to motivate white students to leave traditional public schools for charter schools</li>
+<li>This process appears to increase district segregation–white students are more isolated from students of color</li>
+<li>Findings suggest that white families may use charter schools to maintain exclusive access to educational goods–aligning with other research showing that white families have a preference for schools with more white students</li>
+</ul>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references hanging-indent">
+<div id="ref-andrewsGroupThreatPolicy2015">
+<p>Andrews, Kenneth T, and Charles Seguin. 2015. “Group Threat and Policy Change: The Spatial Dynamics of Prohibition Politics, 1890-1919.” <em>American Journal of Sociology</em> 121 (2): 475–510. <a href="https://doi.org/10.1086/682134">https://doi.org/10.1086/682134</a>.</p>
+</div>
+<div id="ref-boboPerceptionsRacialGroup1996">
+<p>Bobo, Lawrence, and Vincent L Hutchings. 1996. “Perceptions of Racial Group Competition: Extending Blumer’s Theory of Group Position to a Multiracial Social Context.” <em>American Sociological Review</em> 61 (6): 951. <a href="https://doi.org/10.2307/2096302">https://doi.org/10.2307/2096302</a>.</p>
+</div>
+<div id="ref-davisSchoolChoiceSegregation2014">
+<p>Davis, Tomeka M. 2014. “School Choice and Segregation: ‘Tracking’ Racial Equity in Magnet Schools.” <em>Education and Urban Society</em> 46 (4): 399–433. <a href="https://doi.org/10.1177/0013124512448672">https://doi.org/10.1177/0013124512448672</a>.</p>
+</div>
+<div id="ref-masseySuburbanizationSegregationMetropolitan1988">
+<p>Massey, Douglas S, and Nancy A Denton. 1988. “Suburbanization and Segregation in U.S. Metropolitan Areas.” <em>American Journal of Sociology</em> 94 (3): 592–626. <a href="https://doi.org/10.1086/229031">https://doi.org/10.1086/229031</a>.</p>
+</div>
+<div id="ref-renzulliSchoolChoiceCharter2005">
+<p>Renzulli, Linda A, and Lorraine Evans. 2005. “School Choice, Charter Schools, and White Flight.” <em>Social Problems</em> 52 (3): 398–418.</p>
+</div>
+<div id="ref-rodaSchoolChoicePolicies2013">
+<p>Roda, Allison, and Amy Stuart Wells. 2013. “School Choice Policies and Racial Segregation: Where White Parents’ Good Intentions, Anxiety, and Privilege Collide.” <em>American Journal of Education</em> 119 (2): 261–93. <a href="https://doi.org/10.1086/668753">https://doi.org/10.1086/668753</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+var script = document.createElement("script");
+script.type = "text/javascript";
+var src = "true";
+if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+if (location.protocol !== "file:" && /^https?:/.test(src))
+src = src.replace(/^https?:/, '');
+script.src = src;
+document.getElementsByTagName("head")[0].appendChild(script);
+})();
+</script>
+
+
+</body>
+</html>
