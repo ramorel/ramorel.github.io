@@ -8,7 +8,7 @@ author_profile: true
 
 [Forthcoming] **Morel, R.** Status anxiety and charter school expansion in California. Paper presentation at the annual meeting for the Midwest Sociological Society, Omaha, NE, April, 2020.
 
-[Forthcoming] **Morel, R.** Status anxiety and charter school expansion in California. Poster presentation at the annual meeting for Association for Education Finance and Policy, March, 2020.
+[Forthcoming] **Morel, R.** Status anxiety and charter school expansion in California. Poster presentation at the annual meeting for Association for Education Finance and Policy, Fort Worth, TX, March, 2020.
 
 - Poster [here](https://ramorel.github.io/files/aefp_poster.html)
 - Container to reproduce the analysis [coming soon!]
