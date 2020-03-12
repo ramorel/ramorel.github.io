@@ -11,7 +11,7 @@ author_profile: true
 [Forthcoming] **Morel, R.** Status anxiety and charter school expansion in California. Poster presentation at the annual meeting for Association for Education Finance and Policy, Fort Worth, TX, March, 2020.
 
 - Poster [here](https://ramorel.github.io/files/aefp_poster.png)
-- Container to reproduce the analysis [coming soon!]
+- Container to reproduce the analysis [here](https://osf.io/wbrdq/)
 - Descriptive write up of the analysis [here](https://ramorel.github.io/files/aefp_detailed.html)
 
 ### 2019 
