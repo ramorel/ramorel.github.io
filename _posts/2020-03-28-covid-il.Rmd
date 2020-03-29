@@ -6,7 +6,7 @@ categories: ["R"]
 output: github_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, }
 knitr::opts_chunk$set(collapse = TRUE, warning = FALSE, message = FALSE, dpi = 340)
 library(tidyverse)
 library(tidycensus)
@@ -38,7 +38,7 @@ theme_set(
 
 # Getting the data from the New York Times COVID-19 github repo
 
-```{r}
+```{r message=FALSE}
 il <- read_csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv") %>% 
   filter(state == "Illinois")
 
