@@ -7,7 +7,7 @@ author_profile: true
 
 [Me](http://ramorel.github.io/about)? I'm a postdoctoral research at the [Learning Research and Development Center](http://www.lrdc.pitt.edu/) at the University of Pittsburgh. I recently complete my Ph.D. in Human Development and Social Policy at Northwestern University.
 
-Check out my [CV](https://ramorel.github.io/cv/).
+Check out my [CV](https://ramorel.github.io/cv/) or my [professional resume](https://ramorel.github.io/files/resume_paquin_morel.pdf)
 
 I study education policy and politics. I use R and Python.
 
