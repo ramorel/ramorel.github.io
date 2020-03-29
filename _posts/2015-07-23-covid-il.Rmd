@@ -1,14 +1,17 @@
 ---
 title: "Visualizing COVID-19 in Illinois"
 author: "Richard Paquin Morel"
-date: 2015-07-23T21:13:14-05:00
+date: 2020-03-28
 categories: ["R"]
-tags: ["R Markdown", "dataviz", "spatial"]
 output: github_document
+permalink: /posts/2020/03/blog-post-1/
+tags:
+  - R Markdown
+  - dataviz
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(collapse = TRUE)
+knitr::opts_chunk$set(collapse = TRUE, dpi = 340)
 library(tidyverse)
 library(tidycensus)
 library(ggthemes)
@@ -170,7 +173,7 @@ il %>%
 ```{r}
 il_per_cap <-
   il %>% 
-  filter(date > "2020-03-02") %>% 
+  filter(date > "2020-02-20") %>% 
   complete(county, nesting(date), fill = list(cases = 0, deaths = 0)) %>%
   arrange(date, county) %>% 
   select(-fips) %>% 
@@ -246,16 +249,50 @@ il_per_cap %>%
 
 
 ```{r}
-il %>% 
+il_anim <- il %>% 
   filter(cases != 0, date > "2020-02-20") %>% 
   mutate(log_cases = log10(cases)) %>% 
   left_join(il_pop %>% select(geoid, population), 
             by = c("fips" = "geoid")) %>% 
   ggplot() +
+  geom_sf(data = il_pop, aes(geometry = geometry)) +
   geom_sf(aes(geometry = geometry, fill = cases)) +
+  scale_fill_viridis_c(name = "Cases (logged)") +  
   labs(x = "", y = "", 
        title = "COVID-19 Cases in Illinois by County",
        subtitle = "{current_frame}",
        caption = "Data from New York Times Covid-19 repository: https://github.com/nytimes/covid-19-data") +
-  transition_manual(date)
+  transition_manual(date) +
+  theme(plot.background = element_rect(fill = "antiquewhite2", color = NA),
+        axis.ticks.x = element_blank(), 
+        axis.text.x = element_blank(), 
+        axis.text.y = element_blank(), 
+        axis.ticks.y = element_blank(), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+
+animate(il_anim, fps = 5)
+```
+
+```{r}
+il_anim <-
+  il_per_cap %>% 
+  ggplot() +
+  geom_sf(data = il_pop, aes(geometry = geometry)) +
+  geom_sf(aes(geometry = geometry, fill = cases_per), color = NA) +
+  scale_fill_viridis_c(name = "Cases per 10,000") +  
+  labs(x = "", y = "", 
+       title = "COVID-19 Cases in Illinois by County",
+       subtitle = "{current_frame}",
+       caption = "Data from New York Times Covid-19 repository: https://github.com/nytimes/covid-19-data") +
+  transition_manual(date) +
+  theme(plot.background = element_rect(fill = "cornsilk2", color = NA),
+        axis.ticks.x = element_blank(), 
+        axis.text.x = element_blank(), 
+        axis.text.y = element_blank(), 
+        axis.ticks.y = element_blank(), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+
+animate(il_anim, fps = 5)
 ```
