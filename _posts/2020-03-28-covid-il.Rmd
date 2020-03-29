@@ -4,20 +4,18 @@ author: "Richard Paquin Morel"
 date: 2020-03-28
 categories: ["R"]
 output: github_document
-permalink: /posts/2020/03/blog-post-1/
-tags:
-  - R Markdown
-  - dataviz
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(collapse = TRUE, dpi = 340)
+knitr::opts_chunk$set(collapse = TRUE, warning = FALSE, message = FALSE, dpi = 340)
 library(tidyverse)
 library(tidycensus)
 library(ggthemes)
 library(gganimate)
 ```
 
+
+With the onset COVID-19 pandemic, many people are creating and sharing visualizations help us understand and map the spread of the virus. I live and work in Chicago, which has been under a "shelter-in-place" order for over a week. Schools have been closed for two weeks. I've been busy with the little ones and with work. But I thought I might visualize the spread of COVID-19 in Illinois, which I have not yet seen done.
 
 ```{r}
 # Define ggplot theme
