@@ -3,7 +3,7 @@ title: "Visualizing COVID-19 in Illinois"
 author: "Richard Paquin Morel"
 date: 2020-03-28
 categories: ["R"]
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
