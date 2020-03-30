@@ -1,17 +1,19 @@
 ---
-title: "Brooklyn Bike Lanes"
-author: "rpm"
+title: 'The Bike Lanes of Brooklyn'
 date: 2020-02-06
-output: github_document
+permalink: /posts/bike-brooklyn/
+tags:
+  - R
+  - Rmarkdown
+  - dataviz
+  - spatial
+  - fun
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, dpi = 340)
-```
+This was inspired by [this
+code](https://github.com/deanmarchiori/culburra/blob/master/culburra.Rmd).
 
-This was inspired by [this code](https://github.com/deanmarchiori/culburra/blob/master/culburra.Rmd).
-
-```{r}
+``` r
 library(osmdata)
 library(dodgr)
 library(tidyverse)
@@ -20,7 +22,7 @@ library(sf)
 
 # Importing and cleaning the street data
 
-```{r}
+``` r
 # Boundary box that covers Brooklyn with bits of Manhattan and Queens
 bbox <- st_bbox(c(xmin = -74.05, 
                   xmax = -73.81, 
@@ -47,7 +49,17 @@ nyc <- unzip(fil)
 nyc <- st_read(nyc[1]) %>% 
   st_transform(4326) %>% 
   st_intersection(bbox)
+```
 
+    ## Reading layer `nybb' from data source `/Users/rap168/Documents/GitHub/ramorel.github.io/files/nybb_19d/nybb.shp' using driver `ESRI Shapefile'
+    ## Simple feature collection with 5 features and 4 fields
+    ## geometry type:  MULTIPOLYGON
+    ## dimension:      XY
+    ## bbox:           xmin: 913175.1 ymin: 120121.9 xmax: 1067383 ymax: 272844.3
+    ## epsg (SRID):    2263
+    ## proj4string:    +proj=lcc +lat_1=41.03333333333333 +lat_2=40.66666666666666 +lat_0=40.16666666666666 +lon_0=-74 +x_0=300000.0000000001 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs
+
+``` r
 bklyn <- nyc[2, ]
 queens <- nyc[3, ]
 mnhtn <- nyc[4, ]
@@ -83,7 +95,8 @@ bike_lanes <-
 ```
 
 # Creating the map
-```{r}
+
+``` r
 ggplot() +
   geom_sf(data = bklyn, fill = "mediumpurple1", alpha = 0.7, size = 0.6) + 
   geom_sf(data = queens, fill = "grey35", alpha = 0.5, size = 0.25) +
@@ -103,3 +116,4 @@ ggplot() +
     panel.spacing = unit(c(-.1, 0.2, .2, 0.2), "cm"))
 ```
 
+![](bike_lanes_of_brooklyn_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
