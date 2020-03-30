@@ -1,4 +1,5 @@
 _site/
 
+*.csv
 .Rproj.user
 *.DS_Store
