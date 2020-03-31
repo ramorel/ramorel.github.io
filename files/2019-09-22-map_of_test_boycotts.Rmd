@@ -2,11 +2,11 @@
 title: "Participation in New York State Accountability Testing"
 author: "rpm"
 date: 2019-09-22
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, dpi = 340)
 
 library(tidyverse)
 library(tidycensus)
@@ -16,6 +16,22 @@ options(tigris_use_cache = TRUE)
 options(tigris_class = "sf")
 
 load("/Users/rap168/Box Sync (RichardPaquinMorel2013@u.northwestern.edu)/Paquin-Morel Lab/dissertation_study_3/databases/ny_cleaned_data181120.RData")
+
+theme_set(
+  theme_void() +
+    theme(
+      text = element_text(family = "Raleway"),
+      plot.background = element_rect(fill = "snow1", color = "gray20"), 
+      plot.margin = unit(c(0.25, 0.25, 0.25, 0.25), "cm"),
+      plot.title = element_text(size = 14, colour = "grey25", face = "bold"),
+      plot.subtitle = element_text(family = "Lato", size = 10, colour = "grey45"),
+      plot.caption = element_text(family = "Lato", size = 8, colour = "grey45"),
+      legend.margin=margin(),
+      legend.text = element_text(size = 8, family = "Lato"), 
+      legend.title = element_text(size = 10, vjust = 0, family = "Lato"),
+      legend.key.size = unit(0.5, "cm")
+    )
+)
 ```
 
 ## NYS School Accountability Data
@@ -70,8 +86,8 @@ p <-
   ggplot() +
   geom_sf(aes(fill = mean_overall)) +
   scale_fill_viridis_c(name = "Mean Participation Rate", option = "plasma", direction = 1) +
-  theme_void() +
-  labs(title = "Mean Participation Rate, Year: {current_frame}") +
+  labs(title = "Mean Participation Rate on Annual Accountability Tests", 
+       subtitle = "Year: {current_frame}") +
   transition_manual(year)
 
 animate(p, fps = 5)
@@ -103,10 +119,10 @@ ny_cnty_cate <-
 p <- 
   ny_cnty_cate %>% 
   ggplot() +
-  geom_sf(aes(fill = cate)) +
-  scale_fill_viridis_d(name = "Mean Participation Rate", option = "plasma", direction = -1) +
-  theme_void() +
-  labs(title = "Mean Participation Rate, Year: {current_frame}") +
+  geom_sf(aes(fill = cate), size = 0.25) +
+  scale_fill_viridis_d(name = "Mean Participation Rate", option = "inferno", direction = -1) +
+  labs(title = "Mean Participation Rate on Annual Accountability Tests", 
+       subtitle = "Year: {current_frame}") +
   transition_manual(year) 
 
 animate(p, fps = 5)
@@ -130,10 +146,10 @@ ny_cnty_cate <-
 p <- 
   ny_cnty_cate %>% 
   ggplot() +
-  geom_sf(aes(fill = cate)) +
+  geom_sf(aes(fill = cate), size = 0.25) +
   scale_fill_viridis_d(name = "Mean Participation Rate", option = "plasma", direction = -1) +
-  theme_void() +
-  labs(title = "Mean Participation Rate, Year: {current_frame}") +
+  labs(title = "Mean Participation Rate on Annual Accountability Tests", 
+       subtitle = "Year: {current_frame}") +
   transition_manual(year) 
 
 animate(p, fps = 5)
