@@ -1,5 +1,5 @@
 ---
-title: 'Visualizing Test Boycotts in New York State'
+title: 'Mapping Boycotts of Acccountability Tests in New York State'
 date: 2019-09-22
 permalink: /posts/nys-test-boycotts/
 tags:
