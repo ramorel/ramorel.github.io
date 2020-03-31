@@ -165,15 +165,17 @@ The [`gganimate` package](https://gganimate.com/) makes it fairly simple to crea
 
 I discovered the hard way that county data (`county_code`) is missing from many states in the early aughts. I fill in this data using the city and state information and the school district (`leaid`) information. This gets most of the missing county data. Again, I replace missing values for the `charter` flag with 0.
 
-**Please note**: It takes ~one hour to pull the data from the CCD API!
+**Please note**: It takes about one hour to pull the data from the CCD API!
 
-```{r warning=FALSE, message=FALSE}
+```{r}
 school_dat <-
   get_education_data(level = "schools",
                      source = "ccd",
                      topic = "directory",
-                     filters = list(year = seq(from = 2000, to = 2016, by = 2))) %>% 
-  na_if(., -2) %>% 
+                     filters = list(year = seq(from = 2000, to = 2016, by = 2)))
+
+school_dat <-
+  school_dat %>% 
   filter(
     fips <= 59,
     !fips %in% c(2, 15)
