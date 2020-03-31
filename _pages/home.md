@@ -40,4 +40,4 @@ Morel, R. P. Racialized Accountability Threat: Racial Diversification and Partic
 - Before beginning my doctoral studies, I was an elementary school teacher in Brooklyn, NY. I served as a New York City Teaching Fellow, cohort 12, from 2006-2008
 - Favorite books: [The Savage Detectives](https://www.goodreads.com/book/show/63033.The_Savage_Detectives); [Housekeeping](https://www.goodreads.com/book/show/11741.Housekeeping); [The Windup Bird Chronicle](https://www.goodreads.com/book/show/11275.The_Wind_Up_Bird_Chronicle)
 - Favorite poem: [The Idea of Order at Key West](https://www.poetryfoundation.org/poems/43431/the-idea-of-order-at-key-west)
-- Favroite album: [The Velvet Underground & Nico](https://open.spotify.com/album/4xwx0x7k6c5VuThz5qVqmV?si=pPJgJNRBQQiKD3Vm9OWmeg); [Ladies and Gentlemen We Are Floating in Space](https://open.spotify.com/album/4GMgNPA4fMv3U0QQsdRLJk?si=C8oS6c-5TE2AQjxxHjXuHA)
+- Favorite albums: [The Velvet Underground & Nico](https://open.spotify.com/album/4xwx0x7k6c5VuThz5qVqmV?si=pPJgJNRBQQiKD3Vm9OWmeg); [Ladies and Gentlemen We Are Floating in Space](https://open.spotify.com/album/4GMgNPA4fMv3U0QQsdRLJk?si=C8oS6c-5TE2AQjxxHjXuHA)
