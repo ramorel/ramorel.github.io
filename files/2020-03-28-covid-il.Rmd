@@ -67,7 +67,63 @@ il_pop <- get_decennial(geography = "county",
 
 # Visualizing confirmed COVID-19 cases in Illinois
 
-Accessing the data was easy. Now, I will make a series of line graphs, similar to what's making the rounds on various social media platforms.
+Accessing the data was easy. I visualize the growth of confirmed cases in Illinois overall and then by county.
+
+## Overall growth of confirmed cases
+```{r}
+il %>% 
+  filter(date > "2020-02-20") %>%
+  group_by(date) %>% 
+  summarize(total_cases = sum(cases, na.rm = TRUE)) %>% 
+  ggplot() +
+  geom_col(aes(x = date, y = total_cases), fill = "cornflowerblue", alpha = 0.7) +
+  labs(x = "", y = "",
+       title = "Daily confirmed cases in Illinois",
+       caption = "Data from New York Times Covid-19 repository:\nhttps://github.com/nytimes/covid-19-data")
+```
+
+Let's animate that plot, because why not and I'm obsessed with `{gganimate}` lately.
+```{r}
+il %>% 
+  filter(date > "2020-02-20") %>%
+  group_by(date) %>% 
+  summarize(total_cases = sum(cases, na.rm = TRUE)) %>% 
+  ggplot() +
+  geom_col(aes(x = date, y = total_cases), fill = "cornflowerblue", alpha = 0.7) +
+  labs(x = "", y = "",
+       title = "Daily confirmed cases in Illinois",
+       subtitle = "Date: {closest_state}",
+       caption = "Data from New York Times Covid-19 repository:\nhttps://github.com/nytimes/covid-19-data") + 
+  transition_states(date) + 
+  shadow_mark(fill = "cornflowerblue", alpha = 0.25) +
+  enter_grow()
+```
+
+Now, let's look at these again, but group by county.
+```{r}
+il %>% 
+  filter(date > "2020-02-20") %>%
+  ggplot() +
+  geom_col(aes(x = date, y = cases, fill = county), alpha = 0.7) + scale_fill_viridis_d(option = "plasma", guide = FALSE) + 
+  labs(x = "", y = "",
+       title = "Daily confirmed cases in Illinois",
+       caption = "Data from New York Times Covid-19 repository:\nhttps://github.com/nytimes/covid-19-data")
+```
+
+And animated:
+```{r}
+il %>% 
+  filter(date > "2020-02-20") %>%
+  ggplot() +
+  geom_col(aes(x = date, y = cases, fill = county), alpha = 0.7) + scale_fill_viridis_d(option = "plasma", guide = FALSE) + 
+  labs(x = "", y = "",
+       title = "Daily confirmed cases in Illinois",
+       subtitle = "Date: {closest_state}",
+       caption = "Data from New York Times Covid-19 repository:\nhttps://github.com/nytimes/covid-19-data")  + 
+  transition_states(date) + 
+  shadow_mark(alpha = 0.5) +
+  enter_grow()
+```
 
 ## Nominal confirmed cases by county
 First, a simple visualization of the number of confirmed cases in Illinois, by county, since Feb. 20. I include a couple of relevant dates as annotations--when CPS closed schools, the statewide shelter-in-place order, and the closing of the Lakefront trail. Cook County, where Chicago is located and by far the most populous in the state, has the largest number of confirmed cases, unsurprisingly. As of March 28, there are over 2,000 confirmed cases.

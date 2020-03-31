@@ -10,9 +10,10 @@ tags:
   - fun
 ---
 
-
-This was inspired by [this
-code](https://github.com/deanmarchiori/culburra/blob/master/culburra.Rmd).
+I was inspired by this [bit of
+code](https://github.com/deanmarchiori/culburra/blob/master/culburra.Rmd)
+to make a map of Brooklyn bike lanes–the lanes upon which I once biked
+many a mile.
 
 ``` r
 library(osmdata)
@@ -100,15 +101,15 @@ bike_lanes <-
 ``` r
 ggplot() +
   geom_sf(data = bbox, fill = "lightcyan2", color = "grey20", size = 0.5) + 
-  geom_sf(data = bklyn, fill = "mediumpurple3", alpha = 0.5, size = 0.6) + 
-  geom_sf(data = filter(bike_lanes, bike_lane == "yes"), size = 0.5, alpha = 0.7, color = "palegreen", show.legend = FALSE) +
-  geom_sf(data = queens, fill = "grey35", alpha = 0.5, size = 0.25) +
-  geom_sf(data = mnhtn, fill = "grey35", alpha = 0.5, size = 0.25) + 
+  geom_sf(data = bklyn, fill = "mediumpurple3", alpha = 0.5, size = 0.43) + 
+  geom_sf(data = filter(bike_lanes, bike_lane == "yes"), size = 0.4, color = "palegreen", show.legend = FALSE) +
+  geom_sf(data = queens, fill = "grey35", alpha = 0.5, size = 0.2) +
+  geom_sf(data = mnhtn, fill = "grey35", alpha = 0.5, size = 0.2) + 
   geom_sf(data = bbox, fill = "transparent", color = "grey20", size = 0.5) + 
   labs(title = "The Bike Lanes of Brooklyn") +
   theme_void() +
   theme(
-    plot.title = element_text(size = 20, color = "grey25", face = "bold", family = "Olde English", vjust = 0),
+    plot.title = element_text(size = 24, color = "grey25", face = "bold", family = "Olde English", vjust = 0),
     plot.background = element_rect(fill = "gray88", color = "black"),
     panel.background = element_rect(fill = "gray88",  color = NA),
     panel.grid = element_blank(), 
