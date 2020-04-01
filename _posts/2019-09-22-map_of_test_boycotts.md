@@ -20,7 +20,7 @@ accountability testing in both ELA (English Language Arts) and math.
 I’ve subset the data to exclude secondary schools, since the landscape
 of testing is much different there. The data range from the 2007-2008
 school year to the 2016-2017 school year. I’m going to aggregate the
-data at the county level. I will also do the district level in a moment.
+data at the county level. I will also do the district level in just a moment.
 
 ``` r
 ## Find county-level means by year
