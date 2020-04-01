@@ -10,7 +10,7 @@ author_profile: true
 
 Check out my [CV](https://ramorel.github.io/cv/) or my [professional resume](https://ramorel.github.io/files/resume_paquin_morel.pdf)
 
-I study education policy and politics. I use R and Python. [Check out my various projects using R to analyze and visualize data from sundry sources.](https://ramorel.github.io/projects)
+I study education policy and politics. I use R and Python. [Check out my various projects using R to analyze and visualize data from sundry sources.](https://ramorel.github.io/posts)
 
 ### Research interests
  1. I am interested in how dominant groups maintain inequalities in access to educational opportunities and resources and the implications of this for education policy. [My dissertation studies this](https://ramorel.github.io/research/dissertation/). I am increasingly interested in urban/suburban dynamics in the context of demographic changes and the implications of this for equity-minded education policy.
