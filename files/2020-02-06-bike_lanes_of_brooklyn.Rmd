@@ -2,7 +2,14 @@
 title: "Brooklyn Bike Lanes"
 author: "rpm"
 date: 2020-02-06
-output: github_document
+output:
+  html_document:
+    keep_md: true
+    number_sections: true
+    toc: true
+    toc_depth: 2
+    theme: yeti
+    highlight: zenburn
 ---
 
 ```{r setup, include=FALSE}
