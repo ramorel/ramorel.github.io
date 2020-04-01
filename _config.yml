@@ -179,17 +179,17 @@ collections:
   presentations:
     output: true
     permalink: /:collection/:path/
-  #projects:
+  #posts:
   #  output: true
   #  permalink: /:collection/:path/
 
 
 # Defaults
 defaults:
-  # _projects
+  # _posts
   - scope:
       path: ""
-      type: projects
+      type: posts
     values:
       layout: single
       author_profile: true
