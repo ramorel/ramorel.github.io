@@ -1,7 +1,7 @@
 ---
 title: 'Mapping Boycotts of Acccountability Tests in New York State'
 date: 2019-09-22
-permalink: /projects/nys-test-boycotts/
+permalink: /posts/nys-test-boycotts/
 tags:
   - R
   - dataviz
