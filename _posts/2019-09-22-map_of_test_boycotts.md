@@ -9,8 +9,6 @@ tags:
   - education
 ---
 
-## NYS School Accountability Data
-
 School-level accountability data for public schools in New York is
 available \[here\] in…Microsoft Access format. U+1F610. I have already
 cleaned and prepared these data for analysis, saved it locally, and

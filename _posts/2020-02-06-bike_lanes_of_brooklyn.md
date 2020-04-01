@@ -1,7 +1,7 @@
 ---
 title: 'The Bike Lanes of Brooklyn'
 date: 2020-02-06
-permalink: /posts/bike-brooklyn/
+permalink: posts/bike-brooklyn/
 tags:
   - R
   - Rmarkdown
