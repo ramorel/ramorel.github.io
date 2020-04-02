@@ -12,7 +12,6 @@ tags:
 ---
 
 
-
 School-level accountability data for public schools in New York is available [here](https://data.nysed.gov/downloads.php) in...Microsoft Access format. :neutral_face: I have already cleaned and prepared these data for analysis, saved it locally, and loaded it into my environment. Most important for this analysis is that the data contain the percent of students participating in annual accountability testing in both ELA (English Language Arts) and math. I've subset the data to exclude secondary schools, since the landscape of testing is much different there. The data range from the 2007-2008 school year to the 2016-2017 school year. I'm going to aggregate the data at the county level. I will also do the district level in a moment.
 
 
