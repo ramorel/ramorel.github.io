@@ -107,7 +107,7 @@ coeftest(fit, vcov = vcovHC(fit))
 
 Here are the results in Stata:
 
-![](/Users/rap168/Documents/GitHub/ramorel.github.io/files/stata_se2.png)
+![](https://ramorel.github.io/files/stata_se2.png)
 
 The standard errors are not quite the same. That's because Stata implements a specific estimator. `{sandwich}` has a ton of options for calculating heteroskedastic- and autocorrelation-robust standard errors. To replicate the standard errors we see in Stata, we need to use `type = HC1`. 
 
@@ -133,7 +133,7 @@ Beautiful.
 Now, things get inteseting once we start to use generalized linear models. I was lead down this rabbithole by a (now deleted) post to Stack Overflow. Replicating Stata's robust standard errors is not so simple now. Let's say we estimate the same model, but using iteratively weight least squares estimation. 
 
 In Stata:
-![](/Users/rap168/Documents/GitHub/ramorel.github.io/files/stata_se3.png)
+![](https://ramorel.github.io/files/stata_se3.png)
 
 And in R:
 
@@ -244,7 +244,7 @@ coeftest(fit, vcov = robust(fit, stata = TRUE))
 
 Let's look at the Stata output again:
 
-![](/Users/rap168/Documents/GitHub/ramorel.github.io/files/stata_se3.png)
+![](https://ramorel.github.io/files/stata_se3.png)
 
 Success!
 
@@ -275,6 +275,6 @@ coeftest(fit, vcov = robust(fit, stata = FALSE))
 ```
 
 The same model in Stata:
-![](/Users/rap168/Documents/GitHub/ramorel.github.io/files/stata_se4.png)
+![](https://ramorel.github.io/files/stata_se4.png)
 
 Trivial differences!
