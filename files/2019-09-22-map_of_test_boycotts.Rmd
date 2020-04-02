@@ -158,4 +158,5 @@ p <-
   transition_manual(year) 
 
 animate(p, fps = 5)
+
 ```

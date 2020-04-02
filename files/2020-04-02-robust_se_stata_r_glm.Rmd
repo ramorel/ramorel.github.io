@@ -1,0 +1,129 @@
+---
+title: "An observation regarding robust standard errors in R and Stata"
+author: "rpm"
+date: 2020-04-02
+output:
+  html_document:
+    keep_md: true
+    number_sections: true
+    toc: true
+    toc_depth: 2
+    theme: yeti
+    highlight: zenburn
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+A common question when users of Stata switch to R is how to replicate the `vce(robust)` option when running linear models to correct for heteroskedasticity. In Stata, this is trivially easy: `reg y x, vce(robust)`. To get heteroskadastic-robust standard errors in R--and to replicate the standard errors as they appear in Stata--is a bit more work. First, we estimate the model and then we use `vcovHC()` `{sandwich}` package, along with `coeftest()` from `{lmtest}` to calculate and display the robust standard errors. 
+
+A quick example:
+
+```{r}
+library(tidyverse)
+library(sandwich)
+library(lmtest)
+
+# Fit the model
+fit <- lm(mpg ~ wt + cyl, data = mtcars)
+
+# Summarize the model with reg SEs
+summary(fit)
+
+# Summarize the model with robust SEs
+coeftest(fit, vcov = vcovHC(fit))
+```
+
+Here are the results in Stata:
+
+![](/Users/rap168/Documents/GitHub/ramorel.github.io/files/stata_se2.png)
+
+The standard errors are not quite the same. That's because Stata implements a specific estimator. `{sandwich}` has a ton of options for calculating heteroskedastic- and autocorrelation-robust standard errors. To replicate the standard errors we see in Stata, we need to use `type = HC1`. 
+
+```{r}
+coeftest(fit, vcov = vcovHC(fit, type = "HC1"))
+```
+
+Beautiful.
+
+Now, things get inteseting once we start to use generalized linear models. I was lead down this rabbithole by a (now deleted) post to Stack Overflow. Replicating Stata's robust standard errors is not so simple now. Let's say we estimate the same model, but using iteratively weight least squares estimation. 
+
+In Stata:
+![](/Users/rap168/Documents/GitHub/ramorel.github.io/files/stata_se3.png)
+
+And in R:
+```{r}
+fit <- glm(mpg ~ wt + cyl, data = mtcars, family = gaussian(link = "identity"))
+coeftest(fit, vcov = vcovHC(fit, type = "HC1"))
+```
+
+They are different. Not too different, but different enough to make a difference. That's because (as best I can figure), when calculating the robust standard errors for a `glm` fit, Stata is using $n / (n - 1)$ rather than $n / (n = k)$, where $n$ is the number of observations and `k` is the number of parameters. 
+
+I'm not getting in the weeds here, but according to [this document](https://www.stata.com/manuals13/p_robust.pdf), robust standard errors are calculated thus for linear models (see page 6):
+
+$$\hat{V}(\hat{\beta}) = \boldsymbol{D}\left(\frac{n}{n-k}\sum_{j=1}^n\hat{e}_j^2\boldsymbol{x}_j^\prime\boldsymbol{x}_j\right)\boldsymbol{D}$$
+
+And for generalized linear models using maximum likelihood estimation (see page 16):
+
+$$\hat{V}(\hat{\beta}) = \boldsymbol{D}\left(\frac{n}{n-1}\sum_{j=1}^n\hat{e}_j^2\boldsymbol{u}_j^\prime\boldsymbol{u}_j\right)\boldsymbol{D}$$
+
+If we make this adjustment in R, we get the same standard errors. So I have a little function to calculate Stata-like robust standard errors for `glm`:
+
+```{r}
+robust <- function(model, stata = TRUE){
+  
+  x <- model.matrix(model)
+  n <- nrow(x)
+  k <- length(coef(model))
+  
+  if (stata) {
+    df <- n / (n - 1) 
+  } else {
+    df <- n / (n - k) 
+  }
+  
+  u <- model$residuals
+  bread <- solve(crossprod(x))
+  meat <- t(x) %*% (df * diag(u^2)) %*% x
+  est <- bread %*% meat %*% bread
+  
+  return(est)
+}
+```
+
+Let's take it for a spin.
+```{r}
+# As before
+coeftest(fit, vcov = vcovHC(fit, type = "HC1"))
+
+# This is the same
+coeftest(fit, vcov = robust(fit, stata = FALSE))
+
+# Now for the Stata-like version
+coeftest(fit, vcov = robust(fit, stata = TRUE))
+```
+
+Let's look at the Stata output again:
+
+![](/Users/rap168/Documents/GitHub/ramorel.github.io/files/stata_se3.png)
+
+Success!
+
+Of course this becomes trivial as $n$ gets larger.
+
+Using the Ames Housing Prices data from [Kaggle](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data), we can see this. In R, estimating "non-Stata" robust standard errors:
+
+```{r}
+options("scipen" = 10, "digits" = 5)
+
+dat <- read.csv("train.csv") %>% janitor::clean_names() %>% mutate(log_price = log(sale_price))
+
+fit <- glm(log_price ~ overall_qual + gr_liv_area, data = dat, family = gaussian(link = "identity"))
+coeftest(fit, vcov = robust(fit, stata = FALSE))
+```
+
+The same model in Stata:
+![](/Users/rap168/Documents/GitHub/ramorel.github.io/files/stata_se4.png)
+
+Trivial differences!
