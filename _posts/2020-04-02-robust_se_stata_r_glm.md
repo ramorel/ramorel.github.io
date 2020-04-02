@@ -134,7 +134,7 @@ If we make this adjustment in R, we get the same standard errors. So I have a li
 
 
 ```r
-robust <- function(gitted_model, stata = TRUE){
+robust <- function(fitted_model, stata = TRUE){
   
   x <- model.matrix(model)
   n <- nrow(x)
@@ -148,7 +148,7 @@ robust <- function(gitted_model, stata = TRUE){
   
   u <- model$residuals
   bread <- solve(crossprod(x))
-  meat <- t(x) %*% (df * diag(u^2)) %*% x
+  veggie_meat <- t(x) %*% (df * diag(u^2)) %*% x
   est <- bread %*% veggie_meat %*% bread
   
   return(est)
