@@ -2,48 +2,21 @@
 title: "Participation in New York State Accountability Testing"
 author: "rpm"
 date: 2019-09-22
-output:
-  html_document:
-    keep_md: true
-    number_sections: true
-    toc: true
-    toc_depth: 2
-    theme: yeti
-    highlight: zenburn
+permalink: /posts/test-boycotts/
+tags:
+  - R
+  - Rmarkdown
+  - dataviz
+  - spatial
+  - fun
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, dpi = 340)
 
-library(tidyverse)
-library(tidycensus)
-library(gganimate)
-library(sf)
-options(tigris_use_cache = TRUE)
-options(tigris_class = "sf")
-
-load("/Users/rap168/Box Sync (RichardPaquinMorel2013@u.northwestern.edu)/Paquin-Morel Lab/dissertation_study_3/databases/ny_cleaned_data181120.RData")
-
-theme_set(
-  theme_void() +
-    theme(
-      text = element_text(family = "Raleway"),
-      plot.background = element_rect(fill = "snow1", color = "gray20"), 
-      plot.margin = unit(c(0.25, 0.25, 0.25, 0.25), "cm"),
-      plot.title = element_text(size = 14, colour = "grey25", face = "bold"),
-      plot.subtitle = element_text(family = "Lato", size = 10, colour = "grey45"),
-      plot.caption = element_text(family = "Lato", size = 8, colour = "grey45"),
-      legend.margin=margin(),
-      legend.text = element_text(size = 8, family = "Lato"), 
-      legend.title = element_text(size = 10, vjust = 0, family = "Lato"),
-      legend.key.size = unit(0.5, "cm")
-    )
-)
-```
 
 School-level accountability data for public schools in New York is available [here] in...Microsoft Access format. U+1F610. I have already cleaned and prepared these data for analysis, saved it locally, and loaded it into my environment. Most important for this analysis is that the data contain the percent of students participating in annual accountability testing in both ELA (English Language Arts) and math. I've subset the data to exclude secondary schools, since the landscape of testing is much different there. The data range from the 2007-2008 school year to the 2016-2017 school year. I'm going to aggregate the data at the county level. I will also do the district level in a moment.
 
-```{r county means}
+
+```r
 ## Find county-level means by year
 partic_means <-
   nydata %>% 
@@ -57,9 +30,21 @@ partic_means <-
 glimpse(partic_means)
 ```
 
+```
+## Rows: 624
+## Columns: 5
+## Groups: county_name [63]
+## $ county_name  <chr> "ALBANY", "ALBANY", "ALBANY", "ALBANY", "ALBANY", "ALBAN…
+## $ year         <dbl> 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 20…
+## $ mean_ela     <dbl> 0.9919231, 0.9966102, 0.9948387, 0.9947541, 0.9906557, 0…
+## $ mean_math    <dbl> 0.9942308, 0.9969492, 0.9958065, 0.9950820, 0.9918033, 0…
+## $ mean_overall <dbl> 0.9930769, 0.9967797, 0.9953226, 0.9949180, 0.9912295, 0…
+```
+
 So now we have counties, years, and mean participation rates in math, ELA, and overall. I need to get the shapefile for counties in New York. I will use the `tidycesus` package to do this. It's easy and quick when `geometry = TRUE`.
 
-```{r county shapefile}
+
+```r
 ny_counties <-
   get_acs(
     state = "NY",
@@ -71,11 +56,16 @@ ny_counties <-
   mutate(NAME = str_replace(NAME, "ST\\.", "SAINT"))
 ```
 
+```
+## Getting data from the 2014-2018 5-year ACS
+```
+
 I have to recode the `NAME` variable, which contains couunty names, to match how the names are stored in the accountability data (`nydata`)--county name in upper case. And I have to make sure that the spelling of "Saint" is consistent. Ideally, I would use the geoid, but the accountability data does not use census geoid--rather New York State's own system of coding. Alas. 
 
 Finally, I will join the accountability data (`nydata`) to the county geometry data (`ny_counties`). This perserves the class of `ny_counties` as an `sf` object.
 
-```{r joining}
+
+```r
 ny_cnty_partic <-
   ny_counties %>%
   left_join(partic_means, by = c("NAME" = "county_name"))
@@ -85,7 +75,8 @@ ny_cnty_partic <-
 
 The data are ready to send to `ggplot` and `gganimate`. The `geom_sf` beautifully and quickly (especially with the lastest update to `ggplot`!) renders shapefiles. To animate the map to show each year in progression, I use the `transition_manual` function from `gganimate`. Simple! I use `transition_manual` rather than `transition_time` because year is not saved as a datetime object and I'm not bothering to change it! I slow the animate a bit using the `fps` argument in `animate`. By default `fps = 10`. There are ten frames in my animate. So it take 1 second to run the animation. I slow this by half, setting `fps = 5`. 
 
-```{r map1, message=FALSE}
+
+```r
 p <-
   ny_cnty_partic %>% 
   ggplot() +
@@ -98,9 +89,12 @@ p <-
 animate(p, fps = 5)
 ```
 
+![](2019-09-22-map_of_test_boycotts_files/figure-html/map1-1.gif)<!-- -->
+
 Another way to visualize the spread of non-participation over time is with a categorical variable, placing rate of participation into discrete buckets. This is useful for easily seeing which counties are low, medium, and high. Also, there are accountability rules that require schools to administer the tests to at least 95% of students. Dropping below 95% is therefore meaningful.
 
-```{r map2, message=FALSE}
+
+```r
 ## Below X% categorical animation
 
 cate_partic <-
@@ -133,10 +127,12 @@ p <-
 animate(p, fps = 5)
 ```
 
+![](2019-09-22-map_of_test_boycotts_files/figure-html/map2-1.gif)<!-- -->
+
 One more time, let's make something akin to a survival analysis. Well, not really. Let's just visualize when a county has a mean participation rate that drops below 95%.
 
-```{r map3, message=FALSE}
 
+```r
 cate_partic <-
   partic_means %>% 
   mutate(
@@ -159,3 +155,5 @@ p <-
 
 animate(p, fps = 5)
 ```
+
+![](2019-09-22-map_of_test_boycotts_files/figure-html/map3-1.gif)<!-- -->
