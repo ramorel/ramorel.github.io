@@ -89,7 +89,7 @@ p <-
 animate(p, fps = 5)
 ```
 
-![](2019-09-22-map_of_test_boycotts_files/figure-html/map1-1.gif)<!-- -->
+![](http://ramorel.github.io/files/2019-09-22-map_of_test_boycotts_files/figure-html/map1-1.gif)<!-- -->
 
 Another way to visualize the spread of non-participation over time is with a categorical variable, placing rate of participation into discrete buckets. This is useful for easily seeing which counties are low, medium, and high. Also, there are accountability rules that require schools to administer the tests to at least 95% of students. Dropping below 95% is therefore meaningful.
 
@@ -127,7 +127,7 @@ p <-
 animate(p, fps = 5)
 ```
 
-![](2019-09-22-map_of_test_boycotts_files/figure-html/map2-1.gif)<!-- -->
+![](http://ramorel.github.io/files/2019-09-22-map_of_test_boycotts_files/figure-html/map2-1.gif)<!-- -->
 
 One more time, let's make something akin to a survival analysis. Well, not really. Let's just visualize when a county has a mean participation rate that drops below 95%.
 
@@ -156,4 +156,4 @@ p <-
 animate(p, fps = 5)
 ```
 
-![](2019-09-22-map_of_test_boycotts_files/figure-html/map3-1.gif)<!-- -->
+![](http://ramorel.github.io/files/2019-09-22-map_of_test_boycotts_files/figure-html/map3-1.gif)<!-- -->
