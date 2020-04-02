@@ -123,5 +123,5 @@ ggplot() +
     panel.spacing = unit(c(-.1, 0.2, .2, 0.2), "cm"))
 ```
 
-![](http://ramorel.github.io/filers/2020-02-06-bike_lanes_of_brooklyn_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+![](http://ramorel.github.io/files/2020-02-06-bike_lanes_of_brooklyn_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
