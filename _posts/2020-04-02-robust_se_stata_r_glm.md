@@ -12,19 +12,17 @@ tags:
 
 
 
-A common question when users of Stata switch to R is how to replicate the `vce(robust)` option when running linear models to correct for heteroskedasticity. In Stata, this is trivially easy: `reg y x, vce(robust)`. To get heteroskadastic-robust standard errors in R--and to replicate the standard errors as they appear in Stata--is a bit more work. First, we estimate the model and then we use `vcovHC()` `{sandwich}` package, along with `coeftest()` from `{lmtest}` to calculate and display the robust standard errors. 
+
+A common question when users of Stata switch to R is how to replicate the `vce(robust)` option when running linear models to correct for heteroskedasticity. In Stata, this is trivially easy: `reg y x, vce(robust)`. To get heteroskadastic-robust standard errors in R--and to replicate the standard errors as they appear in Stata--is a bit more work. First, we estimate the model and then we use `vcovHC()` from the `{sandwich}` package, along with `coeftest()` from `{lmtest}` to calculate and display the robust standard errors. 
 
 A quick example:
 
 
 ```r
-# Load the libraries
 library(tidyverse)
 library(sandwich)
 library(lmtest)
-```
 
-```r
 # Fit the model
 fit <- lm(mpg ~ wt + cyl, data = mtcars)
 
@@ -134,7 +132,7 @@ If we make this adjustment in R, we get the same standard errors. So I have a li
 
 
 ```r
-robust <- function(fitted_model, stata = TRUE){
+robust <- function(model, stata = TRUE){
   
   x <- model.matrix(model)
   n <- nrow(x)

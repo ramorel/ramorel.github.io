@@ -16,7 +16,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-A common question when users of Stata switch to R is how to replicate the `vce(robust)` option when running linear models to correct for heteroskedasticity. In Stata, this is trivially easy: `reg y x, vce(robust)`. To get heteroskadastic-robust standard errors in R--and to replicate the standard errors as they appear in Stata--is a bit more work. First, we estimate the model and then we use `vcovHC()` `{sandwich}` package, along with `coeftest()` from `{lmtest}` to calculate and display the robust standard errors. 
+A common question when users of Stata switch to R is how to replicate the `vce(robust)` option when running linear models to correct for heteroskedasticity. In Stata, this is trivially easy: `reg y x, vce(robust)`. To get heteroskadastic-robust standard errors in R--and to replicate the standard errors as they appear in Stata--is a bit more work. First, we estimate the model and then we use `vcovHC()` from the `{sandwich}` package, along with `coeftest()` from `{lmtest}` to calculate and display the robust standard errors. 
 
 A quick example:
 
@@ -85,8 +85,8 @@ robust <- function(model, stata = TRUE){
   
   u <- model$residuals
   bread <- solve(crossprod(x))
-  meat <- t(x) %*% (df * diag(u^2)) %*% x
-  est <- bread %*% meat %*% bread
+  veggie_meat <- t(x) %*% (df * diag(u^2)) %*% x
+  est <- bread %*% veggie_meat %*% bread
   
   return(est)
 }
