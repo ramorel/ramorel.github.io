@@ -8,8 +8,6 @@ tags:
   - Python
 ---
 
-# Introduction
-
 Some folks work in R. Some work in Python. Some work in both. I'm more on the R side, which has served my needs as a Phd student, but I also use Python on occasion. I thought it would be fun, as an exercise, to do a side-by-side, nose-to-tail analysis in both R and Python, taking advantage of the wonderful [`{reticulate}`](https://rstudio.github.io/reticulate/) package in R. `{reticulate}` allows one to access Python through the R interface. I find this especially cool in Rmarkdown, since you can knit R and Python chucks in the same document! You can, to some extent, pass objects back and forth between the R and Python environments. Wow. 
 
 So given this affordance, I analyze the Ames Housing dataset with the goal of predicting housing prices, a la [this Kaggle competition](https://www.kaggle.com/c/house-prices-advanced-regression-techniques).
