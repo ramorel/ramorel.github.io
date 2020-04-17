@@ -467,7 +467,7 @@ sns.distplot(y, ax=ax[0]).set(title='Density of Sale Price')
 sns.distplot(np.log(y), ax=ax[1]).set(title='Density of Logged Sale Price')
 ```
 
-<img src="r_v_python_files/figure-html/unnamed-chunk-16-1.png" width="960" />
+<img src="https://ramorel.github.io/files/2020-04-17-r_v_python_housing_prices_files/figure-html/unnamed-chunk-16-1.png" width="960" />
 
 That looks much better. Next, let's explore the features.
 
