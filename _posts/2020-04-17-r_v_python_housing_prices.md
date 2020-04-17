@@ -439,7 +439,7 @@ p1 <- train %>%
 p1
 ```
 
-![](https://ramorel.github.io/files/2020-04-17_r_v_python_housing_prices_files/unnamed-chunk-14-1.png)<!-- -->
+![](https://ramorel.github.io/files/2020-04-17-r_v_python_housing_prices_files/unnamed-chunk-14-1.png)<!-- -->
 
 In such cases, it is useful to take the log of the feature in order to normalize its distribution. That way, it satisfies the expectations of linear modeling. 
 
@@ -456,7 +456,7 @@ p2 <- train %>%
 p1 + p2
 ```
 
-![](https://ramorel.github.io/files/2020-04-17_r_v_python_housing_prices_files/unnamed-chunk-15-1.png)<!-- -->
+![](https://ramorel.github.io/files/2020-04-17-r_v_python_housing_prices_files/unnamed-chunk-15-1.png)<!-- -->
 
 Again, in Python, looking at the plots side by side.
 
@@ -492,7 +492,7 @@ p2 <- train %>%
 p1 + p2  
 ```
 
-![](https://ramorel.github.io/files/2020-04-17_r_v_python_housing_prices_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
+![](https://ramorel.github.io/files/2020-04-17-r_v_python_housing_prices_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
 
 In Python, we can use `{matplotlib}` to see this relationship.
 
@@ -505,7 +505,7 @@ ax[1].set_title('Logged Sale Price \nby Above Ground Living Area')
 plt.show()
 ```
 
-<img src="https://ramorel.github.io/files/2020-04-17_r_v_python_housing_prices_files/figure-html/unnamed-chunk-18-1.png" width="960" />
+<img src="https://ramorel.github.io/files/2020-04-17-r_v_python_housing_prices_files/figure-html/unnamed-chunk-18-1.png" width="960" />
 
 In both plots, we can see a few outliers--partularly the houses with relative low sale prices given their above ground living area. It would be wise to drop these, since there are probably reasons that they are unusual and our features won't pick that up.
 
@@ -546,7 +546,7 @@ p2 <-
 p1 + p2
 ```
 
-![](https://ramorel.github.io/files/2020-04-17_r_v_python_housing_prices_files/figure-html/unnamed-chunk-19-1.png)<!-- -->
+![](https://ramorel.github.io/files/2020-04-17-r_v_python_housing_prices_files/figure-html/unnamed-chunk-19-1.png)<!-- -->
 
 For my Python version, I will use `{seaborn}` rather than straight `{matplotlib}` to easily color the points by category.
 
@@ -561,7 +561,7 @@ fig.tight_layout(pad=3.0)
 plt.show()
 ```
 
-<img src="rhttps://ramorel.github.io/files/2020-04-17_r_v_python_housing_prices_files/figure-html/unnamed-chunk-20-1.png" width="960" />
+<img src="rhttps://ramorel.github.io/files/2020-04-17-r_v_python_housing_prices_files/figure-html/unnamed-chunk-20-1.png" width="960" />
 
 We should drop those outliers. 
 
