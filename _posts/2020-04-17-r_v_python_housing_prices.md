@@ -559,7 +559,7 @@ fig.tight_layout(pad=3.0)
 plt.show()
 ```
 
-<img src="rhttps://ramorel.github.io/files/2020-04-17-r_v_python_housing_prices_files/figure-html/unnamed-chunk-20-1.png" width="960" />
+<img src="https://ramorel.github.io/files/2020-04-17-r_v_python_housing_prices_files/figure-html/unnamed-chunk-20-1.png" width="960" />
 
 We should drop those outliers. 
 
