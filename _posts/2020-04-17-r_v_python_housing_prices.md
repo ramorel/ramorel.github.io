@@ -437,7 +437,7 @@ p1 <- train %>%
 p1
 ```
 
-![](https://ramorel.github.io/files/2020-04-17-r_v_python_housing_prices_files/unnamed-chunk-14-1.png)<!-- -->
+![](https://ramorel.github.io/files/2020-04-17-r_v_python_housing_prices_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
 
 In such cases, it is useful to take the log of the feature in order to normalize its distribution. That way, it satisfies the expectations of linear modeling. 
 
@@ -454,7 +454,7 @@ p2 <- train %>%
 p1 + p2
 ```
 
-![](https://ramorel.github.io/files/2020-04-17-r_v_python_housing_prices_files/unnamed-chunk-15-1.png)<!-- -->
+![](https://ramorel.github.io/files/2020-04-17-r_v_python_housing_prices_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
 
 Again, in Python, looking at the plots side by side.
 
