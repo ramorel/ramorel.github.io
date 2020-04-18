@@ -8,11 +8,7 @@ author_profile: true
 
 ### Research interests
 
-Overall, I study how social factors within and outside of educational institutions influence the development and implementation of educational policies and the implications of this for access to educational resources and opportunities. This plays out in two ways in my research:
-
-1. I am interested in how socially dominant groups _maintain_ inequalities in access to educational opportunities and resources and the implications of this for education policies that seek to expand access to underserved groups. My [dissertation](https://ramorel.github.io/research/dissertation/) explored this.
-
-2. I am also interested in how power and influence in social networks shape ideas about and responses to education policies.
+Overall, I study how social factors within and outside of organizations shape how people understand and respond to policies. Most of my work looks at educational organizations, such as school or professional development providers.
 
 Here are some examples:
 
