@@ -16,7 +16,7 @@ I study education policy and politics. I use R and Python. [Check out my various
 1. I study how people and organizations respond to policies and how this is mediated by social networks and organizational and environmental contexts. I am particularly interested in the role of power and influence in shaping information exchange and behavior.
   a. For example, I study the (perhaps unintentional) ways dominant groups maintain inequalities in access to educational opportunities and resources and the implications of this for education policy. [My dissertation studies this](https://ramorel.github.io/research/dissertation/).
   b. I also study how [power and influence in social networks](http://journals.sagepub.com/doi/full/10.3102/0002831218788528) shape the development, understanding, and implementation of policies. 
-2. My methodological toolkit includes network analysis, computational methods, and applied econometrics. I am interested in mixed-methods approaches, as well, particularly those combining qualitative analysis with computational methods.
+2. My methodological toolkit includes regression analysis, network analysis, computational methods, and applied econometrics. I am interested in mixed-methods approaches, as well, particularly those combining qualitative analysis with computational methods.
 
 ### Recent publications:
 
