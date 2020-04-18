@@ -6,16 +6,17 @@ author_profile: true
 ---
 
 ### Me
-[Me](http://ramorel.github.io/about)? I'm a postdoctoral research at the [Learning Research and Development Center](http://www.lrdc.pitt.edu/) at the University of Pittsburgh. I recently complete my Ph.D. in Human Development and Social Policy at Northwestern University.
+[Me](http://ramorel.github.io/about)? I'm a postdoctoral research at the [Learning Research and Development Center](http://www.lrdc.pitt.edu/) at the University of Pittsburgh. I recently completed my Ph.D. in Human Development and Social Policy at Northwestern University.
 
 Check out my [CV](https://ramorel.github.io/cv/) or my [professional resume](https://ramorel.github.io/files/resume_paquin_morel.pdf)
 
 I study education policy and politics. I use R and Python. [Check out my various projects using R to analyze and visualize data from sundry sources.](https://ramorel.github.io/posts)
 
 ### Research interests
- 1. I am interested in how dominant groups maintain inequalities in access to educational opportunities and resources and the implications of this for education policy. [My dissertation studies this](https://ramorel.github.io/research/dissertation/). I am increasingly interested in urban/suburban dynamics in the context of demographic changes and the implications of this for equity-minded education policy.
- 2. I also study how [power and influence in social networks](http://journals.sagepub.com/doi/full/10.3102/0002831218788528) shape the development, understanding, and implementation of education policies. 
- 3. My methodological toolkit includes network analysis, computational methods, and applied econometrics. I am interested in mixed-methods approaches, as well, particularly those combining qualitative analysis with computational methods.
+1. I study how people and organizations respond to policies and how this is mediated by social networks and organizational and environmental contexts. I am particularly interested in the role of power and influence in shaping information exchange and behavior.
+  a. For example, I study the (perhaps unintentional) ways dominant groups maintain inequalities in access to educational opportunities and resources and the implications of this for education policy. [My dissertation studies this](https://ramorel.github.io/research/dissertation/).
+  b. I also study how [power and influence in social networks](http://journals.sagepub.com/doi/full/10.3102/0002831218788528) shape the development, understanding, and implementation of policies. 
+2. My methodological toolkit includes network analysis, computational methods, and applied econometrics. I am interested in mixed-methods approaches, as well, particularly those combining qualitative analysis with computational methods.
 
 ### Recent publications:
 
