@@ -13,6 +13,7 @@ Check out my [CV](https://ramorel.github.io/cv/) or my [professional resume](htt
 I study education policy and politics. I use R and Python. [Check out my various projects using R to analyze and visualize data from sundry sources.](https://ramorel.github.io/posts)
 
 ### Research interests
+
 1. I study how people and organizations respond to policies and how this is mediated by social networks and organizational and environmental contexts. I am particularly interested in the role of power and influence in shaping information exchange and behavior.
   a. For example, I study the (perhaps unintentional) ways dominant groups maintain inequalities in access to educational opportunities and resources and the implications of this for education policy. [My dissertation studies this](https://ramorel.github.io/research/dissertation/).
   b. I also study how [power and influence in social networks](http://journals.sagepub.com/doi/full/10.3102/0002831218788528) shape the development, understanding, and implementation of policies. 
@@ -27,10 +28,6 @@ Morel, R. P., & Coburn, C. (2019). Access, Activation, and Influence: How Broker
 ### Soon-to-be published
 
 Morel, R. P. (Forthcoming). Strange frame fellows: The evolution of discursive framing in the anti-accountability testing movement. [[link]](http://ramorel.github.io/files/study2_working_paper.pdf)
-
-### Working papers:
-
-Morel, R. P. Racialized Accountability Threat: Racial Diversification and Participation in Accountability Test Boycotts in New York. [[link]](http://ramorel.github.io/files/study3_working_paper.pdf)
 
 ### Miscellany:
 
