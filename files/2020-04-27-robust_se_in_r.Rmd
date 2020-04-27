@@ -1,0 +1,178 @@
+---
+title: "More observations about standard errors in R"
+author: "Richard Paquin Morel"
+date: "2020-04-27"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+It is very common for folks in the social sciences who switch from Stata to R to express confusion and consternation about how to estimate heteroskedastic-robust standard errors. This is a very common practice in social science research and it is trivial to accomplish in Stata. You simply add "robust" at the end of a regression: `reg y x, robust`. And it's done. Or, if you are estimating a panel model with fixed effects: `xtreg y x, fe vce(robust)` It is common to see folks trying to reproduce an analysis in R from Stata and wonder how to get the standard errors to match.
+
+In R, estimating robust standard errors is simple, but takes a few more steps. Robust standard errors are not baked in to base R. The `summary()` method for `lm()` generates old-fashioned, vanilla standard errors. The `{sandwich}` package provides variouw functions to estimate robust variance-covariance matrices that are used to estimate robust standard errors. If you are accustomed to simply using the `robust` option in Stata, you may not know exactly how and which type of robust standard errors Stata is estimating. It might not be exactly clear _which_ function to use in `{sandwich}`. The general function in `vcovHC()` described as _Heteroskedasticity-Consistent Covariance Matrix Estimation_ in the help file. One key argument in `vcovHC()` is the `type` argument where you specify which type of estimation you want to use. There are no less than nine options here.
+
+You can pretty quickly finding through search-engining that to reproduce Stata robust standard errors you use `type = "HC1"`.
+
+Now, there are several packages for the analysis of panel data in R that use `{sandwich}` to estimate robust standard errors--`{plm}`, `{lfe}`, and `{estimatr}`. This profileration of packages may compound one's consternation when one spots inconsistencies in SE estimation between these packages. Let's take a look.
+
+I will estimate the same model with these three packages, as well as in base. Before using any packages, I will estimate the standard errors by hand, for a few different types.
+
+```{r}
+library(dplyr)
+library(purrr)
+library(sandwich)
+library(plm)
+library(lfe)
+library(estimatr)
+
+data("Grunfeld", package = "plm")
+
+lm_fit <- lm(inv ~ value + capital + factor(firm) + factor(year), data = Grunfeld)
+```
+
+
+## Makin' a sandwich
+
+There are several methods for estimating a heteroskedastic-robust variance-covariance matrix which differ based on the "meat" that goes between the "bread" to make the sandwich estimater. The meats differ by how they specify the diagonal of a residual matrix (where off-diagonals are zero). In each case the "bread" is the same--the crossproduct of the model matrix and the transpose of the model matrix: $(X^\intercal X)^{-1}$. Let's do this.
+
+```{r}
+# First, define the model matrix
+X <- model.matrix(inv ~ value + capital + factor(firm) + factor(year), data = Grunfeld)
+
+# Get the residuals, we will need these!
+resids <- lm_fit$residuals
+
+# Number of observations and terms
+n <- nrow(X)
+k <- lm_fit$rank
+  
+# Bake the bread!
+bread <- solve(t(X) %*% X) # equivalently, solve(crossprod(X))
+```
+
+I will now create different fillings for our sandwiches. I will make `HC0`, `HC1`, `HC2`, and `HC3` fillings. I'm vegetarian, so I will obnoxiously use vegetarian substitutes for the "meats".
+
+Here are the formulas, adapted from [here](https://declaredesign.org/r/estimatr/articles/mathematical-notes.html):
+
+* HC0: $X^\intercal diag(e_i^2) X$
+* HC1: $X^\intercal \left[\frac{n}{(n-k)}diag(e_i^2)\right] X$
+* HC2: $X^\intercal diag \left(\frac{e_i^2}{1-h_{ii}}\right) X$
+* HC3: $X^\intercal diag \left(\frac{e_i^2}{(1-h_{ii})^2}\right) X$
+
+```{r}
+# HC0, or butter
+# diagonal is the squared of the residuals
+butter <- t(X) %*% diag(resids^2() %*% X
+
+# HC1, or cheese
+# diagonal is the squared of the residuals with degrees of freedom correction
+df <-  n / (n-k)
+cheese <- t(X) %*% (df * diag(resids^2)) %*% X
+
+# HC2, or tofu
+# diagonal is the squared of the residuals, divided by the 1 minus diagonal of the hat matrix
+hat <- X %*% solve(t(X) %*% X) %*% t(X)
+hh <- diag(hat)
+
+tofu <-  t(X) %*% diag(resids^2 / (1 - hh)) %*% X
+
+# HC3, or jam
+# diagonal is the squared of the residuals, divided by the square of 1 minus the diagonal of the hat matrix
+jam <-  t(X) %*% diag(resids^2 / (1 - hh)^2) %*% X
+```
+
+Now that we have our bread and fillings, we can make our sandwiches!
+
+```{r}
+hc0 <- bread %*% butter %*% bread
+
+hc1 <- bread %*% cheese %*% bread
+
+hc2 <- bread %*% tofu %*% bread
+
+hc3 <- bread %*% jam %*% bread
+```
+
+To extract the standard error, we take the square root of the ${i, i}$ entry for coefficient $i$. 
+```{r}
+library(glue)
+
+glue("HCO for {names(coef(lm_fit)[2:3])} = {round(sqrt(diag(hc0[2:3, 2:3])), 6)}")
+glue("HC1 for {names(coef(lm_fit)[2:3])} = {round(sqrt(diag(hc1[2:3, 2:3])), 6)}")
+glue("HC2 for {names(coef(lm_fit)[2:3])} = {round(sqrt(diag(hc2[2:3, 2:3])), 6)}")
+glue("HC3 for {names(coef(lm_fit)[2:3])} = {round(sqrt(diag(hc3[2:3, 2:3])), 6)}")
+```
+
+## HC0 standard errors
+
+We already have our `lm()` fit. I will fit the same model in `{plm}` and `{estimatr}`. Unlike other packages, with `{estimatr}`, you specify the standard error type in the model specification itself. that means that I must fit a different model each time I want to estimate different types of standard errors.
+```{r}
+plm_fit <- plm(inv ~ value + capital, data = Grunfeld, index = c("firm", "year"), model = "within", effect = "twoways")
+est_fit <- lm_robust(inv ~ value + capital, fixed_effects = ~ firm + year, se_type = "HC0", data = Grunfeld)
+```
+
+Ok, let's compare across estimates.
+```{r}
+# My "by hand" calculation
+glue("HCO for {names(coef(lm_fit)[2:3])} = {round(sqrt(diag(hc0[2:3, 2:3])), 6)}")
+
+# Using {sandwich}
+glue("HC0 for lm fit using `sandwich` = {round(sqrt(diag(vcovHC(lm_fit, type = 'HC0')[2:3, 2:3])), 6)}")
+
+# plm estimate
+glue("HC0 for lm fit using `sandwich` = {round(sqrt(diag(vcovHC(plm_fit, type = 'HC0'))), 6)}")
+
+# lm_robust estimate
+glue("HC0 for lm fit using `sandwich` = {round(est_fit$std.error, 6)}")
+```
+
+What is going on with the `plm` estimates? A cauntionary note is required here. If we inspect the `vcovHC` method for `plm`, we might notice this `vcovHC(x, method = c("arellano", "white1", "white2"), type = c("HC0", "sss", "HC1", "HC2", "HC3", "HC4"), cluster = c("group", "time"), ...)`. There is a default `cluster` argument! And you can't _not_ cluster! So, you can't estimate heteroskedastic-robust, _non-clustered_ standard errors with `plm`, _unless you do it by hand!!_. Overall, this is probably not a bad thing, since most of the time you are estimating a panel model, you will want to cluster those standard errors. Almost always there will within-cluster correlation that we need to correct for. *But*, it is not clear that the `vcovHC` method for `plm` that it estimates cluster-robust, heteroskedastic-consistent standard errors!
+
+To recover the non-clustered standard errors, we need to make a sandwish as before.
+```{r}
+plm_resids <- plm_fit$residuals
+
+plm_butter <- t(X) %*% diag(plm_resids^2) %*% X
+
+plm_hc0 <- bread %*% plm_butter %*% bread
+
+glue("HCO for {names(coef(lm_fit)[2:3])} = {round(sqrt(diag(plm_hc0[2:3, 2:3])), 6)}")
+```
+
+
+```{r}
+vcovs <- map(fits, ~ map(paste0("HC", 0:3), function(y) 
+  if (class(.x) == "lm_robust") {
+    
+  } else {
+    vcovHC(.x, type = y))) }
+```
+
+Apart from `lm_robust`, the summary models for these models estimate regular, non-robust standard errors, unless you specify otherwise. For `lm()` you must manually estimate the variance-covariance matrix with `{sandwich}` and report them with `{lmtest}`. Let's take a look at that now. 
+
+```{r}
+library(lmtest)
+
+coeftest(lm_fit, vcov. = vcovHC(lm_fit, type = "HC1"))
+```
+
+The standard error for the two independent variables are estimated as `0.019180` and `0.054403`.
+
+Now, look at `{plm}`. The `summary` method for `plm` let's you specify the variance-covariance matrix type in the call to `summary()`. Estimating `HC1` again...
+```{r}
+summary(plm_fit, vcov = vcovHC(plm_fit, type = "HC1"))
+```
+
+Hmm... We have `0.009761` and `0.043147`. Not the same!
+
+Ok, moving on to `{lfe}`. The `summary` method for `felm` has a `robust` option that takes `TRUE` or `FALSE`. It is not clear from the documentation which type of standard errors are estimated. But let's check it out.
+
+```{r}
+summary(lfe_fit, robust = TRUE)
+```
+
+Ok, `0.01918` and `0.05440`--this matches the estimate that I did manually using `{sandwich}` and `{lmtest}`. 
+
+Now on to `{estimatr}`. The type of standard error is specified in the model

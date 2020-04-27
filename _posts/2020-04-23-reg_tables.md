@@ -1,5 +1,5 @@
 ---
-title: "Regression Tables in R: An Only Slightly Harmful Approach"
+title: "Regression tables in R: An only slightly harmful approach"
 author: "Richard Paquin Morel"
 date: 2020-04-22
 permalink: /posts/reg-tables-huxtable/
@@ -10,8 +10,7 @@ tags:
 ---
 
 
-
-Stack Overflow overfloweth with folks desparately trying to figure out how to get their regression tables exported to html, pdf--or, the horror, word--formats. Tables are pretty complicated objects with lots of bells, whistles, and various points of customization. Packages abound for creating nicely formatted tables, and they have strengths and drawbacks. On SO, you see lots of people using `{stargazer}`. Now, I'm not going to harsh on someone's hardwork and `{stargazer}` is a servicable packages that pretty easily creates nice looking regression tables. But, the API is very unclear and it is not customizable or extensible. I have adopted a workflow using [`{huxtable}`](https://hughjonesd.github.io/huxtable/) and [`{flextable}`](https://davidgohel.github.io/flextable/) to export tables to word format. Yes, word documents are still the standard format in the academic world. I conduct my analyses and write up my research in R, but typically I need to use word to share with colleagues or to submit to journals, conferences, etc. 
+Creating tables in R inevitably entails harm--harm to your self-confidence, your sense of wellbeing, your very sanity. Stack Overflow overfloweth with folks desparately trying to figure out how to get their regression tables exported to html, pdf--or, the horror, word--formats. Tables are pretty complicated objects with lots of bells, whistles, and various points of customization. Packages abound for creating nicely formatted tables, and they have strengths and drawbacks. On SO, you see lots of people using `{stargazer}`. Now, I'm not going to harsh on someone's hardwork and `{stargazer}` is a servicable packages that pretty easily creates nice looking regression tables. But, the API is very unclear and it is not customizable or extensible. I have adopted a workflow using [`{huxtable}`](https://hughjonesd.github.io/huxtable/) and [`{flextable}`](https://davidgohel.github.io/flextable/) to export tables to word format. Yes, word documents are still the standard format in the academic world. I conduct my analyses and write up my research in R, but typically I need to use word to share with colleagues or to submit to journals, conferences, etc. 
 
 This is the workflow I developed while writing my dissertation. I prefer `{huxtable}` because it is `{tidyverse}` friendly, pipeable `%>%`, has an excellent API, and is well-documented. I use `{flextable}` because it exports beautifully to word. This workflow is pretty good, but not perfect. So trial and error and futzing around in word is necessary. 
 
