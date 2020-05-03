@@ -1,0 +1,192 @@
+---
+title: "about me"
+author: "Richard Paquin Morel"
+date: "5/1/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, dpi = 340)
+```
+
+# Hi
+
+My name is Richard. I'm a PhD social scientist using computational and quantitative methods to understand human behavior. Okay, that's a bit vague. I focus on organizational behavior, collective action, and how individuals and groups respond to policies. My content area is educational policy. My dissertation analyzed how and why people take collective action to oppose changes to state education policies.
+
+# Various skills
+
+## Modeling, inferential stats, quasi-experimental design
+
+## Data Visualization
+
+- My own implementation of a likert scale stacked bar chart
+
+For visualizing survey data. There are some packages out there that do this, but I like to exercise more control over the various `{ggplot2}` parameters. So I prefer to implement my own version, rather than go with the pre-packaged variety. It's simple to execute with a likert scale that has an even number of categories. Trickier when there's an odd number and the middle catgory must be split between the "negative" and "positive" ends of the graph.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, out.width = "50%"}
+library(tidyverse)
+library(ggminthemes)
+
+survey <- readxl::read_excel("/Users/rap168/Box Sync/Richard Paquin Morel/BMTN survey data/bmtn8_2020_feb/bmtn8_2020_feb.xlsx") %>% janitor::clean_names()
+
+tmp <- survey %>% 
+  select(q2, q109_5) %>% 
+  mutate_all(as.numeric) %>% 
+  na_if(99) %>% 
+  pivot_longer(cols = -q2) %>% 
+  filter(!is.na(value)) %>% 
+  mutate(value = factor(value, 
+                        levels = 1:5, 
+                        labels = c("Not at all useful",
+                                   "A little bit useful",
+                                   "Moderately useful",
+                                   "Very useful",
+                                   "Extremely useful"),
+                        ordered = TRUE)) %>% 
+  count(q2, name, value, .drop = FALSE) %>% 
+  group_by(q2, name) %>% 
+  mutate(prop = 100 *(n/sum(n))) %>% 
+  mutate(prop2 = ifelse(value == "Moderately useful", prop / 2, NA), 
+         prop3 = ifelse(value == "Moderately useful", prop / 2, NA)) %>% 
+  pivot_longer(cols = c(prop2, prop3), names_to = "again", values_to = "yes") %>%
+  mutate(new_prop = coalesce(yes, prop)) %>% 
+  filter(!duplicated(value) | !is.na(yes)) %>% 
+  select(-again, -yes) %>% 
+  group_by(name, q2) %>% 
+  mutate(new_prop = ifelse(value == "Moderately useful" & duplicated(value) | value %in% c("Not at all useful", "A little bit useful"), new_prop * -1, new_prop)) %>% 
+  ungroup() %>% 
+  mutate(range = case_when(value %in% c("Very useful", "Extremely useful", "Moderately useful") & new_prop >= 0 ~ "high", 
+                           value %in% c("Not at all useful", "A little bit useful", "Moderately useful") & new_prop <= 0 ~ "low")
+         ) %>%  
+  group_split(range)
+
+ggplot() + 
+  geom_col(data = tmp[[1]], aes(x = new_prop, y = factor(q2), fill = forcats::fct_rev(value))) + 
+  geom_col(data = tmp[[2]], aes(x = new_prop, y = factor(q2), fill = value)) + 
+  geom_vline(xintercept = 0) + 
+  scale_x_continuous(limits = c(-100, 100), 
+                     breaks = seq(from = -100, to = 100, by = 25), 
+                     labels = paste0(c(rev(seq(from = 0, to = 100, by = 25)), seq(from = 25, to = 100, by = 25)),
+                                     "%")) + 
+  scale_fill_manual(name = "",
+                    values = RColorBrewer::brewer.pal(5, "RdYlGn"), 
+                    breaks = c("Not at all useful",
+                               "A little bit useful",
+                               "Moderately useful",
+                               "Very useful",
+                               "Extremely useful"), 
+                    labels = c("Not at all useful",
+                               "A little bit useful",
+                               "Moderately useful",
+                               "Very useful",
+                               "Extremely useful")) +
+  labs(x = "", y = "Group",
+       title = "Likert Scale Stacked Bar Chart",
+       subtitle = "For visualizing responses to survey items") +
+  theme_minima()
+```
+
+
+- A `{ggplot2}` theme extension
+
+- I have recently gotten into tweaking `{ggplot2}` theme parameters and creating custom themes. So at the beginning of my R scripts, I add `theme_set(...)` with a bunch of arguments defining the theme. This involves a lot of going back and forth from old scripts to new ones. So I decided to create a small package to simplify my life. It's a work in progress. Feel free to use it if you like. **NOTE:** This requires that you download the lovely [Raleway font](https://www.fontsquirrel.com/fonts/raleway).
+```{r eval = FALSE}
+remotes::install_github("ramorel/ggminthemes")
+```
+
+Here are some examples:
+
+`theme_rale`  
+- Download the [Raleway font](https://www.fontsquirrel.com/fonts/raleway).  
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, out.width = "50%"}
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarize(mean_mpg = mean(mpg, na.rm = TRUE)) %>% 
+  ggplot(aes(x = factor(cyl), y = mean_mpg)) +
+  geom_col(width = 0.5) +
+  labs(x = "Mean MPG", y = "Cylinders",
+       title = "Average MPG by number of cylinders",
+       subtitle = "Domestic and imported makes",
+       caption = "Data from the mtcars dataset") + 
+  theme_rale()
+```
+
+`theme_metal`  
+- Download the [Olde English](https://www.dafont.com/olde-english.font) and [Noto](https://www.google.com/get/noto/help/install/) fonts. 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, out.width = "50%"}
+library(sf)
+library(tigris)
+options(tigris_use_cache = TRUE)
+
+brklyn <- suppressMessages(roads("NY", "Kings", class = "sf"))
+
+ggplot(brklyn) +
+  geom_sf(color = "grey10", alpha = 0.7) +
+  labs(title = "Welcome to Brooklyn",
+       subtitle = "\"Fuhgeddaboudit\"",
+       caption = "Geographic data from the {tigris} package") +
+  theme_metal()
+```
+
+## Network analysis
+
+- Visualization and modeling
+```{r echo=FALSE, warning=FALSE, message=FALSE, out.width = "50%"}
+library(statnet)
+library(huxtable)
+library(tidygraph)
+library(ggraph)
+
+data("faux.desert.high")
+
+faux.desert.high %>% 
+  as_tbl_graph() %>% 
+  activate(nodes) %>% 
+  filter(!node_is_isolated()) %>%  
+  ggraph() +
+  geom_edge_fan(color = "grey60", alpha = 0.5) +
+  geom_node_point(aes(color = factor(grade))) + 
+  scale_color_viridis_d(name = "Grade") +
+  theme_graph() +
+  theme(panel.background = element_rect(color = "black"))
+
+fit <- ergm(faux.desert.high ~ 
+              edges + 
+              mutual + 
+              gwesp(0.75, T) + 
+              nodematch("grade"))
+
+sims <- simulate(fit, 
+                   nsim = 1000,
+                   seed = 1981,
+                   basis = faux.desert.high)
+
+sim_stats <- 
+  tibble(`Intransitivity` = map_dbl(1:1000, ~ summary(sims[[.x]] ~ intransitive)),
+         `Density` = map_dbl(1:1000, ~ gden(sims[[.x]])),
+         #transdist = map_dbl(1:1000, ~ gtrans(sims[[.x]])),
+         `Triangles` = map_dbl(1:1000, ~ summary(sims[[.x]] ~ triangle))) %>% 
+  pivot_longer(cols = everything()) %>% 
+  mutate(obs = case_when(name == "Intransitivity" ~ summary(faux.desert.high ~ intransitive),
+                         name == "Density" ~ gden(faux.desert.high),
+                         name == "Triangles" ~ summary(faux.desert.high ~ triangle)))
+         
+
+sim_stats %>% 
+  ggplot() + 
+  geom_histogram(aes(x = value, stat(density)), bins = 50, fill = "cornflowerblue", alpha = 0.4) + 
+  geom_density(aes(x = value), color = "midnightblue") + 
+  geom_vline(aes(xintercept = obs), linetype = 2, color = "magenta1") + 
+  labs(x = "", y = "", 
+       title = "Simulated network statistics",
+       subtitle = "Baseline exponential random graph model",
+       caption = "Note. Vertical line represents observed network statistic") +
+  facet_wrap(~ name, scales = "free") + 
+  theme_rale()
+```
+
+- A [function to determine network range](https://ramorel.github.io/network-range/)
+
+## Text analysis
