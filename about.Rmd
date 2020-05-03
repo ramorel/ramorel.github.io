@@ -132,7 +132,7 @@ ggplot(brklyn) +
 
 ## Network analysis
 
-- Visualization and modeling
+- Visualization and modeling  
 ```{r echo=FALSE, warning=FALSE, message=FALSE, out.width = "50%"}
 library(statnet)
 library(huxtable)
