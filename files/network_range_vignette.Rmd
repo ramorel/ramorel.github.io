@@ -378,7 +378,7 @@ btwcent <- faux.desert.high %>%
   theme(plot.title = element_text(family = "Minion Pro", size = 12),
         panel.background = element_rect(color = "black"))
 
-degcent + btwcent
+degcent + btwcent + plot_layout(ncol = 2)
 ```
 
 Let's see where they fall in the distribution of degree centrality and betweenness scores in the network. 
@@ -393,13 +393,18 @@ pdeg <- ggplot(desert_attr) +
   geom_density(aes(x = d_cent), outline.type = "full") +
   geom_vline(xintercept = desert_attr[which(desert_attr$node == "13"), "d_cent"], linetype="dashed") +
   geom_vline(xintercept = desert_attr[which(desert_attr$node == "73"), "d_cent"], linetype="dotted") +
-  theme_minimal()
+  labs(x = "Degree centrality", y = "") +
+  theme_minimal() +
+  theme(text = element_text(family = "Noto Sans"))
 
 pbtw <- ggplot(desert_attr) +
   geom_density(aes(x = b_cent), outline.type = "full") +
   geom_vline(xintercept = desert_attr[which(desert_attr$node == "13"), "b_cent"], linetype="dashed") +
   geom_vline(xintercept = desert_attr[which(desert_attr$node == "73"), "b_cent"], linetype="dotted") +
-  theme_minimal()
+  labs(x = "Betweenness centrality", y = "",
+       caption = "Dotted (dashed) line represents observed value for Kenney (Monique)") +
+  theme_minimal() +
+  theme(text = element_text(family = "Noto Sans"))
 
 pdeg + pbtw
 ```
