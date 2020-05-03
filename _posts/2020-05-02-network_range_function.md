@@ -12,9 +12,6 @@ tags:
 
 I [wrote this up a few years back](https://ramorel.github.io/network-range/) and updated it to include `{ggraph}` and `{tidygraph}`, my go-tos now for network manipulation and visualization.
 
-R function for network range
-================
-Richard Paquin Morel
 
 Some preliminaries
 ------------------
@@ -40,13 +37,13 @@ To measure an actor's network range, it is necessary to calculate the diversity 
 
 To calculate the cohesiveness of each group:
 
-![](network_range_vignette_files/equation_2.png)
+![](http://ramorel.github.io/files/network_range_vignette_files/equation_2.png)
 
 where *M*<sub>*k*</sub> is the number of nodes within group *k* and *x*<sub>*i**j*</sub> is the strength of connections between *i* and another person in group *k*. *S*<sub>*k*</sub> is the total number of connections of nodes in group *k* and *x*<sub>*i**q*</sub> is the strength of connections between person *i* and any other connection. To put plainly, this finds how strong connections are in group *k* relative to the overall connections of people in group *k*.
 
 So now we have the two parts we need to calculate the network diversity of each node in the network:
 
-![](network_range_vignette_files/equation_3.png)
+![](http://ramorel.github.io/files/network_range_vignette_files/equation_3.png)
 
 To find the diversity score of person *i*, we sum the product of *p*<sub>*k*</sub>, the cohesiveness of group *k* and the squared of *p*<sub>*i*</sub>*k*--that is, *i*'s strength of connections in group *k*. This is product is summed over *k*. Subtracting the summation from one makes the score more sensible, in that higher score indicate greater diversity.
 
@@ -253,7 +250,7 @@ ggraph(faux.desert.high, layout = "nicely") +
   theme(plot.title = element_text(family = "Lato", size = 12))
 ```
 
-![](network_range_vignette_files/figure-markdown_github-ascii_identifiers/desert%20high%20plot-1.png)
+![](http://ramorel.github.io/files/network_range_vignette_files/figure-gfm/desert%20high%20plot-1.png)
 
 We some some clustering by grade, particularly in grade 7. Not surprising that the smallest fish in the pond stick together. Grade 12 seems much more spread out. In addition to the formal grouping of grades, we can also find informal cliques within the school using a community detection algorithm. There are ample options to choose from in the network analysis world. Personally, I like the fast-greedy method used by Clauset et al. (2004), but it is only defined for undirected networks. No worries; we will fudge here and treat the network as undirected when finding subgroups. It assigns each node in the network to a distinct subgroup based on the density of ties in that subgroup. Unfortunately, it is not available in the `sna` package, so we have to turn to `igraph`. That means we need to convert our network from a `network` object to an `igraph` object. No worries there thanks to the Michal Bojanowski's `intergraph` package! It even transfers attribute information!
 
@@ -314,7 +311,7 @@ plot(fg, g_desert,
      vertex.size = 5)
 ```
 
-![](network_range_vignette_files/figure-markdown_github-ascii_identifiers/community%20map-1.png)
+![](http://ramorel.github.io/files/network_range_vignette_files/figure-gfm/community%20map-1.png)
 
 ``` r
 detach("package:igraph", unload=TRUE)
@@ -613,7 +610,7 @@ ggraph(ego13) +
   theme(plot.title = element_text(family = "Minion Pro", size = 12))
 ```
 
-![](network_range_vignette_files/figure-markdown_github-ascii_identifiers/13%20ego%20network-1.png)
+![](http://ramorel.github.io/files/network_range_vignette_files/figure-gfm/13%20ego%20network-1.png)
 
 On the other hand, Sammy has their finger on the pulse of the informal social order in the school. They cross many social barriers by forging friendships with people in several different cliques.
 
@@ -630,7 +627,7 @@ ggraph(ego73) +
   theme(plot.title = element_text(family = "Minion Pro", size = 12))
 ```
 
-![](network_range_vignette_files/figure-markdown_github-ascii_identifiers/73%20ego%20network-1.png)
+![](http://ramorel.github.io/files/network_range_vignette_files/figure-gfm/73%20ego%20network-1.png)
 
 Now, thinking about the larger social order of the high school, where are Monique and Sammy located? Are they particularly popular? Are they brokers, mediating between friends?
 
@@ -652,7 +649,7 @@ ggraph(faux.desert.high, layout = "nicely") +
   theme_graph()
 ```
 
-![](network_range_vignette_files/figure-markdown_github-ascii_identifiers/finding%20nodes%20in%20the%20network-1.png)
+![](http://ramorel.github.io/files/network_range_vignette_files/figure-gfm/finding%20nodes%20in%20the%20network-1.png)
 
 Our friend Monique is represented by the red node and Sammy by the blue. As we can see, they are pretty centrally located in the social order of the high schools. If we take a look at centrality, we can see that they are not the most popular students, but they are popular. Monique, in particular, is quite popular and mediates between lots of people in the school. That means that Monique is friends with lots of people who are not friends with each other.
 
@@ -692,7 +689,7 @@ btwcent <- faux.desert.high %>%
 degcent + btwcent
 ```
 
-![](network_range_vignette_files/figure-markdown_github-ascii_identifiers/visualizing%20centrality-1.png)
+![](http://ramorel.github.io/files/network_range_vignette_files/figure-gfm/visualizing%20centrality-1.png)
 
 Let's see where they fall in the distribution of degree centrality and betweenness scores in the network.
 
@@ -717,7 +714,7 @@ pbtw <- ggplot(desert_attr) +
 pdeg + pbtw
 ```
 
-![](network_range_vignette_files/figure-markdown_github-ascii_identifiers/centrality-1.png)
+![](http://ramorel.github.io/files/network_range_vignette_files/figure-gfm/centrality-1.png)
 
 We can see that Monique is indeed at the upper end of these distributions--to be precise, 0.95 for degree and 0.99 for betweenness! Perhaps it is not surprising that Sammy is toward the middle of the degree distribution (again, to be precise 0.41), since she is only a freshman. Notable, she is in the upper quartile for betweenness (0.79), so, like Monique, she is positioning herself as a mediator between others--friends with lots of people who are not friends themselves.
 
