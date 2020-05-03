@@ -309,7 +309,7 @@ ggraph(faux.desert.high, layout = "nicely") +
   theme(plot.title = element_text(family = "Lato", size = 12))
 ```
 
-![](network_range_vignette_files/figure-markdown_github-ascii_identifiers/desert%20high%20plot-1.png)<!-- -->
+![](network_range_vignette_files/figure-gfm/desert%20high%20plot-1.png)<!-- -->
 
 We some some clustering by grade, particularly in grade 7. Not
 surprising that the smallest fish in the pond stick together. Grade 12
@@ -332,10 +332,10 @@ g_desert <- intergraph::asIgraph(faux.desert.high)
 g_desert
 ```
 
-    ## IGRAPH 2b674de D--- 107 439 -- 
+    ## IGRAPH 9055c15 D--- 107 439 -- 
     ## + attr: title (g/c), grade (v/n), na (v/l), race (v/c), scode (v/n),
     ## | sex (v/n), vertex.names (v/c), na (e/l)
-    ## + edges from 2b674de:
+    ## + edges from 9055c15:
     ##  [1]  1-> 58  1-> 74  1-> 81  1->105  3-> 30  3-> 32  3-> 87  3->101  4-> 13
     ## [10]  4-> 75  5->106  6-> 60  7-> 15  7-> 19  7-> 39  7-> 40  7-> 45  7-> 48
     ## [19]  7-> 50  7-> 52  7-> 54  7-> 70  7->103  8-> 11  8-> 28  8-> 36  8-> 60
@@ -397,7 +397,7 @@ plot(fg, g_desert,
      vertex.size = 5)
 ```
 
-![](network_range_vignette_files/figure-markdown_github-ascii_identifiers/community%20map-1.png)<!-- -->
+![](network_range_vignette_files/figure-gfm/community%20map-1.png)<!-- -->
 
 ``` r
 detach("package:igraph", unload=TRUE)
@@ -738,7 +738,7 @@ ggraph(ego13) +
 
     ## Using `stress` as default layout
 
-![](network_range_vignette_files/figure-markdown_github-ascii_identifiers/13%20ego%20network-1.png)<!-- -->
+![](network_range_vignette_files/figure-gfm/13%20ego%20network-1.png)<!-- -->
 
 On the other hand, Sammy has her or his finger on the pulse of the
 informal social order in the school. They cross many social barriers by
@@ -759,7 +759,7 @@ ggraph(ego73) +
 
     ## Using `stress` as default layout
 
-![](network_range_vignette_files/figure-markdown_github-ascii_identifiers/73%20ego%20network-1.png)<!-- -->
+![](network_range_vignette_files/figure-gfm/73%20ego%20network-1.png)<!-- -->
 
 Now, thinking about the larger social order of the high school, where
 are Monique and Sammy located? Are they particularly popular? Are they
@@ -783,7 +783,7 @@ ggraph(faux.desert.high, layout = "nicely") +
   theme_graph()
 ```
 
-![](network_range_vignette_files/figure-markdown_github-ascii_identifiers/finding%20nodes%20in%20the%20network-1.png)<!-- -->
+![](network_range_vignette_files/figure-gfm/finding%20nodes%20in%20the%20network-1.png)<!-- -->
 
 Our friend Monique is represented by the red node and Sammy by the blue.
 As we can see, they are pretty centrally located in the social order of
@@ -836,10 +836,10 @@ btwcent <- faux.desert.high %>%
   theme(plot.title = element_text(family = "Minion Pro", size = 12),
         panel.background = element_rect(color = "black"))
 
-degcent + btwcent
+degcent + btwcent + plot_layout(ncol = 2)
 ```
 
-![](network_range_vignette_files/figure-markdown_github-ascii_identifiers/visualizing%20centrality-1.png)<!-- -->
+![](network_range_vignette_files/figure-gfm/visualizing%20centrality-1.png)<!-- -->
 
 Let’s see where they fall in the distribution of degree centrality and
 betweenness scores in the network.
@@ -854,18 +854,23 @@ pdeg <- ggplot(desert_attr) +
   geom_density(aes(x = d_cent), outline.type = "full") +
   geom_vline(xintercept = desert_attr[which(desert_attr$node == "13"), "d_cent"], linetype="dashed") +
   geom_vline(xintercept = desert_attr[which(desert_attr$node == "73"), "d_cent"], linetype="dotted") +
-  theme_minimal()
+  labs(x = "Degree centrality", y = "") +
+  theme_minimal() +
+  theme(text = element_text(family = "Noto Sans"))
 
 pbtw <- ggplot(desert_attr) +
   geom_density(aes(x = b_cent), outline.type = "full") +
   geom_vline(xintercept = desert_attr[which(desert_attr$node == "13"), "b_cent"], linetype="dashed") +
   geom_vline(xintercept = desert_attr[which(desert_attr$node == "73"), "b_cent"], linetype="dotted") +
-  theme_minimal()
+  labs(x = "Betweenness centrality", y = "",
+       caption = "Dotted (dashed) line represents observed value for Kenney (Monique)") +
+  theme_minimal() +
+  theme(text = element_text(family = "Noto Sans"))
 
 pdeg + pbtw
 ```
 
-![](network_range_vignette_files/figure-markdown_github-ascii_identifiers/centrality-1.png)<!-- -->
+![](network_range_vignette_files/figure-gfm/centrality-1.png)<!-- -->
 
 We can see that Monique is indeed at the upper end of these
 distributions–to be precise, 0.95 for degree and 0.99 for betweenness\!

@@ -1,7 +1,7 @@
 ---
 title: "R function for network range"
 author: "Richard Paquin Morel"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
