@@ -1,5 +1,5 @@
 ---
-title: "Network range: An R functions for network analysis"
+title: "Network range: An R function for network analysis"
 author: "Richard Paquin Morel"
 date: 2020-05-02
 permalink: /posts/network-range-function/

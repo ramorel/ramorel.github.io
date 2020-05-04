@@ -9,15 +9,15 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE, dpi = 340)
 ```
 
-# Hi
+## Hi
 
 My name is Richard. I'm a PhD social scientist using computational and quantitative methods to understand human behavior. Okay, that's a bit vague. I focus on organizational behavior, collective action, and how individuals and groups respond to policies. My content area is educational policy. My dissertation analyzed how and why people take collective action to oppose changes to state education policies.
 
-# Various skills
+## Various skills
 
-## Modeling, inferential stats, quasi-experimental design
+### Modeling, inferential stats, quasi-experimental design
 
-## Data Visualization
+### Data Visualization
 
 - My own implementation of a likert scale stacked bar chart
 
