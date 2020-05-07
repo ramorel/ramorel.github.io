@@ -60,6 +60,7 @@ ids = test['Id']
 
 Using the syntax just described, I will assign the objects in R.
 
+### R
 ```r
 train <- py$train
 test <- py$test
@@ -85,6 +86,7 @@ First, it is always a good idea to know exactly _what_ the data look like. Key q
 
 Let's do this in R first. Check the dimensions and then the features. 
 
+### R
 ```r
 print(glue("The training dataset has {ncol(train)} features and {nrow(train)} observations."))
 ```
@@ -92,7 +94,7 @@ print(glue("The training dataset has {ncol(train)} features and {nrow(train)} ob
 ```
 ## The training dataset has 81 features and 1460 observations.
 ```
-
+### R
 ```r
 map_chr(train, class) %>% table() %>% {glue("There are {.} features of type {names(.)}")}
 ```
@@ -105,6 +107,7 @@ map_chr(train, class) %>% table() %>% {glue("There are {.} features of type {nam
 
 I like the `glimpse()` function from the `{tibble}` package a lot--it gives the dimension, the features, their type, and a quick glance at each. But it isn't great where there are a great deal of features. So, check the dimensions first. Here, it's not bad at all, so I use `glimpse()` to see the features and their type.
 
+### R
 ```r
 glimpse(train)
 ```
@@ -197,6 +200,7 @@ glimpse(train)
 
 Before moving onto Python, notice that some of the features are of class `list`. This is an artifact of importing via Python and then calling into the R environment. So we have some cleaning up to do. No problem. First, we will `unlist()` those features and then make sure that the missing values are encoded correctly, since, as you will see, the missing values are encoded now as strings!
 
+### R
 ```r
 train <- train %>% mutate_if(is.list, unlist)
 
@@ -269,6 +273,7 @@ So we know there are 81 features and 1,460 observations. Very important for gett
 
 First, in R. There are many ways to approach this. A simple way is `train %>% summarise_all(~sum(is.na(.)))`, but the output is not reader-friendly. So I'll pretty it up a bit. Note: wrapping the `map2` function in `{}` prevents the piped data frame from being used as the first argument--we need that in order to call `.[["name"]]` and `.[["value"]]` as the two variables to loop over.
 
+### R
 ```r
 map_dbl(train, ~ sum(is.na(.x))) %>% 
   table() %>% 
@@ -294,6 +299,7 @@ Okay. Now we know that there is some missing data that we need to deal with. Mos
 
 Let's take a closer look at the features with missing data. Which ones are they?
 
+### R
 ```r
 train %>% 
   summarise_all(~sum(is.na(.))) %>% 
@@ -327,6 +333,7 @@ train %>%
 
 We can also do this by percent, which provides an additional layer of information.
 
+### R
 ```r
 train %>% 
   summarise_all(~round(sum(is.na(.))/length(.), 4) * 100) %>% 
@@ -429,6 +436,7 @@ Attending to the characteristics of the target variable is a critical part of da
 
 Knowing to content domain, we would not be surprised to see that the distribution is right-skewed, as things like housing prices, income, etc. often are. 
 
+### R
 ```r
 p1 <- train %>%
   ggplot(aes(x = SalePrice)) +
@@ -448,6 +456,7 @@ p1
 
 In such cases, it is useful to take the log of the feature in order to normalize its distribution. That way, it satisfies the expectations of linear modeling. 
 
+### R
 ```r
 p2 <- train %>%
   ggplot() +
@@ -483,6 +492,7 @@ That looks much better. Next, let's explore the features.
 
 We might guess, based on our prior knowledge, that there is a meaningful positive relationship between how much a house costs and how big it is.
 
+### R
 ```r
 p1 <- train %>%
   ggplot(aes(x = GrLivArea, y = SalePrice)) +
@@ -518,6 +528,7 @@ In both plots, we can see a few outliers--partularly the houses with relative lo
 
 But, out of curiosity, let's see if there is some reason _in the data_ why these house sold for so little money. Perhaps it has to do with the overall quality of the house? Its type? Its zoning? Its location?
 
+### R
 ```r
 p1 <- train %>%
   ggplot(aes(x = GrLivArea, y = SalePrice)) +
@@ -573,6 +584,7 @@ plt.show()
 
 We should drop those outliers. 
 
+### R
 ```r
 train <-
   train %>%
@@ -596,7 +608,7 @@ There are a handful of other features were is seems like we have true missing va
 
 To do this, we want to combine the training and testing data so we can fixing the missing values and do the feature engineering all at once. And any scaling or centering we do, we want to do on the all the data at our disposal. We should also drop the target and the ID feature.
 
-
+### R
 ```r
 all_dat <- bind_rows(train, test) %>% 
   select(-Id, -SalePrice)
@@ -682,6 +694,7 @@ for var in zero_vars:
 
 Moving on to the observations missing at random. Most of these are categorical, and so I impute the mode. For the numeric feature--`LotFrontage`--I impute the median. Don't forget to `ungroup()`!
 
+### R
 ```r
 random_vars <- c("Electrical", "Exterior1st", "Exterior2nd", "Functional", "KitchenQual", "MSZoning", "SaleType", "Utilities")
 
@@ -708,6 +721,7 @@ all_dat['LotFrontage'] = all_dat.groupby(['Neighborhood'])['LotFrontage'].apply(
 
 Now, we should have NO missing values in our data!
 
+### R
 ```r
 glue("There are {sum(is.na(all_dat))} features with missing observations")
 ```
@@ -733,6 +747,7 @@ To try to extract all the predictive power possible in the data available at our
 
 In R, I create these feeatures using `mutate()` from `{dplyr}` in a single pipe.
 
+### R
 ```r
 all_dat <-
   all_dat %>% 
@@ -762,6 +777,7 @@ Now that I have created the new features, I want to manipulate the existing ones
 
 Some of the features are ordinal--the values have inherent ordered meaning in the levels. These are these quality and condition features. I also take some of the "finish" features as ordinal. This is a bit less clear, but there does seem some inherent ordering to the differeny types of finishes.I will convert these to `factors` in R and label the levels.
 
+### R
 ```r
 qual_vars = c("BsmtCond", "BsmtQual", "ExterCond", 
              "ExterQual", "FireplaceQu", "GarageCond", 
@@ -845,6 +861,7 @@ all_dat['BsmtFinType2'] = all_dat['BsmtFinType2'].map(bsmt_fin)
 
 There are some _numeric_ features that are really categorical, so we should encode these as well. However, they are not ordinal and so we can convert them to strings. These include year, month, and subclass.
 
+### R
 ```r
 nominal_vars = c("Alley", "BldgType", "Condition1", "Condition2", "Electrical", 
                 "Exterior1st", "Exterior2nd", "Fence", "Foundation", "GarageType", 
@@ -878,6 +895,7 @@ for var in nominal_vars:
 
 I will use one-hot encoding to turn nominal features into dummies. In Python, `{pandas}` has a built-in method to accomplish this. In R, one can use `getDummies()` from the `{caret}` package--which is superseded a bit by the `step_dummy()` function in `{recipes}`. But I'll use the base R approach to avoid adding any additional packages into the mix.
 
+### R
 ```r
 dummies <- model.matrix(~., data = all_dat %>% select_if(is.character)) %>% as_tibble() %>% select(-contains("Inter"))
 
@@ -898,6 +916,7 @@ all_dat = pd.concat((all_dat.drop(nominal_vars, axis = 1), dummies), sort = Fals
 
 As our last step, transform the variables using the Box-Cox method with a fudge factor of `+1`. I want to get the `lambda` for each feature so as to normalize that feature accurately. So first, I determine which features have a skewed distribution that I want to transform. I get the `lambda` for those features and then transform them using that `lambda`. I drop the skewed columns from the data frame and then bind the transformed features.
 
+### R
 ```r
 skewed_vars <- 
   map_lgl(all_dat %>% select_if(is.numeric), ~ (moments::skewness(.x) > 0.75)) %>% which() %>% names()
@@ -930,8 +949,8 @@ all_dat[skewed_cols_idx] = skewed_cols.transform(lambda x: boxcox(x)[0])
 
 The R and Python approaches produce the same values for `lambda`. Just double-checking.
 
-R: 
 
+### R
 ```r
 glue("Lambda value for LowQualFinSF in R is: {car::powerTransform(train[['LowQualFinSF']] + 1)$lambda}")
 ```
@@ -953,6 +972,7 @@ print('Lambda value for LowQualFinSF in Python is: %f' % lam)
 
 Double-check that there are no missing observations about all this feature engineering.
 
+### R
 ```r
 glue("There are {sum(is.na(all_dat))} features with missing observations")
 ```
@@ -976,6 +996,7 @@ print('There are {} features with missing observations'.format(missing.sum()))
 
 There are a few sparse features--those that have very, very little variation and so cannot provide much explanatory power. It is safe to drop these. Check the dimensions to make sure that they match in both R and Python.
 
+### R
 ```r
 sparse <- all_dat %>% 
   summarize_if(is.numeric, ~ sum(. == 0)/nrow(all_dat)) %>% 
@@ -1020,6 +1041,7 @@ This is so that all the features are on the same scale, which is necessary for s
 
 In R, I take advantage of `{dplyr}`'s `mutate_all()` function, which transforms all the features in one simple line of code. The base function `scale()` produces a lot of information, much of which we don't need. We only need the scaled values! So I add `[,1]` to the code to extract only the values and to make sure that the feature names are preserved. Also, `scale()`'s has a default setting `center = TRUE`. I add it here for explicitness, but that it not necessary, since it is the default setting.
 
+### R
 ```r
 all_dat_scaled <-
   all_dat %>% 
@@ -1041,6 +1063,7 @@ Great, ready to start modeling!
 
 The first thing I will do is split the training data into another pair of training and testing. I will fit each model on the training data and evaluate it on the testing data. I need to subset the `all_dat` data frame to include only the values in the initial training data set and then split into a training and testing set using a 70/30 split. There are many ways to do this here by hand, but there are also a few packages that have functions to accomplish this. I'm particularly fond of [`initial_split()`](https://tidymodels.github.io/rsample/reference/initial_split.html) from the `{rsample}` package that is part of the `{tidymodels}` ecosystem. I'm going to use the `{tidyverse}` ecosystem to tune and model, so I'll using `{rsample}` here. The `initial_split()` function creates a training and testing set that are called using `training()` and `testing()`. I will further use cross-validation to for model selection. The `vfold_cv()` function creates an n-fold cross-validation split in the data set. Here, we use it on the training split of the training data.
 
+### R
 ```r
 train_dat <- all_dat %>% slice(1:nrow(train)) %>% janitor::clean_names()
 train_dat_scaled <- all_dat_scaled %>% slice(1:nrow(train)) %>% janitor::clean_names()
@@ -1076,6 +1099,7 @@ glue("The training data is {nrow(training(train_split))} rows by {ncol(training(
 ## The training data is 1094 rows by 397 columns
 ```
 
+### R
 ```r
 glue("The testing data is {nrow(testing(train_split))} rows by {ncol(testing(train_split))} columns")
 ```
@@ -1122,6 +1146,7 @@ print('The testing data is {} rows by {} columns'.format(X_test.shape[0], X_test
 
 To tune and fit the various models I will try in R, I will use a set of packages from the [`{tidymodels}`](https://github.com/tidymodels) ecosystem. These packages were developed, in part, by the creator of the`{caret}` package and designed to supplant it. To break it down: I will use `{parsnip}` to define and fit models, `{dials}` and `{tune}` to tune the hyperparameters, and `{rsample}` to cross-validate, and `{yardstick}` to evaluate the model.
 
+### R
 ```r
 lasso_model <-
     linear_reg(
@@ -1157,6 +1182,7 @@ print(best_lasso)
 ## 1 0.00511
 ```
 
+### R
 ```r
 best_lasso_model <-
     lasso_model %>%
@@ -1241,6 +1267,7 @@ print("For the LASSO model in Python, the RMSE is {}".format(rmse(y_test, lasso_
 
 So the second model, I will use ridge regression. While LASSO can attenuate coefficients (or weights, depending on your parlance of choice) to zero, Ridge does not. So if there are variables with little explanatory value, they will be retain in a Ridge model.
 
+### R
 ```r
 ridge_model <-
     linear_reg(
@@ -1276,6 +1303,7 @@ print(best_ridge)
 ## 1   0.237
 ```
 
+### R
 ```r
 best_ridge_model <-
     ridge_model %>%
@@ -1338,6 +1366,7 @@ print("For the Ridge model in Python, the RMSE is {}".format(rmse(y_test, ridge_
 ## Elasticnet model
 Elasticnet models are in essence a midway between LASSO and Ridge models. In `{parsnip}`, the `mixture()` parameter controls the amount of penalty ($L_1$, or LASSO, and $L_2$, or ridge) applied in reguarlized models. In the LASSO model, `mixture = 1` and in the ridge model, `mixture = 0`. For the elasticnet model, we can select a value between 0 and 1. So in this, we tune `mixture` in addition to `penalty`.
 
+### R
 ```r
 en_model <-
     linear_reg(
@@ -1374,6 +1403,7 @@ print(best_en)
 ## 1  0.0215   0.219
 ```
 
+### R
 ```r
 best_en_model <-
     en_model %>%
@@ -1438,6 +1468,7 @@ print("For the Elastic Net model in Python, the RMSE is {}".format(rmse(y_test, 
 ## MARS model
 
 
+### R
 ```r
 mars_model <-
   mars(
@@ -1478,6 +1509,7 @@ print(best_mars)
 ## 1           1 exhaustive
 ```
 
+### R
 ```r
 mars_fit <-
   mars_model %>%
@@ -1489,6 +1521,7 @@ mars_fit <-
 ## Exhaustive pruning: number of subsets 2.7e+11   bx sing val ratio 6.9e-06
 ```
 
+### R
 ```r
 mars_predictions <-
   testing(train_split) %>%
@@ -1541,6 +1574,7 @@ In contrast to the previous set of model, eXtreme gradient boosting (XGBoost) is
 
 These models take a long time to run, so I have run them, determined the best parameters and plugged those in, so that this script will run in a reasonable amount of time.
 
+### R
 ```r
 # R Parsnip to Python translator:
 # sample_size = subsample
