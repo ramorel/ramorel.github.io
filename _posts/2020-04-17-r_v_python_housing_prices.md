@@ -34,6 +34,7 @@ Now, I know I just said that I will use as few libraries as possible--but I will
 
 For Python, I use the usual suspects: `{pandas}`, `{numpy}` and `{scipy}`, and `{matplotlib}` for visualizations. I also import `{seaborn}`, again violating my rules, but `{seaborn}` makes it easy to color visualizations by groups, like in `{ggplot2}`.
 
+### Python
 ```python
 import pandas as pd
 import numpy as np
@@ -48,6 +49,7 @@ The cool thing about `{reticulate}` is that it allows you to access objects from
 
 This causes an interesting data issue and serves as a good reminder to always check out your data before plunging ahead with analysis. We will see this in the next section.
 
+### Python
 ```python
 train = pd.read_csv('train.csv')
 test = pd.read_csv('test.csv')
@@ -215,6 +217,7 @@ That looks much better.
 
 Now, I will do the same thing in Python. _Quick reminder that Python is zero-indexed!!_
 
+### Python
 ```python
 print("The training dataset has %s features and %s observations" % (train.shape[1], train.shape[0]))
 
@@ -227,6 +230,7 @@ print("The training dataset has %s features and %s observations" % (train.shape[
 ## The training dataset has 81 features and 1460 observations
 ```
 
+### Python
 ```python
 for name, val in zip(list(train.dtypes.value_counts().index), train.dtypes.value_counts()):
   print('There are {} features of type {}'.format(val, name))
@@ -240,6 +244,7 @@ for name, val in zip(list(train.dtypes.value_counts().index), train.dtypes.value
 
 The method `head()` in `{pandas}` does something similar to `glimpse()`. It gives the number of features along with the first _n_ observation (by default 5, but I will use 10). Unlike `glimpse()` it does not give the type of each feature. But that's okay, we just got that information.
 
+### Python
 ```python
 train.head(10)
 ```
@@ -355,6 +360,7 @@ train %>%
 
 Now to do this in Python. `{pandas}` has a nifty `is.null()` method that we an chain with `sum()` to get the number of missing values in a series.
 
+### Python
 ```python
 mv = train.isnull().sum()
 mv = mv[mv!=0].sort_values(ascending=False)
@@ -387,6 +393,7 @@ for name, val in zip(list(mv.index), mv):
 
 And dividing by the length of the series gets us the proportion. 
 
+### Python
 ```python
 mv = (train.isnull().sum()/len(train))*100
 mv = mv[mv!=0].sort_values(ascending=False).round(2)
@@ -458,6 +465,7 @@ p1 + p2
 
 Again, in Python, looking at the plots side by side.
 
+### Python
 ```python
 y = train['SalePrice']
 sns.set_style("whitegrid")
@@ -494,6 +502,7 @@ p1 + p2
 
 In Python, we can use `{matplotlib}` to see this relationship.
 
+### Python
 ```python
 fig, ax = plt.subplots(1, 2, sharey=False, sharex=False, figsize=(10,6))
 ax[0].scatter(train['GrLivArea'], train['SalePrice'], alpha = 0.75, color = '#6495ED')
@@ -548,6 +557,7 @@ p1 + p2
 
 For my Python version, I will use `{seaborn}` rather than straight `{matplotlib}` to easily color the points by category.
 
+### Python
 ```python
 fig, ax = plt.subplots(1, 2, sharey=False, sharex=False, figsize=(10,6))
 sns.scatterplot('GrLivArea', 'SalePrice', hue='OverallQual', data=train, palette='viridis', ax=ax[0], alpha=0.75)
@@ -573,6 +583,7 @@ train <-
 
 In Python too!
 
+### Python
 ```python
 train.drop(train[(train['GrLivArea']>4000) & (train['SalePrice']<300000)].index, inplace = True)
 ```
@@ -628,6 +639,7 @@ all_dat <-
 
 In Python, I will do the same thing using `for` loops for the relevant features, taking advantage of `{pandas}` `fillna()` method.
 
+### Python
 ```python
 all_dat = pd.concat((train, test), sort = False, ignore_index = True)
 all_dat.drop(['Id', 'SalePrice'], axis = 1, inplace = True)
@@ -684,6 +696,7 @@ all_dat <-
 
 In Python, the approach is similar, using the `groupby()` method to group by neighborhood and class, along with the `fillna()` method. This approach uses a `lambda` function within a for loop. This is like using an anonymous function within an `apply` loop in R.
 
+### Python
 ```python
 random_vars = ['Electrical', 'Exterior1st', 'Exterior2nd', 'Functional', 'KitchenQual', 'MSZoning', 'SaleType', 'Utilities']
 
@@ -703,7 +716,7 @@ glue("There are {sum(is.na(all_dat))} features with missing observations")
 ## There are 0 features with missing observations
 ```
 
-
+### Python
 ```python
 missing = all_dat.apply(lambda x: x.isnull().sum()) > 0
 print('There are {} features with missing observations'.format(missing.sum()))
@@ -734,6 +747,7 @@ all_dat <-
 
 In Python, I create them one at a time. 
 
+### Python
 ```python
 # Feature engineering
 all_dat['TotalArea'] = all_dat['1stFlrSF'] + all_dat['2ndFlrSF'] + all_dat['TotalBsmtSF']
@@ -808,6 +822,7 @@ all_dat <-
 
 The processes is similar in Python, but takes advantage of the `dictionary` type, which does not exist in R. I define as `dictionaries` relating the labels to numeric values and recode the features using the dictionaries. 
 
+### Python
 ```python
 qual = {'None': 1, 'Po': 2, 'Fa': 3, 'TA': 4, 'Gd': 5, 'Ex': 6}
 func = {'Sev': 1, 'Maj1': 2, 'Maj2': 3, 'Mod': 4, 'Min1': 5, 'Min2': 6, 'Typ': 7}
@@ -846,6 +861,7 @@ all_dat <-
 
 This looks very similar in Python.
 
+### Python
 ```python
 nominal_vars = ['Alley', 'BldgType', 'Condition1', 'Condition2', 'Electrical', 
                 'Exterior1st', 'Exterior2nd', 'Fence', 'Foundation', 'GarageType', 
@@ -873,6 +889,7 @@ all_dat <-
 
 Quick and easy in Python.
 
+### Python
 ```python
 dummies = pd.get_dummies(all_dat[nominal_vars], drop_first=True)
 all_dat = pd.concat((all_dat.drop(nominal_vars, axis = 1), dummies), sort = False, axis = 1)
@@ -899,6 +916,7 @@ all_dat <-
 
 In Python, the `boxcox` function from the `scipy.stats` module automatically calculates `lambda` if it is not specified.
 
+### Python
 ```python
 from scipy.stats import boxcox
 
@@ -922,8 +940,7 @@ glue("Lambda value for LowQualFinSF in R is: {car::powerTransform(train[['LowQua
 ## Lambda value for LowQualFinSF in R is: -10.00491
 ```
 
-Python:
-
+### Python
 ```python
 xd, lam = boxcox((train['LowQualFinSF'])+1)
 print('Lambda value for LowQualFinSF in Python is: %f' % lam)
@@ -944,7 +961,7 @@ glue("There are {sum(is.na(all_dat))} features with missing observations")
 ## There are 0 features with missing observations
 ```
 
-
+### Python
 ```python
 missing = all_dat.apply(lambda x: x.isnull().sum()) > 0
 print('There are {} features with missing observations'.format(missing.sum()))
@@ -978,6 +995,7 @@ glue("The are {ncol(all_dat)} features and {nrow(all_dat)} observations.")
 
 And now in Python:
 
+### Python
 ```python
 # Removing sparse variables
 sparse = []
@@ -1010,6 +1028,7 @@ all_dat_scaled <-
 
 In Python, I use `scale()` from `{Sci-kit learn}`. 
 
+### Python
 ```python
 from sklearn.preprocessing import scale
 
@@ -1067,6 +1086,7 @@ glue("The testing data is {nrow(testing(train_split))} rows by {ncol(testing(tra
 
 For Python, after I subset the `all_dat` data from to include only the data in the initial training dataset, I use the `train_test_split()` function from sci-kit learn.
 
+### Python
 ```python
 from sklearn.model_selection import train_test_split
 
@@ -1089,6 +1109,7 @@ print('The training data is {} rows by {} columns'.format(X_train.shape[0], X_tr
 ## The training data is 1020 rows by 396 columns
 ```
 
+### Python
 ```python
 print('The testing data is {} rows by {} columns'.format(X_test.shape[0], X_test.shape[1]))
 ```
@@ -1163,6 +1184,7 @@ testing(train_split) %>%
 
 Now, in Python, using the same hyperparameters. 
 
+### Python
 ```python
 from sklearn.metrics import mean_squared_error
 from sklearn.linear_model import LassoCV, RidgeCV, ElasticNetCV
@@ -1204,6 +1226,7 @@ lasso.fit(X_train, y_train)
 ##         verbose=False)
 ```
 
+### Python
 ```python
 lasso_pred = lasso.predict(X_test)
 print("For the LASSO model in Python, the RMSE is {}".format(rmse(y_test, lasso_pred).round(4)))
@@ -1278,6 +1301,7 @@ testing(train_split) %>%
 
 Again, doing this in Python using the sample values to tune the model.
 
+### Python
 ```python
 from sklearn.linear_model import RidgeCV
 alphas = r.alphas_py
@@ -1301,6 +1325,7 @@ ridge.fit(X_train, y_train)
 ##         store_cv_values=False)
 ```
 
+### Python
 ```python
 ridge_pred = ridge.predict(X_test)
 print("For the Ridge model in Python, the RMSE is {}".format(rmse(y_test, ridge_pred).round(4)))
@@ -1374,6 +1399,7 @@ testing(train_split) %>%
 
 One thing to notice about Python and `{Sci-kit learn}` compared to R and `{glmnet}` (which `{parsnip}` uses to implment regularized linear models) is that the LASSO, ridge, and elasticnet are implemented in different functions. In `{glmnet}`, these are implemented in the same function. So if we set `l1=1` or `l1=0` in `ElasticNetCV()`, we'd get the LASSO and ridge, respectively.
 
+### Python
 ```python
 alphas = r.alphas_py
 l1 = r.l1
@@ -1399,6 +1425,7 @@ elasticnet.fit(X_train, y_train)
 ##              selection='cyclic', tol=0.0001, verbose=0)
 ```
 
+### Python
 ```python
 elasticnet_pred = elasticnet.predict(X_test)
 print("For the Elastic Net model in Python, the RMSE is {}".format(rmse(y_test, elasticnet_pred).round(4)))
@@ -1482,7 +1509,7 @@ testing(train_split) %>%
 ## For the MARS model in R, the RMSE is 0.1148
 ```
 
-
+### Python
 ```python
 from pyearth import Earth
 
@@ -1498,6 +1525,7 @@ mars_model.fit(X_train, y_train)
 ##       smooth=None, thresh=None, use_fast=None, verbose=0, zero_tol=None)
 ```
 
+### Python
 ```python
 mars_pred = mars_model.predict(X_test)
 print("For the MARS model in Python, the RMSE is {}".format(rmse(y_test, mars_pred).round(4)))
@@ -1610,7 +1638,7 @@ testing(train_scaled_split) %>%
 
 Again, to save time for the Python implementation of XGBoost, I use the parameters determined by the grid search in R. Not fair to Python, but it does save time.
 
-
+### Python
 ```python
 from xgboost import XGBRegressor
 
