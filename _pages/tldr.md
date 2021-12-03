@@ -1,11 +1,8 @@
 ---
-permalink: /tldr
+permalink: /tldr/
 title: "Hi"
 excerpt: "Richard Paquin Morel"
 author_profile: true
-redirect_from: 
-  - /tldr/
-  - /tldr.html
 ---
 
 tl;dr
