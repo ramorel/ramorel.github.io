@@ -79,10 +79,10 @@ analytics:
 
 # Site Author
 author:
-  name             : 
+  name             :
   avatar           : "avatar.jpg"
-  bio              : "Postdoctoral scholar at LRDC at the University of Pittsburgh"
-  location         : "Chicago"
+  bio              : "People Research Scientist @ Meta"
+  location         : "SF, CA"
   employer         :
   googlescholar    : https://scholar.google.com/citations?user=K_t3TwkAAAAJ&hl=en&oi=ao
   email            :
@@ -99,7 +99,7 @@ author:
   instagram        :
   lastfm           :
   linkedin         :
-  orcid            : 
+  orcid            :
   pinterest        :
   soundcloud       :
   stackoverflow    : 4488105/paqmo
