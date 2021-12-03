@@ -21,7 +21,7 @@ Programming: R, Python, Presto SQL
 
 ### Publications:
 
-Morel, R. P. (2021). Strange Frame Fellows: The Evolution of Discursive Framing in the Opt-Out Testing Movement. Teachers College Record, 123(5), 1-32.
+Morel, R. P. (2021). Strange Frame Fellows: The Evolution of Discursive Framing in the Opt-Out Testing Movement. Teachers College Record, 123(5), 1-32. [link](https://journals.sagepub.com/doi/pdf/10.1177/016146812112300507)
 
 Morel, R. P., Coburn, C., Catterson, A. K., & Higgs, J. (2019). The Multiple Meanings of Scale: Implications for Researchers and Practitioners. Educational Researcher, 48(6), 369–377. [[link]](https://journals.sagepub.com/doi/full/10.3102/0013189X19860531)
 
