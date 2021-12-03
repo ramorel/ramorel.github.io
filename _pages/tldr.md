@@ -1,5 +1,5 @@
 ---
-permalink: /
+permalink: /tldr
 title: "Hi"
 excerpt: "Richard Paquin Morel"
 author_profile: true
