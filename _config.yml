@@ -1,4 +1,4 @@
-# Welcome to Jekyll!
+o# Welcome to Jekyll!
 #
 # This config file is meant for settings that affect your entire site, values
 # which you are expected to set up once and rarely need to edit after that.
@@ -81,7 +81,7 @@ analytics:
 author:
   name             :
   avatar           : "avatar.jpg"
-  bio              : "People Research Scientist @ Meta"
+  bio              : "Senior Quantitative UX Researcher @ Google"
   location         : "SF, CA"
   employer         :
   googlescholar    : https://scholar.google.com/citations?user=K_t3TwkAAAAJ&hl=en&oi=ao
