@@ -6,7 +6,7 @@ author_profile: true
 ---
 
 ### Me
-[Me](http://ramorel.github.io/about)? I’m a Senior Quantitative UX Research Scientist at Google. I do things like: experimental and quasi-experimental design; survey design; behavioral and predictive modeling.
+[Me](http://ramorel.github.io/tldr)? I’m a Senior Quantitative UX Research Scientist at Google. I do things like: experimental and quasi-experimental design; survey design; behavioral and predictive modeling.
 
 Formerly:
 - People Research Scientist at Meta, focusing on understanding, quantifying, and mitigating negative effects of harmful content.
