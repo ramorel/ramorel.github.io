@@ -8,7 +8,7 @@ author_profile: true
 tl;dr
 
 1. I earned my Ph.D in human development and social policy from Northwestern University in 2019
-2. I am a people research scientist as Meta 
+2. I am a quantitative ux research at google
 3. I use the tools of organizational sociology, causal inference, and computational methods to understand human behavior and mitigate human problems
 4. Avid #rstats user and I use Python too! Why not both?!?!
 5. Proud parent of two great kids
