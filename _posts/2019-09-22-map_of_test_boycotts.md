@@ -17,6 +17,7 @@ School-level accountability data for public schools in New York is available [he
 
 ```r
 ## Find county-level means by year
+
 partic_means <-
   nydata %>% 
   group_by(county_name, year) %>% 
