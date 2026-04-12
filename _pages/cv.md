@@ -10,4 +10,4 @@ redirect_from:
 
 [Download my CV](http://ramorel.github.io/files/cv_paquin_morel.pdf)
 
-Resume [here](https://read.cv/ramorel)
+Resume [here](http://ramorel.github.io/files/rpm_resume.pdf)
