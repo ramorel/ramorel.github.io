@@ -6,16 +6,15 @@ author_profile: true
 ---
 
 ### Me
-[Me](http://ramorel.github.io/tldr)? I’m a Senior Quantitative UX Research Scientist at Google. I do things like: experimental and quasi-experimental design; survey design; behavioral and predictive modeling.
+[Me](http://ramorel.github.io/tldr)? I’m currently a Behavioral Data Scientist and Technical Lead at YouTube. I do things like: experimental and quasi-experimental design; complex survey design; behavioral and predictive modeling; and network analysis.
 
 Formerly:
+- Quantitative UX Reseacher at Google
 - People Research Scientist at Meta, focusing on understanding, quantifying, and mitigating negative effects of harmful content.
 - Postdoctoral research at the [Learning Research and Development Center](http://www.lrdc.pitt.edu/) at the University of Pittsburgh.
 - I was an elementary school teaching in New York City public schools in a past life.
 
 I completed my Ph.D. in Human Development and Social Policy at Northwestern University in 2019.
-
-Check out my [CV](https://ramorel.github.io/cv/) or my [professional resume](https://read.cv/ramorel)
 
 [Check out my various projects using R to analyze and visualize data from sundry sources.](https://ramorel.github.io/posts)
 
