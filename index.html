@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Richard Paquin-Morel, Ph.D.</title>
-    <meta name="description" content="Staff Data Scientist & Tech Lead at YouTube. Measurement methodology, experimental/quasi-experimental design, causal inference, Bayesian modeling, psychometrics.">
+    <meta name="description" content="Staff Data Scientist & Tech Lead at YouTube. Measurement methodology, causal inference, Bayesian modeling, psychometrics.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
@@ -187,6 +187,43 @@
             color: var(--fg-secondary);
         }
 
+        /* --- Writing / Posts --- */
+        .post-item {
+            padding: 16px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .post-item:first-of-type {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        .post-title {
+            font-weight: 400;
+            font-size: 0.95rem;
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .post-title:hover {
+            color: var(--accent-hover);
+        }
+
+        .post-date {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--fg-tertiary);
+            margin-left: 10px;
+        }
+
+        .post-desc {
+            font-size: 0.82rem;
+            color: var(--fg-secondary);
+            margin-top: 4px;
+            margin-bottom: 0;
+        }
+
         /* --- Publications --- */
         .pub {
             padding: 16px 0;
@@ -310,8 +347,8 @@
                     <span class="role-date">2026–present</span>
                 </div>
                 <div class="role-org">YouTube (Google)</div>
-                <p>Staff Data Scientist and Tech Lead for YouTube Marketing measurement. Drive the measurement roadmap and set methodological standards for how the organization quantifies brand impact on user behavior. 
-                    Design and validate survey instruments measuring latent perception constructs, linked to platform behavioral data. Build the end-to-end analytical pipeline from data extraction through psychometric validation (EFA/CFA) to causal impact estimation using experimental and quasi-experimental methods.</p>
+                    <p>Staff Data Scientist and Tech Lead for YouTube Marketing measurement. Drive the measurement roadmap and set methodological standards for how the organization quantifies brand impact on user behavior.</p> 
+                    <p>Design and validate survey instruments measuring latent perception constructs, linked to platform behavioral data. Build the end-to-end analytical pipeline from data extraction through psychometric validation (EFA/CFA) to causal impact estimation using experimental and quasi-experimental methods.</p>
             </div>
 
             <div class="role">
@@ -338,6 +375,28 @@
                     <span class="role-date">2019–2020</span>
                 </div>
                 <div class="role-org">University of Pittsburgh, Learning Research &amp; Development Center</div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Writing</h2>
+
+            <div class="post-item">
+                <a href="posts/network-range.html" class="post-title">Network range: An R function for network analysis</a>
+                <span class="post-date">May 2020</span>
+                <p class="post-desc">Implementing Burt's composite measure of network diversity in R, with visualization using tidygraph and ggraph.</p>
+            </div>
+
+            <div class="post-item">
+                <a href="posts/robust-se.html" class="post-title">An observation regarding robust standard errors in R and Stata</a>
+                <span class="post-date">April 2020</span>
+                <p class="post-desc">Replicating Stata's heteroskedasticity-robust standard errors in R, and why the defaults differ.</p>
+            </div>
+
+            <div class="post-item">
+                <a href="posts/bike-lanes.html" class="post-title">The Bike Lanes of Brooklyn</a>
+                <span class="post-date">February 2020</span>
+                <p class="post-desc">Mapping Brooklyn's bike lane network using OpenStreetMap data and R spatial tools.</p>
             </div>
         </section>
 
