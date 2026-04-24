@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richard Paquin-Morel, Ph.D.</title>
+    <meta name="description" content="Staff Data Scientist & Tech Lead at YouTube. Measurement methodology, causal inference, Bayesian modeling, psychometrics.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --fg: #1a1a1a;
+            --fg-secondary: #555;
+            --fg-tertiary: #888;
+            --bg: #faf9f7;
+            --bg-card: #f0efec;
+            --accent: #2d5a3d;
+            --accent-hover: #3d7a53;
+            --border: #ddd;
+            --serif: 'Source Serif 4', Georgia, serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --fg: #e8e6e1;
+                --fg-secondary: #a8a5a0;
+                --fg-tertiary: #777;
+                --bg: #141311;
+                --bg-card: #1e1d1a;
+                --accent: #6db88a;
+                --accent-hover: #8dd4a6;
+                --border: #333;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 17px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--serif);
+            color: var(--fg);
+            background: var(--bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- Header --- */
+        header {
+            padding: 80px 0 0;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        header .tagline {
+            font-size: 1rem;
+            color: var(--fg-secondary);
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 16px;
+            margin-bottom: 0;
+        }
+
+        .links a {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 0.01em;
+            transition: color 0.2s;
+        }
+
+        .links a:hover {
+            color: var(--accent-hover);
+        }
+
+        /* --- Sections --- */
+        section {
+            padding: 48px 0 0;
+        }
+
+        section h2 {
+            font-size: 0.72rem;
+            font-family: var(--mono);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--fg-tertiary);
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 16px;
+            font-weight: 300;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* --- Methods list --- */
+        .methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .methods span {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--fg-secondary);
+            background: var(--bg-card);
+            padding: 5px 12px;
+            border-radius: 3px;
+            letter-spacing: 0.01em;
+        }
+
+        /* --- Experience --- */
+        .role {
+            padding: 20px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .role:first-of-type {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        .role-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 4px 16px;
+            margin-bottom: 4px;
+        }
+
+        .role-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .role-date {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--fg-tertiary);
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+        }
+
+        .role-org {
+            font-style: italic;
+            color: var(--fg-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .role p {
+            font-size: 0.9rem;
+            color: var(--fg-secondary);
+        }
+
+        /* --- Publications --- */
+        .pub {
+            padding: 16px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .pub:first-of-type {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        .pub-title {
+            font-weight: 400;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .pub-venue {
+            font-size: 0.82rem;
+            color: var(--fg-tertiary);
+            font-style: italic;
+        }
+
+        .pub a {
+            color: var(--accent);
+            text-decoration: none;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            margin-left: 4px;
+        }
+
+        .pub a:hover {
+            color: var(--accent-hover);
+        }
+
+        /* --- Education --- */
+        .edu {
+            padding: 12px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .edu:first-of-type {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        .edu-degree {
+            font-weight: 400;
+            font-size: 0.9rem;
+        }
+
+        .edu-school {
+            font-size: 0.82rem;
+            color: var(--fg-tertiary);
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 64px 0 48px;
+            text-align: center;
+        }
+
+        footer p {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--fg-tertiary);
+            letter-spacing: 0.02em;
+            font-weight: 400;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 600px) {
+            html { font-size: 16px; }
+            header { padding-top: 48px; }
+            header h1 { font-size: 1.5rem; }
+            section { padding-top: 36px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <header>
+            <h1>Richard Paquin-Morel</h1>
+            <p class="tagline">Staff Data Scientist &amp; Tech Lead at YouTube&ensp;·&ensp;Ph.D.</p>
+            <div class="links">
+                <a href="mailto:richard.a.morel@gmail.com">email</a>
+                <a href="https://www.linkedin.com/in/richard-paquin-morel/" target="_blank" rel="noopener">linkedin</a>
+                <a href="https://github.com/ramorel" target="_blank" rel="noopener">github</a>
+                <a href="https://scholar.google.com/citations?user=K_t3TwkAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">scholar</a>
+            </div>
+        </header>
+
+        <section>
+            <h2>About</h2>
+            <p>I'm a measurement methodologist and data scientist. I design rigorous measurement systems and causal inference infrastructure for behavioral data at scale — connecting latent constructs to observable outcomes through Bayesian multilevel modeling, experimental and quasi-experimental design, psychometric measurement, and survey methodology.</p>
+            <p>Currently at YouTube, where I own the measurement roadmap for Marketing and lead a team of 30+ data scientists and researchers. Previously at Google and Meta, where I built measurement programs spanning advertiser trust, product experimentation, and the psychological impact of content exposure on human reviewers in trust &amp; safety contexts.</p>
+        </section>
+
+        <section>
+            <h2>Methods</h2>
+            <div class="methods">
+                <span>Bayesian multilevel modeling</span>
+                <span>MrP / post-stratification</span>
+                <span>Causal inference</span>
+                <span>Difference-in-differences</span>
+                <span>Doubly robust estimation</span>
+                <span>Geo-randomized designs</span>
+                <span>Psychometrics (IRT / CFA)</span>
+                <span>Survey sampling design</span>
+                <span>Scale development</span>
+                <span>Sequential Bayesian updating</span>
+                <span>TensorFlow Probability</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>Experience</h2>
+
+            <div class="role">
+                <div class="role-header">
+                    <span class="role-title">Staff Behavioral Data Scientist &amp; Tech Lead</span>
+                    <span class="role-date">2026–present</span>
+                </div>
+                <div class="role-org">YouTube (Google)</div>
+                <p>Own the measurement roadmap for YouTube Marketing. Design and validate survey instruments measuring latent perception constructs linked to behavioral data. Building a Bayesian MrP framework in TensorFlow Probability for population-representative estimation from non-probability panels. Technical oversight for a 30+ person DS &amp; Insights team.</p>
+            </div>
+
+            <div class="role">
+                <div class="role-header">
+                    <span class="role-title">Senior Quantitative UX Researcher</span>
+                    <span class="role-date">2023–2026</span>
+                </div>
+                <div class="role-org">Google</div>
+                <p>Developed a measurement framework for Advertiser Trust integrating attitudinal survey constructs with behavioral signals, adopted as a core metric across 12+ product areas. Quantified causal impact of trust perceptions on revenue-relevant outcomes using observational causal inference methods.</p>
+            </div>
+
+            <div class="role">
+                <div class="role-header">
+                    <span class="role-title">People Research Scientist</span>
+                    <span class="role-date">2020–2023</span>
+                </div>
+                <div class="role-org">Meta</div>
+                <p>Built a first-of-its-kind measurement program for the psychological impact of graphic content exposure on human content reviewers in trust &amp; safety. Developed novel survey instruments and behavioral indicators in partnership with clinical psychologists. Translated findings into global policy changes affecting thousands of reviewers.</p>
+            </div>
+
+            <div class="role">
+                <div class="role-header">
+                    <span class="role-title">Postdoctoral Research Associate</span>
+                    <span class="role-date">2019–2020</span>
+                </div>
+                <div class="role-org">University of Pittsburgh, Learning Research &amp; Development Center</div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Selected Publications</h2>
+
+            <div class="pub">
+                <div class="pub-title">Strange Frame Fellows: The Evolution of Discursive Framing in the Opt-Out Testing Movement</div>
+                <div class="pub-venue">Teachers College Record, 2021 <a href="https://journals.sagepub.com/doi/pdf/10.1177/016146812112300507" target="_blank" rel="noopener">pdf</a></div>
+            </div>
+
+            <div class="pub">
+                <div class="pub-title">The Multiple Meanings of Scale: Implications for Researchers and Practitioners</div>
+                <div class="pub-venue">Educational Researcher, 2019 <a href="https://journals.sagepub.com/doi/full/10.3102/0013189X19860531" target="_blank" rel="noopener">pdf</a></div>
+            </div>
+
+            <div class="pub">
+                <div class="pub-title">Access, Activation, and Influence: How Brokers Mediate Social Capital Among Professional Development Providers</div>
+                <div class="pub-venue">American Educational Research Journal, 2019 <a href="http://doi.org/10.3102/0002831218788528" target="_blank" rel="noopener">pdf</a></div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Education</h2>
+
+            <div class="edu">
+                <div class="edu-degree">Ph.D., Human Development and Social Policy</div>
+                <div class="edu-school">Northwestern University, 2019</div>
+            </div>
+
+            <div class="edu">
+                <div class="edu-degree">M.A., Philosophy</div>
+                <div class="edu-school">The New School, 2006</div>
+            </div>
+        </section>
+
+        <footer>
+            <p>San Francisco, CA</p>
+        </footer>
+
+    </div>
+</body>
+</html>
