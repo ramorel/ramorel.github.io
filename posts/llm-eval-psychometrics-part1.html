@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your LLM Eval Is a Psychometric Instrument — Richard Paquin-Morel</title>
+    <meta name="description" content="Applying measurement science to LLM benchmarks. A three-part series on psychometric analysis of TruthfulQA and BBQ.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --fg: #1a1a1a;
+            --fg-secondary: #555;
+            --fg-tertiary: #888;
+            --bg: #faf9f7;
+            --bg-card: #f0efec;
+            --accent: #2d5a3d;
+            --accent-hover: #3d7a53;
+            --border: #ddd;
+            --serif: 'Source Serif 4', Georgia, serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --fg: #e8e6e1;
+                --fg-secondary: #a8a5a0;
+                --fg-tertiary: #777;
+                --bg: #141311;
+                --bg-card: #1e1d1a;
+                --accent: #6db88a;
+                --accent-hover: #8dd4a6;
+                --border: #333;
+            }
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { font-size: 17px; scroll-behavior: smooth; }
+        body {
+            font-family: var(--serif);
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Layout ───────────────────────────────── */
+        .post-header {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 1rem;
+        }
+        .post-header a {
+            color: var(--fg-tertiary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.03em;
+        }
+        .post-header a:hover { color: var(--accent); }
+        .post-content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 1.5rem 4rem;
+        }
+
+        /* ── Typography ───────────────────────────── */
+        h1 {
+            font-size: 2.1rem;
+            font-weight: 600;
+            line-height: 1.25;
+            margin: 1.5rem 0 0.5rem;
+            letter-spacing: -0.01em;
+        }
+        .subtitle {
+            font-size: 1.05rem;
+            color: var(--fg-secondary);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+        .post-meta {
+            font-size: 0.85rem;
+            color: var(--fg-tertiary);
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .post-nav {
+            font-size: 0.9rem;
+            color: var(--fg-secondary);
+            margin-bottom: 2rem;
+            padding: 1rem 1.25rem;
+            background: var(--bg-card);
+            border-radius: 6px;
+        }
+        .post-nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        .post-nav li {
+            padding: 0.15rem 0;
+        }
+        .post-nav .current {
+            color: var(--fg);
+            font-weight: 600;
+        }
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2.5rem 0 1rem;
+            letter-spacing: -0.01em;
+        }
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin: 2rem 0 0.75rem;
+        }
+        p {
+            margin-bottom: 1.15rem;
+        }
+        a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        a:hover { color: var(--accent-hover); }
+
+        /* ── Lists ────────────────────────────────── */
+        ol, ul {
+            margin: 0 0 1.15rem 1.5rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        li strong {
+            color: var(--fg);
+        }
+
+        /* ── Emphasis & inline ────────────────────── */
+        em { font-style: italic; }
+        strong { font-weight: 600; }
+        code {
+            font-family: var(--mono);
+            font-size: 0.88em;
+            background: var(--bg-card);
+            padding: 0.15em 0.35em;
+            border-radius: 3px;
+        }
+
+        /* ── Block elements ───────────────────────── */
+        blockquote {
+            border-left: 3px solid var(--accent);
+            padding: 0.5rem 0 0.5rem 1.25rem;
+            margin: 1.5rem 0;
+            color: var(--fg-secondary);
+            font-style: italic;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 2.5rem 0;
+        }
+
+        /* ── TL;DR / findings box ─────────────────── */
+        .findings-box {
+            background: var(--bg-card);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 6px 6px 0;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .findings-box h3 {
+            margin: 0 0 0.75rem;
+            font-size: 1.05rem;
+        }
+        .findings-box ul {
+            margin: 0;
+            padding: 0 0 0 1.25rem;
+        }
+        .findings-box li {
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+        }
+        .findings-box li ul {
+            margin-top: 0.3rem;
+        }
+
+        /* ── Key advantages ───────────────────────── */
+        .advantages {
+            margin: 1.5rem 0;
+        }
+        .advantages li {
+            list-style: none;
+            margin-bottom: 0.75rem;
+            padding-left: 0;
+        }
+        .advantages li strong {
+            color: var(--accent);
+        }
+
+        /* ── Disclaimer ───────────────────────────── */
+        .disclaimer {
+            font-size: 0.9rem;
+            color: var(--fg-secondary);
+            border-top: 1px solid var(--border);
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            font-style: italic;
+        }
+
+        /* ── Responsive ───────────────────────────── */
+        @media (max-width: 600px) {
+            html { font-size: 16px; }
+            h1 { font-size: 1.7rem; }
+            .post-header, .post-content { padding-left: 1rem; padding-right: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="post-header">
+    <a href="/">← Richard Paquin-Morel</a>
+    <h1>Your LLM Eval Is a Psychometric Instrument</h1>
+    <p class="subtitle">A Story in Three Parts</p>
+    <p class="post-meta">May 2026</p>
+
+    <nav class="post-nav">
+        <ul>
+            <li class="current">Part 1: Why psychometrics matters for LLM eval research</li>
+            <li>Part 2: The study design and findings</li>
+            <li>Part 3: Why this matters for AI/LLM eval research</li>
+        </ul>
+    </nav>
+</header>
+
+<article class="post-content">
+
+    <h2>From people to machines</h2>
+
+    <p>My day-to-day work involves psychometric analysis to identify latent constructs 
+    from survey data. The purpose of this (and any psychometric work) is to infer 
+    latent characteristics (mental abilities, preferences, psychological states) of 
+    individuals—which are, by nature, not directly observable (cf. Wittgenstein's
+    <a href="https://en.wikipedia.org/wiki/Private_language_argument">"beetle-in-a-box"</a>)
+    from responses to explicit statements or questions (i.e., survey items)—which, 
+    while noisy and prone to various forms of error, have the useful quality of 
+    being directly observable.</p>
+
+    <p>Psychometrics as a field focuses on quantifying these latent characteristics using
+    tests, survey inventories, and statistical models. And the work of psychometric
+    analysis falls into two large buckets. One is to evaluate a given test (think:
+    SAT or GRE) to determine how well it measures what it purports to measure 
+    (mathematical ability, verbal reasoning, underlying preference or behavioral
+    propensity) and how consistent it is. This is test or survey validation and 
+    reliability. And second is then to use a validated instrument to estimate the 
+    ability (or preference or psychological state) of a given respondent. Validate 
+    and assess.</p>
+
+    <p>The latent constructs help to define the <em>inference we are making from our 
+    observable data</em> and to what extent that inference is <em>warranted</em>. Most of us 
+    are familiar with standardized tests like the SAT. One latent construct that the 
+    SAT is supposed to capture is "general cognitive ability". Another is 
+    "quantitative reasoning". So when we see an individual's score on the 
+    quantitative section of the SAT, we infer something about that individual's 
+    quantitative reasoning skills more generally—as opposed to, say, particular 
+    psychological traits (e.g., how neurotic that individual is). Measurement is all
+    about quantification and inference—how "much" of a characteristic someone has
+    (relative to some reference point, like an estimated population mean or a 
+    defined criterion) and substantially what that tells us. We can call these two 
+    dimensions quantification and inference.</p>
+
+    <p>One of the main approaches to psychometric validation is 
+    <a href="https://en.wikipedia.org/wiki/Item_response_theory">Item Response Theory</a>, which
+    is an umbrella term for a statistical approach to the design, construction, 
+    analysis, and scoring of instruments intended to capture latent characteristics.
+    The upshot of the application of IRT to LLM evaluation is that it can tell us
+    how much information (and about <em>what</em>) the assessment instrument and its 
+    individual items give us. As the analysis below shows, many of the items on two
+    popular LLM benchmark assessments provide no differentiating information
+    whatsoever and essentially represent wasted time and tokens.</p>
+
+    <p>This bit of background brings me to the point of this post. I've been doing a lot
+    of validation work with IRT and have become interested in evaluation work in the
+    LLM space. Each new model is assessed against some test and that is used to compare
+    the model to others and determine its relative performance. But the vast majority
+    of the evaluation work seems to be limited to overall score on a given benchmark
+    (with the implicit assumption that a higher score means model is "more better")
+    and then comparing that performance to previous model iterations and other 
+    frontier models—e.g., ChatGPT 5.5 versus Gemini Pro 3.1. This is both under-
+    theorized and weak from a measurement point of view. There is a very rich and
+    established research literature on exactly this problem of evaluation and it can
+    provide much more nuance and rigor to the LLM eval space.</p>
+
+    <p>There is an interesting potential tension here, or at least a potential 
+    conceptual mismatch that ought to be addressed, but not here. The fundamental
+    idea of psychometrics is that there is something called a "latent ability" or a 
+    "psychological state" that we do not directly observe but can infer using
+    (noisy) instruments like surveys, tests, and assessment instruments. How exactly
+    this framework maps on to LLMs or AI systems more generally is an open question
+    that will inform the direction of LLM/AI evaluation in the future. In the 
+    meantime, the psychometric framework used here provides practical ways to 
+    advance LLM evaluation today.</p>
+
+    <h2>Ok, so what?</h2>
+
+    <p>Here are, to my mind, the key contributions that a psychometric perspective 
+    brings to the LLM eval field. It contributes in two key ways: (1) to the 
+    evaluation of assessment instruments—how good are the assessments at 
+    evaluating the performance of an LLM? Exactly <em>what</em> is being assessed? And (2)
+    to the evaluation of LLMs. How much does the model, aleatoric uncertainty, 
+    prompt condition matter for evaluation?</p>
+
+    <p>Here are four concrete <strong>conceptual</strong> ways that a psychometric perspective can 
+    help make LLM eval more rigorous and meaningful:</p>
+
+    <ol>
+        <li><strong>Quantification of the <em>reliability</em> of an assessment instrument.</strong> 
+        This is the consistency and stability of the instrument over time. If we give the same 
+        test to the same LLM (ceteris paribus) on multiple occasions, the scores should
+        be more or less the same within a given margin of error. A characteristic of a 
+        good assessment is that it has a narrow margin of error and reliably gives a 
+        similar score for a given individual. (Of course, scores can change because of
+        an individual's or LLM's change in underlying ability! Reliability allows us to
+        attribute such changes to changes in ability and not due to error in the 
+        instrument itself!)</li>
+
+        <li><strong>Identification and quantification of the <em>dimensionality</em> of an assessment.</strong>
+        Typically, benchmark assessments report a single score, which is often something
+        like the percent of questions or tasks correct out of the total. However, an 
+        assessment instrument may actually evaluate different underlying abilities! I 
+        actually show this in the analysis here. This is important because it can help
+        us decompose LLM performance into relevant domains rather than just focusing on
+        something like "general knowledge" or "general coding ability". Related to this
+        is the idea of <em>construct validity</em>.</li>
+
+        <li><strong>Determination of item quality in an assessment.</strong> 
+        The individual items in an assessment are not created equal. They provide different 
+        amounts of information about the underlying ability we are trying to measure. We can 
+        quantify this. And, in the analysis here, I show that many of the items on two popular 
+        assessments add no information at all for assessing the ability of frontier models, even 
+        older versions. This can help us reduce the size of an assessment (more items != more 
+        better), save resources and tokens, and help us craft more informative items.</li>
+
+        <li><strong>Measurement invariance across prompt formats.</strong> 
+        If we have a sound measurement instrument, we can experimentally manipulate things like 
+        prompting condition (zero-shot, few-shot, prompting personalities) and see if this changes
+        which items discriminate between models and prompt formats.</li>
+    </ol>
+
+    <p>Great—how does this matter for LLM frontier labs? Let's translate this 
+    <strong>practically</strong> for the type of work that labs actually need to carry out:</p>
+
+    <ul>
+        <li><strong>Model development:</strong> If a model improves from 80% to 85% on a benchmark 
+        assessment, what improved? Is this improvement meaningful?</li>
+
+        <li><strong>Safety and capability thresholds:</strong> Understanding the measurement properties
+        can make deployment thresholds meaningful and not arbitrary. We can quantify the
+        uncertainty in measurement and therefore understand if crossing a threshold is the
+        result of noise or meaningful movement.</li>
+
+        <li><strong>Evaluation efficiency:</strong> Running full assessments with hundreds to thousands 
+        of items is expensive. IRT-based adaptive testing or calibrated short form 
+        versions provide the same measurement precision at a fraction of the cost. This
+        analysis shows that many items on the benchmark assessments provide no 
+        information at all and therefore are useless weight and wasted tokens.</li>
+
+        <li><strong>Construct validity for novel capabilities:</strong> Few people are interrogating
+        exactly <em>what</em> a given instrument is measuring. Construct validity is 
+        essentially: Does the assessment measure the thing we think it should be 
+        measuring? To answer this, you need to have a hypothesis about the thing you 
+        think you are measuring! Psychometrics is the framework to validate the eval 
+        measures you are using.</li>
+    </ul>
+
+    <p>Let me distill this down into <strong>three key advantages</strong> that psychometrics offers for
+    LLM evaluation:</p>
+
+    <ul class="advantages">
+        <li><strong>Clarity</strong> — You have a strong sense of what you are measuring, why it matters, 
+        to whom it applies (i.e., the population of inference), and what inferences are
+        justified.</li>
+        <li><strong>Efficiency</strong> — Fewer resources wasted on items that don't meaningfully 
+        differentiate performance. Compute is expensive.</li>
+        <li><strong>Confidence</strong> — Inferences are clear, justified, quantified, and supported with
+        data and evidence.</li>
+    </ul>
+
+    <p>Here's a preview of what's to come.</p>
+
+    <div class="findings-box">
+        <h3>Findings TL;DR</h3>
+        <ul>
+            <li><strong>Item quality:</strong> Nearly half the items carried no information for frontier 
+            models (either all models answered correctly or all answered incorrectly)</li>
+
+            <li><strong>Reliability:</strong> A single change to the judge prompt shifted scores by 18 points
+                <ul>
+                    <li>Single-run results didn't meet basic reliability standards</li>
+                </ul>
+            </li>
+
+            <li><strong>Dimensionality:</strong> Both TruthfulQA and BBQ measure <strong>multiple distinct 
+            constructs</strong>, not one single ability. BBQ's latent structure aligns with context 
+            condition (ambiguous vs. disambiguated), not with bias categories (age, gender, 
+            race). The benchmark's own taxonomy doesn't reflect how bias actually manifests 
+            in these models</li>
+
+            <li><strong>Measurement invariance:</strong> Variation in prompts selectively manipulated 
+            specific latent dimensions while leaving others untouched—evidence that the 
+            dimensions are functionally distinct, not statistical artifacts</li>
+
+            <li><strong>Construct validity:</strong> More capable model configurations showed <em>more</em> 
+            stereotyped responding on BBQ (<em>r</em> = 0.71), suggesting bias benchmarks may 
+            confound capability with bias</li>
+        </ul>
+    </div>
+
+    <div class="disclaimer">
+        <p><strong>Disclaimer.</strong> This is not a comprehensive evaluation study. It is a proof-of-concept
+        pilot analysis done in my (rather constrained) spare time, because the problem
+        space is genuinely interesting, timely, and intersects in a unique way with my
+        research domain. Any and all conclusions are warranted by the analysis but 
+        are limited by the caveats. Ideally, this helps to map more of the space already 
+        identified in LLM eval literature—that we need a more rigorous approach to 
+        evaluation that moves beyond the "benchmark leaderboard" horserace that 
+        dominates the discourse. This is especially true as LLM capabilities, and the 
+        assessments used to evaluate them, become more and more sophisticated. 
+        Practically, this is a personal exercise that lets me explore the LLM eval space
+        through the lens of an analytic toolkit that I use in my everyday work. So it is
+        fun and informative for me.</p>
+    </div>
+
+</article>
+
+</body>
+</html>
